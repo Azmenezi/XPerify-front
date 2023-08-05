@@ -1,0 +1,71 @@
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import CheckIn from "../screens/CheckIn/CheckIn";
+import Home from "../screens/Home/Home";
+import MeetUp from "../screens/MeetUp/MeetUp";
+import Notification from "../screens/Notification/Notification";
+import Profile from "../screens/Profile/Profile";
+import { Feather } from "@expo/vector-icons";
+import { FontAwesome5 } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
+import ROUTES from ".";
+
+const Tab = createBottomTabNavigator();
+
+function BottomNavigation() {
+  return (
+    <Tab.Navigator
+      screenOptions={{
+        tabBarActiveTintColor: "#FDC77C",
+        inactiveTintColor: "black",
+      }}
+    >
+      <Tab.Screen
+        name={ROUTES.HEDERROUTES.HOME}
+        component={Home}
+        options={{
+          tabBarIcon: ({ size, color }) => (
+            <Feather name="home" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name={ROUTES.HEDERROUTES.MEETUP}
+        component={MeetUp}
+        options={{
+          tabBarIcon: ({ size, color }) => (
+            <FontAwesome5 name="user-friends" size={24} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name={ROUTES.HEDERROUTES.CHECKIN}
+        component={CheckIn}
+        options={{
+          tabBarIcon: ({ size, color }) => (
+            <Ionicons name="location" size={24} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name={ROUTES.HEDERROUTES.NOTIFICATION}
+        component={Notification}
+        options={{
+          tabBarIcon: ({ size, color }) => (
+            <Ionicons name="notifications" size={24} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name={ROUTES.HEDERROUTES.PROFILE}
+        component={Profile}
+        options={{
+          tabBarIcon: ({ size, color }) => (
+            <Ionicons name="person" size={24} color={color} />
+          ),
+        }}
+      />
+    </Tab.Navigator>
+  );
+}
+
+export default BottomNavigation;
