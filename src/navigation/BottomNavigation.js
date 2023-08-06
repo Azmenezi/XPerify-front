@@ -17,8 +17,9 @@ function BottomNavigation() {
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: "#FDC77C",
+        tabBarActiveTintColor: "#E38036",
         inactiveTintColor: "black",
+        tabBarShowLabel: false,
       }}
     >
       <Tab.Screen
@@ -26,7 +27,7 @@ function BottomNavigation() {
         component={Home}
         options={{
           tabBarIcon: ({ size, color }) => (
-            <Feather name="home" color={color} size={size} />
+            <Ionicons name="md-home" size={24} color={color} />
           ),
         }}
       />

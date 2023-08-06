@@ -1,3 +1,4 @@
+
 const { instance } = require("..");
 
 exports.login = async (userInfo) => {
@@ -9,3 +10,4 @@ exports.getUsers = async () => {
   const res = await instance.get("/auth/");
   return res.data;
 };
+
