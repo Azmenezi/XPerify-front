@@ -4,7 +4,13 @@ const ROUTES = {
     CHECKIN: "Check-In",
     MEETUP: "Meet-Up",
     NOTIFICATION: "Notification",
-    PROFILE: "Profile",
+    PROFILE_STACK: {
+      STACK: "Profile Stack",
+      PROFILE: "Profile",
+      DM: "Profile Dm",
+      FRIENDS: "Friends",
+      DM_CHAT: "Dm Chat",
+    },
   },
 };
 
