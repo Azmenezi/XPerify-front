@@ -1,7 +1,10 @@
 import axios from "axios";
 import { getToken } from "./auth/storage";
 
-const BASE_URL = "http://192.168.2.36:8000";
+
+
+// const BASE_URL = "http://192.168.8.59:8000";
+
 
 // const BASE_URL = "http://localhost:8000";
 const instance = axios.create({
@@ -17,3 +20,4 @@ instance.interceptors.request.use(async (config) => {
 });
 
 export { instance, BASE_URL };
+
