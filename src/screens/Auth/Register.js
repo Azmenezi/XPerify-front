@@ -1,15 +1,14 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import DmButton from "../../components/Profile/DmButton";
 
-const Profile = ({ navigation }) => {
+const Register = () => {
   return (
     <View>
-      <DmButton navigation={navigation} />
+      <Text>Register</Text>
     </View>
   );
 };
 
-export default Profile;
+export default Register;
 
 const styles = StyleSheet.create({});

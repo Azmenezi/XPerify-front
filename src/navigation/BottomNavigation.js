@@ -8,6 +8,7 @@ import { Feather } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import ROUTES from ".";
+import ProfileStackNavigstion from "./ProfileStackNavigstion";
 
 const Tab = createBottomTabNavigator();
 
@@ -15,6 +16,7 @@ function BottomNavigation() {
   return (
     <Tab.Navigator
       screenOptions={{
+        headerShown: false,
         tabBarActiveTintColor: "#E38036",
         inactiveTintColor: "black",
         tabBarShowLabel: false,
@@ -57,9 +59,10 @@ function BottomNavigation() {
         }}
       />
       <Tab.Screen
-        name={ROUTES.HEDERROUTES.PROFILE}
-        component={Profile}
+        name={ROUTES.HEDERROUTES.PROFILE_STACK.STACK}
+        component={ProfileStackNavigstion}
         options={{
+          title: ROUTES.HEDERROUTES.PROFILE_STACK.PROFILE,
           tabBarIcon: ({ size, color }) => (
             <Ionicons name="person" size={24} color={color} />
           ),

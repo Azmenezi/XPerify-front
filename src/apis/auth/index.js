@@ -1,14 +1,13 @@
-import instance from "..";
 
-const signIn = async (userInfo) => {
-  const res = await instance.post("/users/signin", userInfo);
+const { instance } = require("..");
+
+exports.login = async (userInfo) => {
+  const res = await instance.post("/auth/sign-in", userInfo);
   return res.data;
 };
 
-const signUp = async (userInfo) => {};
+exports.getUsers = async () => {
+  const res = await instance.get("/auth/");
+  return res.data;
+};
 
-const profile = async (id) => {};
-
-const updateProfile = async (id, userInfo) => {};
-
-export { signIn, signUp, profile, updateProfile };
