@@ -29,20 +29,37 @@ export default function ChatTextInput({ msgInfo, setMsgInfo, sendMsgFn }) {
         placeholder="message.."
         style={{
           padding: 10,
-          width: "80%",
+          width: "78%",
           marginBottom: 20,
           marginTop: 10,
           backgroundColor: "white",
           borderColor: "black",
           borderWidth: 1,
-          borderRadius: 20,
+          borderRadius: 10,
           minHeight: 50,
           justifyContent: "center",
           textAlign: textAlign, // Apply the text alignment
+          marginHorizontal: 2,
         }}
         onChangeText={handleChangeText}
       />
-      <Button onPress={handleSendMessage}>Send</Button>
+      <Button
+        style={{
+          marginBottom: 5,
+          backgroundColor: "#000000",
+          borderRadius: 10,
+          marginHorizontal: 2,
+        }}
+        onPress={handleSendMessage}
+      >
+        <Text
+          style={{
+            color: "white",
+          }}
+        >
+          Send
+        </Text>
+      </Button>
     </>
   );
 }

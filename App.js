@@ -15,7 +15,7 @@ const DarkTheme = {
   dark: true,
   colors: {
     primary: "#1C535A",
-    background: "#0d0d0d",
+    background: "#2D2F35",
     card: "transparent",
     text: "#F8F8F8",
     inputText: "#FFFFFF", // Text color for text inputs
