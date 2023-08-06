@@ -1,15 +1,19 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getMyChats } from "../../apis/chat";
 import ROUTES from "../../navigation";
+import UserContext from "../../context/UserContext";
+import { ActivityIndicator } from "react-native-paper";
 
 const DM = ({ navigation }) => {
-  const { data } = useQuery({
+  const { user } = useContext(UserContext);
+  const { data, isLoading } = useQuery({
     queryKey: ["myChats"],
     queryFn: () => getMyChats(),
   });
-  //   console.log(data);
+
+  if (isLoading) return <ActivityIndicator color="black"></ActivityIndicator>;
   return (
     <View>
       {data?.map((chat) => {
@@ -30,7 +34,9 @@ const DM = ({ navigation }) => {
             }}
           >
             <Text>
-              {chat.members.map((member) => member.username).join(" - ")}
+              {chat?.members?.find((member) => member._id !== user._id) &&
+                chat?.members?.find((member) => member._id !== user._id)
+                  .username}
             </Text>
           </Pressable>
         );

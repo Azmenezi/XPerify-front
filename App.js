@@ -1,5 +1,5 @@
 import { NavigationContainer } from "@react-navigation/native";
-import { StyleSheet, View } from "react-native";
+import { LogBox, StyleSheet, View } from "react-native";
 import BottomNavigation from "./src/navigation/BottomNavigation";
 import { useEffect, useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -7,6 +7,10 @@ import UserContext from "./src/context/UserContext";
 import AuthNavigation from "./src/navigation/AuthNavigation";
 import { getToken } from "./src/apis/auth/storage";
 import jwt_decode from "jwt-decode";
+
+LogBox.ignoreLogs(["Warning: ..."]); // Ignore log notification by message
+LogBox.ignoreAllLogs(); //Ignore all log notifications
+
 export default function App() {
   const [user, setUser] = useState(null);
 
@@ -26,7 +30,8 @@ export default function App() {
     <QueryClientProvider client={new QueryClient()}>
       <UserContext.Provider value={{ user, setUser }}>
         <NavigationContainer>
-          {user ? <BottomNavigation /> : <AuthNavigation />}
+          {/* {user ? <BottomNavigation /> : <AuthNavigation />} */}
+          <BottomNavigation />
         </NavigationContainer>
       </UserContext.Provider>
     </QueryClientProvider>
