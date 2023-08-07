@@ -16,14 +16,10 @@ function BottomNavigation() {
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
-<<<<<<< HEAD
 
-        tabBarActiveTintColor: "#E38036",
-        inactiveTintColor: "black",
-=======
         tabBarActiveTintColor: "#5BA199",
         tabBarInactiveTintColor: "#E5E3E4",
->>>>>>> origin/main
+
         tabBarShowLabel: false,
         tabBarStyle: {
           backgroundColor: "#141519",
