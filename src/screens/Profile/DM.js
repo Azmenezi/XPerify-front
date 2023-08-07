@@ -99,7 +99,7 @@ const DM = ({ navigation }) => {
                   fontSize: 16,
                 }}
               >
-                {chat?.msgs[0]?.from.username}:{" "}
+                {chat?.msgs[0]?.from?.username}:{" "}
               </Text>
               <Text style={{ color: `${theme.colors.text}70`, fontSize: 16 }}>
                 {chat?.msgs[0]?.text}

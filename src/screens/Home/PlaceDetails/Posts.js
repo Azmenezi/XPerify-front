@@ -1,14 +1,12 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 
-const SearchByMood = () => {
+export default function Posts() {
   return (
     <View>
-      <Text>SearchByMood</Text>
+      <Text>Posts</Text>
     </View>
   );
-};
-
-export default SearchByMood;
+}
 
 const styles = StyleSheet.create({});

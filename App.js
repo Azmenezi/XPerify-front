@@ -1,5 +1,5 @@
 import { NavigationContainer } from "@react-navigation/native";
-import { LogBox, SafeAreaView, StyleSheet, View } from "react-native";
+import { LogBox, SafeAreaView, StyleSheet } from "react-native";
 import BottomNavigation from "./src/navigation/BottomNavigation";
 import { useEffect, useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
