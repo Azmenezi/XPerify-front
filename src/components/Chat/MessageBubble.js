@@ -6,9 +6,13 @@ export default function MessageBubble({ msg }) {
     <View
       style={{
         margin: 3,
-        backgroundColor: "blue",
+        marginHorizontal: 10,
+        backgroundColor: "#5BA199",
         maxWidth: "70%",
-        borderRadius: "10%",
+        borderTopLeftRadius: 15,
+        borderTopRightRadius: 15,
+        borderBottomLeftRadius: 15,
+        borderBottomRightRadius: 2,
         marginLeft: "auto",
       }}
     >

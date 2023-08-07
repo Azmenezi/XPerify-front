@@ -4,15 +4,16 @@ import {
   Platform,
   KeyboardAvoidingView,
   Keyboard,
+  Pressable,
 } from "react-native";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Button } from "react-native-paper";
 import { getChatMsgs, sendMsg } from "../../apis/chat";
 import UserContext from "../../context/UserContext";
 import { socket } from "../../socket";
 import ChatBox from "./ChatBox";
 import ChatTextInput from "./ChatTextInput";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function Chat({ route, navigation }) {
   const { chatId } = route.params;
@@ -23,7 +24,6 @@ export default function Chat({ route, navigation }) {
     queryKey: ["chat", chatId],
     queryFn: () => getChatMsgs(chatId),
   });
-
   const queryClient = useQueryClient();
 
   const { mutate: sendMsgFn } = useMutation({
@@ -54,11 +54,13 @@ export default function Chat({ route, navigation }) {
         display: "none",
       },
     });
-    console.log(navigation);
     navigation.setOptions({
+      title:
+        data?.members?.find((member) => member._id !== user._id) &&
+        data?.members?.find((member) => member._id !== user._id).username,
       headerLeft: () => {
         return (
-          <Button
+          <Pressable
             onPress={() => {
               navigation.getParent()?.setOptions({
                 tabBarStyle: undefined,
@@ -66,8 +68,13 @@ export default function Chat({ route, navigation }) {
               navigation.pop();
             }}
           >
-            Back
-          </Button>
+            <Ionicons
+              style={{ marginLeft: 20 }}
+              name="chevron-back-sharp"
+              size={24}
+              color="#E38036"
+            />
+          </Pressable>
         );
       },
     });
@@ -107,7 +114,7 @@ export default function Chat({ route, navigation }) {
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={{ flex: 1 }}
-      keyboardVerticalOffset={Platform.OS === "ios" ? 90 : 0}
+      keyboardVerticalOffset={Platform.OS === "ios" ? 90 : 20}
     >
       <ChatBox user={user} data={data} scrollViewRef={scrollViewRef} />
       <View
@@ -115,6 +122,7 @@ export default function Chat({ route, navigation }) {
           flexDirection: "row",
           justifyContent: "center",
           alignItems: "center",
+          backgroundColor: "#00000050",
         }}
       >
         <ChatTextInput
