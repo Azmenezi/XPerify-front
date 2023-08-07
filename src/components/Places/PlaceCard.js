@@ -20,7 +20,10 @@ const PlaceCard = ({ place }) => {
           source={{ uri: `${BASE_URL}/${place.image}` }}
           style={styles.image}
         />
-        <Text style={styles.text}>{place.name}</Text>
+        <View style={styles.infoLayer}>
+          <Text style={styles.text}>{place.name}</Text>
+          {/* Additional information here */}
+        </View>
       </View>
     </TouchableOpacity>
   );
@@ -30,26 +33,34 @@ export default PlaceCard;
 
 const styles = StyleSheet.create({
   card: {
-    flexDirection: "column",
-    backgroundColor: "#fff",
+    backgroundColor: "rgba(0,0,0,0.3)",
     margin: 17,
-
     borderRadius: 10,
     overflow: "hidden",
     borderWidth: 0.5,
     borderColor: "gray",
     width: "94%",
-    alignItems: "center",
-    justifyContent: "flex-start",
   },
   image: {
     width: "100%",
     height: 150,
+    resizeMode: "cover",
   },
+
+  infoLayer: {
+    position: "absolute",
+    top: 0,
+    bottom: 0,
+    right: 0,
+    width: "50%",
+    backgroundColor: "rgba(0,0,0,0.7)",
+    justifyContent: "center",
+    padding: 10,
+  },
+
   text: {
-    margin: 15,
-    alignSelf: "flex-start",
     fontWeight: "bold",
     fontSize: 31,
+    color: "white",
   },
 });

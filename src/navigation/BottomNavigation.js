@@ -1,6 +1,5 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import CheckIn from "../screens/CheckIn/CheckIn";
-import Home from "../screens/Home/Home";
 import MeetUp from "../screens/MeetUp/MeetUp";
 import Notification from "../screens/Notification/Notification";
 import { FontAwesome5 } from "@expo/vector-icons";
@@ -19,6 +18,7 @@ function BottomNavigation() {
 
         tabBarActiveTintColor: "#5BA199",
         tabBarInactiveTintColor: "#E5E3E4",
+
 
         tabBarShowLabel: false,
         tabBarStyle: {
