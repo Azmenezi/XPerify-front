@@ -3,8 +3,6 @@ import CheckIn from "../screens/CheckIn/CheckIn";
 import Home from "../screens/Home/Home";
 import MeetUp from "../screens/MeetUp/MeetUp";
 import Notification from "../screens/Notification/Notification";
-import Profile from "../screens/Profile/Profile";
-import { Feather } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import ROUTES from ".";
@@ -17,9 +15,14 @@ function BottomNavigation() {
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: "#E38036",
-        inactiveTintColor: "black",
+        tabBarActiveTintColor: "#5BA199",
+        tabBarInactiveTintColor: "#E5E3E4",
         tabBarShowLabel: false,
+        tabBarStyle: {
+          backgroundColor: "#141519",
+          borderTopColor: "#E5E3E420",
+          borderTopWidth: 0.2,
+        },
       }}
     >
       <Tab.Screen

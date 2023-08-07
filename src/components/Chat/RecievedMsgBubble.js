@@ -27,7 +27,7 @@ export default function RecievedMsgBubble({ msg }) {
       <View
         style={{
           margin: 3,
-          backgroundColor: "white",
+          backgroundColor: "#3F4043",
           maxWidth: "70%",
           marginRight: "auto",
           borderRadius: 15,
@@ -39,7 +39,9 @@ export default function RecievedMsgBubble({ msg }) {
         }}
       >
         <View style={{ padding: 12 }}>
-          <Text key={msg._id}>{msg.text}</Text>
+          <Text style={{ color: "white" }} key={msg._id}>
+            {msg.text}
+          </Text>
         </View>
       </View>
     </View>
