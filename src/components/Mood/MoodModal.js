@@ -10,6 +10,10 @@ import {
 import React from "react";
 import { getAllMood } from "../../apis/mood";
 import { useQuery } from "@tanstack/react-query";
+import { FontAwesome5 } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
+import { Foundation } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const MoodModal = ({ isVisible, onMoodSelected, onClose }) => {
   const { data: moods, isLoading } = useQuery({
@@ -20,6 +24,18 @@ const MoodModal = ({ isVisible, onMoodSelected, onClose }) => {
   if (isLoading) {
     return <Text>Loading...</Text>;
   }
+  const moodeicon = {
+    Working: <MaterialIcons name="work" size={24} color="black" />,
+    Celebratory: <MaterialIcons name="cake" size={24} color="black" />,
+    "Family-Friendly": (
+      <MaterialIcons name="family-restroom" size={24} color="black" />
+    ),
+    Relaxing: <FontAwesome5 name="user-friends" size={24} color={"black"} />,
+    Socializing: <Foundation name="social-myspace" size={24} color="black" />,
+    studying: (
+      <MaterialCommunityIcons name="bookshelf" size={24} color="black" />
+    ),
+  };
 
   return (
     <Modal
@@ -41,6 +57,7 @@ const MoodModal = ({ isVisible, onMoodSelected, onClose }) => {
                     onPress={() => onMoodSelected(mood.name)}
                   >
                     <Text style={styles.buttonText}>{mood.name}</Text>
+                    {moodeicon[mood.name]}
                   </TouchableOpacity>
                 ))}
               </ScrollView>
