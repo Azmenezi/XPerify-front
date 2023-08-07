@@ -9,7 +9,7 @@ const PlacesList = () => {
     queryKey: ["places"],
     queryFn: () => getAllPlaces(),
   });
-  console.log(places);
+
   if (isLoading) return <Text>Loading...</Text>;
 
   const renderItem = ({ item }) => {
