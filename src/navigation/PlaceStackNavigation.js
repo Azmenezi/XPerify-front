@@ -1,7 +1,7 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import ROUTES from ".";
 import Home from "../screens/Home/Home";
-import PlaceDetails from "../screens/Home/PlaceDetails";
+import PlaceDetails from "../screens/Home/PlaceDetails/PlaceDetails";
 
 const Stack = createStackNavigator();
 
@@ -15,6 +15,9 @@ function PlaceStackNavigation() {
       <Stack.Screen
         name={ROUTES.HEDERROUTES.PLACE_STACK.PLACEDETAILS}
         component={PlaceDetails}
+        screenOptions={{
+          headerShown: false,
+        }}
       />
     </Stack.Navigator>
   );
