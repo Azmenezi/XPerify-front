@@ -9,7 +9,7 @@ const PlacesList = () => {
     queryKey: ["places"],
     queryFn: () => getAllPlaces(),
   });
-
+  console.log(places);
   if (isLoading) return <Text>Loading...</Text>;
 
   const renderItem = ({ item }) => {
@@ -32,6 +32,5 @@ export default PlacesList;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
   },
 });

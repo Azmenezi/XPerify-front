@@ -4,12 +4,10 @@ import PlacesList from "../../components/Places/PlacesList";
 
 const Home = () => {
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.content}>
-        <View style={styles.space} />
-        <PlacesList />
-      </View>
-    </SafeAreaView>
+    <View style={styles.container}>
+      <View style={styles.space} />
+      <PlacesList />
+    </View>
   );
 };
 
@@ -18,6 +16,8 @@ export default Home;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+  },
+  space: {
+    felx: 1,
   },
 });
