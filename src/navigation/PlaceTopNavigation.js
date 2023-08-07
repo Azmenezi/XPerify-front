@@ -1,14 +1,23 @@
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+import PublicChat from "../screens/Home/PlaceDetails/PublicChat";
+import Posts from "../screens/Home/PlaceDetails/Posts";
+import ROUTES from ".";
 
 const Tab = createMaterialTopTabNavigator();
 
-function MyTabPlaceTopNavigations() {
+function PlaceTopNavigations() {
   return (
     <Tab.Navigator>
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Settings" component={SettingsScreen} />
+      <Tab.Screen
+        name={ROUTES.HEDERROUTES.PLACE_STACK.POSTS}
+        component={Posts}
+      />
+      <Tab.Screen
+        name={ROUTES.HEDERROUTES.PLACE_STACK.PUBLIC_CHAT}
+        component={PublicChat}
+      />
     </Tab.Navigator>
   );
 }
 
-export default MyTabPlaceTopNavigations;
+export default PlaceTopNavigations;
