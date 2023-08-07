@@ -19,9 +19,17 @@ import { AntDesign } from "@expo/vector-icons";
 
 const DM = ({ navigation }) => {
   const { user } = useContext(UserContext);
-  const { data, isLoading, isFetching, refetch } = useQuery({
+  const {
+    data: chatsData,
+    isLoading,
+    isFetching,
+    refetch,
+  } = useQuery({
     queryKey: ["myChats"],
     queryFn: () => getMyChats(),
+  });
+  const data = chatsData?.sort(function (a, b) {
+    return new Date(b.updatedAt) - new Date(a.updatedAt);
   });
 
   const theme = useTheme(); // Get the currently active theme
@@ -78,10 +86,35 @@ const DM = ({ navigation }) => {
             </View>
             <View
               style={{
+                flexDirection: "row",
+                marginRight: 20,
+                marginTop: 30,
+                width: 220,
+                overflow: "hidden",
+              }}
+            >
+              <Text
+                style={{
+                  color: `${theme.colors.text}70`,
+                  fontSize: 16,
+                }}
+              >
+                {chat?.msgs[0]?.from.username}:{" "}
+              </Text>
+              <Text style={{ color: `${theme.colors.text}70`, fontSize: 16 }}>
+                {chat?.msgs[0]?.text}
+              </Text>
+            </View>
+            <View
+              style={{
                 marginRight: 20,
               }}
             >
-              <AntDesign name="rightcircleo" size={24} color="whites" />
+              <AntDesign
+                name="rightcircleo"
+                size={24}
+                color={theme.colors.text}
+              />
             </View>
           </Pressable>
         );

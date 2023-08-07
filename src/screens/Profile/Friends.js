@@ -13,7 +13,6 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { getUsers } from "../../apis/auth";
 import { getChatUser } from "../../apis/chat";
 import ROUTES from "../../navigation";
-import { AntDesign } from "@expo/vector-icons";
 import { BASE_URL } from "../../apis";
 import { useTheme } from "@react-navigation/native";
 
