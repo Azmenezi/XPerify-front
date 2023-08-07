@@ -1,6 +1,7 @@
 import {
   Image,
   Pressable,
+  RefreshControl,
   ScrollView,
   StyleSheet,
   Text,
@@ -18,15 +19,19 @@ import { AntDesign } from "@expo/vector-icons";
 
 const DM = ({ navigation }) => {
   const { user } = useContext(UserContext);
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, isFetching, refetch } = useQuery({
     queryKey: ["myChats"],
     queryFn: () => getMyChats(),
   });
-  const theme = useTheme(); // Get the currently active theme
 
+  const theme = useTheme(); // Get the currently active theme
   if (isLoading) return <ActivityIndicator color="black"></ActivityIndicator>;
   return (
-    <ScrollView>
+    <ScrollView
+      refreshControl={
+        <RefreshControl refreshing={isFetching} onRefresh={refetch} />
+      }
+    >
       {data?.map((chat) => {
         return (
           <Pressable

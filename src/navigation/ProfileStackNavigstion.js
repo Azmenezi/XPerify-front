@@ -14,7 +14,18 @@ export default function ProfileStackNavigstion() {
   const navigation = useNavigation();
   const { setUser } = useContext(UserContext);
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        tabBarActiveTintColor: "#5BA199",
+        tabBarInactiveTintColor: "#E5E3E4",
+        tabBarShowLabel: false,
+        tabBarStyle: {
+          backgroundColor: "#141519",
+          borderTopColor: "#E5E3E420",
+          borderTopWidth: 0.2,
+        },
+      }}
+    >
       <Stack.Screen
         name={ROUTES.HEDERROUTES.PROFILE_STACK.PROFILE}
         component={Profile}

@@ -1,5 +1,5 @@
 import { NavigationContainer } from "@react-navigation/native";
-import { LogBox, StyleSheet, View } from "react-native";
+import { LogBox, SafeAreaView, StyleSheet, View } from "react-native";
 import BottomNavigation from "./src/navigation/BottomNavigation";
 import { useEffect, useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -14,10 +14,10 @@ LogBox.ignoreAllLogs(); //Ignore all log notifications
 const DarkTheme = {
   dark: true,
   colors: {
-    primary: "#1C535A",
-    background: "#2D2F35",
+    primary: "#5BA199",
+    background: "#141519",
     card: "transparent",
-    text: "#F8F8F8",
+    text: "#E5E3E4",
     inputText: "#FFFFFF", // Text color for text inputs
     inputBackground: "#1c1c1c", // Background color for text inputs
     inputPlaceholder: "#FFFFFF40", // Color for input placeholders
@@ -66,7 +66,9 @@ export default function App() {
       <UserContext.Provider value={{ user, setUser }}>
         {/* <NavigationContainer theme={isDarkMode ? DarkTheme : LightTheme}> */}
         <NavigationContainer theme={DarkTheme}>
-          {user ? <BottomNavigation /> : <AuthNavigation />}
+          <SafeAreaView style={styles.container}>
+            {user ? <BottomNavigation /> : <AuthNavigation />}
+          </SafeAreaView>
         </NavigationContainer>
       </UserContext.Provider>
     </QueryClientProvider>
@@ -76,6 +78,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "pink",
+    backgroundColor: DarkTheme.colors.background,
   },
 });

@@ -7,7 +7,7 @@ export default function MessageBubble({ msg }) {
       style={{
         margin: 3,
         marginHorizontal: 10,
-        backgroundColor: "#F3EDDE",
+        backgroundColor: "#5BA199",
         maxWidth: "70%",
         borderTopLeftRadius: 15,
         borderTopRightRadius: 15,
@@ -17,7 +17,7 @@ export default function MessageBubble({ msg }) {
       }}
     >
       <View style={{ padding: 12 }}>
-        <Text style={{ color: "black" }} key={msg._id}>
+        <Text style={{ color: "white" }} key={msg._id}>
           {msg.text}
         </Text>
       </View>
