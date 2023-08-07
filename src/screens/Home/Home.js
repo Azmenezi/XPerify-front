@@ -33,6 +33,7 @@ export default Home;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+
   },
   moodButton: {
     backgroundColor: "rgba(0, 128, 128, 0.6)", // Transparent deep teal

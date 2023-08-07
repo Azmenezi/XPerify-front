@@ -1,14 +1,24 @@
-import { FlatList, StyleSheet, Text, View } from "react-native";
-import React from "react";
+import { FlatList, StyleSheet, Text, View, RefreshControl } from "react-native";
+import React, { useState, useCallback } from "react";
 import { getAllPlaces } from "../../apis/places";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import PlaceCard from "./PlaceCard";
 
 const PlacesList = () => {
-  const { data: places, isLoading } = useQuery({
+  const {
+    data: places,
+    isLoading,
+    isFetching,
+    refetch,
+  } = useQuery({
     queryKey: ["places"],
-    queryFn: () => getAllPlaces(),
+    queryFn: getAllPlaces,
   });
+
+  // Callback function to be called when the user pulls to refresh
+  const onRefresh = useCallback(() => {
+    refetch();
+  }, [refetch]);
 
   if (isLoading) return <Text>Loading...</Text>;
 
@@ -22,6 +32,9 @@ const PlacesList = () => {
         data={places}
         renderItem={renderItem}
         keyExtractor={(item) => item._id}
+        refreshControl={
+          <RefreshControl refreshing={isFetching} onRefresh={onRefresh} />
+        }
       />
     </View>
   );

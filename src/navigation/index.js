@@ -16,6 +16,8 @@ const ROUTES = {
       STACK: "Place Stack",
       HOME: "Home",
       PLACEDETAILS: "Place Details",
+      PUBLIC_CHAT: "Public Chat",
+      POSTS: "Posts",
     },
   },
 };

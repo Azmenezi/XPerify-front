@@ -5,6 +5,7 @@ import { useNavigation } from "@react-navigation/native";
 import ROUTES from "../../navigation";
 
 const PlaceCard = ({ place }) => {
+  console.log(place);
   const navigation = useNavigation();
   return (
     <TouchableOpacity
