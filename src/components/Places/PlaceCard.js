@@ -30,16 +30,14 @@ export default PlaceCard;
 const styles = StyleSheet.create({
   card: {
     flexDirection: "column",
-    backgroundColor: "#fff",
+
     margin: 17,
 
     borderRadius: 10,
     overflow: "hidden",
     borderWidth: 0.5,
     borderColor: "gray",
-    shadowOpacity: 0.8,
-    shadowRadius: 2,
-    shadowOffset: { width: 0, height: 2 },
+
     width: "94%",
     alignItems: "center",
     justifyContent: "flex-start",
