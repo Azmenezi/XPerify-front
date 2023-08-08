@@ -3,10 +3,7 @@ const ROUTES = {
 
     MEETUP: "Meet-Up",
     NOTIFICATION: "Notification",
-    CHECKIN_STACK: {
-      CHECKIN: "Check-In",
-      POST: "Create-Post",
-    },
+    NOTIFICATION2: "Notification2",
 
     PROFILE_STACK: {
       STACK: "Profile Stack",
@@ -20,6 +17,8 @@ const ROUTES = {
       STACK: "Place Stack",
       HOME: "Home",
       PLACEDETAILS: "Place Details",
+      PUBLIC_CHAT: "Public Chat",
+      POSTS: "Posts",
     },
   },
 };

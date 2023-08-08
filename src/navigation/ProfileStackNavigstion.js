@@ -10,22 +10,12 @@ import { useContext } from "react";
 import UserContext from "../context/UserContext";
 import DmChat from "../screens/Profile/DmChat";
 const Stack = createStackNavigator();
+
 export default function ProfileStackNavigstion() {
   const navigation = useNavigation();
   const { setUser } = useContext(UserContext);
   return (
-    <Stack.Navigator
-      screenOptions={{
-        tabBarActiveTintColor: "#5BA199",
-        tabBarInactiveTintColor: "#E5E3E4",
-        tabBarShowLabel: false,
-        tabBarStyle: {
-          backgroundColor: "#141519",
-          borderTopColor: "#E5E3E420",
-          borderTopWidth: 0.2,
-        },
-      }}
-    >
+    <Stack.Navigator screenOptions={{ headerBackTitleVisible: false }}>
       <Stack.Screen
         name={ROUTES.HEDERROUTES.PROFILE_STACK.PROFILE}
         component={Profile}

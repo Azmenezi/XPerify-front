@@ -27,12 +27,13 @@ export default function ChatTextInput({ msgInfo, setMsgInfo, sendMsgFn }) {
         multiline
         value={msgInfo}
         placeholder="message.."
+        placeholderTextColor={"#ffffff70"}
         style={{
           padding: 10,
           width: "78%",
           marginBottom: 20,
           marginTop: 10,
-          backgroundColor: "#ffffff90",
+          backgroundColor: "#1c1c1c",
           borderColor: "black",
           borderWidth: 1,
           borderRadius: 10,
@@ -41,6 +42,7 @@ export default function ChatTextInput({ msgInfo, setMsgInfo, sendMsgFn }) {
           justifyContent: "center",
           textAlign: textAlign, // Apply the text alignment
           marginHorizontal: 2,
+          color: "white",
         }}
         onChangeText={handleChangeText}
       />
