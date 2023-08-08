@@ -5,11 +5,10 @@ import {
   KeyboardAvoidingView,
   Keyboard,
   Pressable,
-  Image,
 } from "react-native";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { getChatMsgs, sendMsg } from "../../apis/chat";
+import { getPlaceChat, sendPublicChat } from "../../apis/chat";
 import UserContext from "../../context/UserContext";
 import { socket } from "../../socket";
 import ChatBox from "./ChatBox";
@@ -17,19 +16,19 @@ import ChatTextInput from "./ChatTextInput";
 import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
 
-export default function Chat({ route, navigation }) {
-  const { chatId } = route.params;
+export default function PublicChatComponent({ navigation, _id }) {
+  const chatId = _id;
   const { user } = useContext(UserContext);
   const [msgInfo, setMsgInfo] = useState("");
   const theme = useTheme();
   const { data: data, refetch } = useQuery({
     queryKey: ["chat", chatId],
-    queryFn: () => getChatMsgs(chatId),
+    queryFn: () => getPlaceChat(chatId),
   });
   const queryClient = useQueryClient();
 
   const { mutate: sendMsgFn } = useMutation({
-    mutationFn: (message) => sendMsg(chatId, message),
+    mutationFn: (message) => sendPublicChat(chatId, message),
     onSuccess: (newMessage) => {
       // Get the current messages
       const current = queryClient.getQueryData(["chat", chatId]);
@@ -41,15 +40,15 @@ export default function Chat({ route, navigation }) {
       // Update the local state with the new messages
       queryClient.setQueryData(["chat", chatId], updatedMessages);
       scrollViewRef.current?.scrollToEnd({ animated: true });
-      socket.emit("chat", {
+      socket.emit("publicChatSend", {
+        chatId: chatId,
         from: user._id,
-        to: data?.members.find((member) => member._id !== user._id)._id,
+        message: msgInfo,
       });
     },
   });
 
   const scrollViewRef = useRef();
-  const otherMember = data?.members?.find((member) => member._id !== user._id);
 
   useEffect(() => {
     navigation.getParent()?.setOptions({
@@ -58,7 +57,9 @@ export default function Chat({ route, navigation }) {
       },
     });
     navigation.setOptions({
-      title: otherMember?.username,
+      title:
+        data?.members?.find((member) => member._id !== user._id) &&
+        data?.members?.find((member) => member._id !== user._id).username,
     });
 
     return () =>
@@ -68,8 +69,9 @@ export default function Chat({ route, navigation }) {
   }, [navigation]);
   useEffect(() => {
     socket.connect();
-    socket.on("recieve", (data) => {
-      if (data.to == user._id) {
+    socket.emit("joinPublicChat", chatId);
+    socket.on("publicChatReceive", (data) => {
+      if (data.chatId === chatId && data.from !== user._id) {
         refetch().then(() =>
           scrollViewRef.current?.scrollToEnd({ animated: true })
         );
@@ -96,7 +98,7 @@ export default function Chat({ route, navigation }) {
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={{ flex: 1 }}
-      keyboardVerticalOffset={Platform.OS === "ios" ? 90 : 20}
+      keyboardVerticalOffset={Platform.OS === "ios" ? 135 : 90}
     >
       <ChatBox user={user} data={data} scrollViewRef={scrollViewRef} />
       <View

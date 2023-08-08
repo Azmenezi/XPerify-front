@@ -1,15 +1,23 @@
 import { ScrollView, StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import PlaceTopNavigations from "../../../navigation/PlaceTopNavigation";
 import PlaceInformation from "../../../components/Places/PlaceInformation";
 
-const PlaceDetails = ({ route }) => {
+const PlaceDetails = ({ route, navigation }) => {
   const { _id } = route.params;
-
+  const [isPlace, setIsPlace] = useState(true);
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <PlaceInformation _id={_id} />
-      <PlaceTopNavigations />
+    <ScrollView
+      keyboardShouldPersistTaps="handled"
+      contentContainerStyle={styles.container}
+    >
+      <PlaceInformation _id={_id} isPlace={isPlace} setIsPlace={setIsPlace} />
+
+      <PlaceTopNavigations
+        _id={_id}
+        navigation={navigation}
+        setIsPlace={setIsPlace}
+      />
     </ScrollView>
   );
 };
@@ -19,5 +27,6 @@ export default PlaceDetails;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    height: 200,
   },
 });

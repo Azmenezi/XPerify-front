@@ -5,16 +5,28 @@ import ROUTES from ".";
 
 const Tab = createMaterialTopTabNavigator();
 
-function PlaceTopNavigations() {
+function PlaceTopNavigations({ _id, navigation, setIsPlace }) {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      lazy={true}
+      screenOptions={({ navigation, route }) => {
+        if (
+          route.name === ROUTES.HEDERROUTES.PLACE_STACK.PUBLIC_CHAT &&
+          navigation.isFocused()
+        ) {
+          setIsPlace(false);
+        } else {
+          setIsPlace(true);
+        }
+      }}
+    >
       <Tab.Screen
         name={ROUTES.HEDERROUTES.PLACE_STACK.POSTS}
         component={Posts}
       />
       <Tab.Screen
         name={ROUTES.HEDERROUTES.PLACE_STACK.PUBLIC_CHAT}
-        component={PublicChat}
+        children={() => <PublicChat _id={_id} navigation={navigation} />}
       />
     </Tab.Navigator>
   );

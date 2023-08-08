@@ -17,3 +17,15 @@ exports.sendMsg = async (chatId, msg) => {
   const res = await instance.post(`/chat/msgs/send/${chatId}`, { msg });
   return res.data;
 };
+exports.getPublicChats = async () => {
+  const res = await instance.get("/chat/publicChats");
+  return res.data;
+};
+exports.getPlaceChat = async (placeId) => {
+  const res = await instance.get(`/chat/publicChat/${placeId}`);
+  return res.data;
+};
+exports.sendPublicChat = async (placeId, msg) => {
+  const res = await instance.post(`/chat/publicChat/${placeId}`, { msg });
+  return res.data;
+};

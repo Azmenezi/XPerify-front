@@ -3,6 +3,7 @@ const ROUTES = {
     CHECKIN: "Check-In",
     MEETUP: "Meet-Up",
     NOTIFICATION: "Notification",
+    NOTIFICATION2: "Notification2",
 
     PROFILE_STACK: {
       STACK: "Profile Stack",
