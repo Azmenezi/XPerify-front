@@ -3,6 +3,9 @@ import React from "react";
 import MessagesList from "./MessagesList";
 
 export default function ChatBox({ user, data, scrollViewRef }) {
+  const uniqueDays = {};
+  const dayElements = [];
+
   return (
     <ScrollView
       ref={scrollViewRef} // Attach the reference

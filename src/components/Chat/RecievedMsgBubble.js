@@ -1,6 +1,7 @@
 import { Image, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { BASE_URL } from "../../apis";
+import moment from "moment";
 
 export default function RecievedMsgBubble({ msg }) {
   return (
@@ -41,6 +42,9 @@ export default function RecievedMsgBubble({ msg }) {
         <View style={{ padding: 12 }}>
           <Text style={{ color: "white" }} key={msg._id}>
             {msg.text}
+          </Text>
+          <Text style={{ color: "#ffffff60", marginTop: 5 }}>
+            {moment(msg.createdAt).format("LT")}
           </Text>
         </View>
       </View>
