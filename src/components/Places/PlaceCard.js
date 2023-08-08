@@ -6,6 +6,7 @@ import ROUTES from "../../navigation";
 
 const PlaceCard = ({ place }) => {
   const navigation = useNavigation();
+  console.log(`${BASE_URL}/${place.image}`);
   return (
     <TouchableOpacity
       onPress={() => {

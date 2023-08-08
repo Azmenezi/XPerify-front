@@ -49,7 +49,7 @@ export default function ChatTextInput({ msgInfo, setMsgInfo, sendMsgFn }) {
       <Button
         style={{
           marginBottom: 5,
-          backgroundColor: "#000000",
+          backgroundColor: "#ffffff",
           borderRadius: 10,
           marginHorizontal: 2,
         }}
@@ -57,7 +57,7 @@ export default function ChatTextInput({ msgInfo, setMsgInfo, sendMsgFn }) {
       >
         <Text
           style={{
-            color: "white",
+            color: "black",
           }}
         >
           Send
