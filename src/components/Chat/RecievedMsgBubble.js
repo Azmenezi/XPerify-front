@@ -4,7 +4,7 @@ import { BASE_URL } from "../../apis";
 
 export default function RecievedMsgBubble({ msg }) {
   return (
-    <View style={{ marginRight: "auto" }}>
+    <View style={{ marginRight: "auto", marginTop: 10 }}>
       <View
         style={{
           margin: 3,

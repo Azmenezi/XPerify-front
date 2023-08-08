@@ -19,6 +19,7 @@ const PlaceCard = ({ place }) => {
         <Image
           source={{ uri: `${BASE_URL}/${place.image}` }}
           style={styles.image}
+          blurRadius={2}
         />
         <View style={styles.infoLayer}>
           <Text style={styles.text}>{place.name}</Text>
