@@ -11,6 +11,7 @@ import { useContext } from "react";
 import UserContext from "../context/UserContext";
 import { Image, View } from "react-native";
 import { BASE_URL } from "../apis";
+import CheckinStack from "./CheckinStack";
 
 const Tab = createBottomTabNavigator();
 
@@ -54,10 +55,10 @@ function BottomNavigation() {
         }}
       />
       <Tab.Screen
-        name={ROUTES.HEDERROUTES.CHECKIN_STACK}
-        component={CheckIn}
+        name={ROUTES.HEDERROUTES.CHECKIN_STACK.STACK}
+        component={CheckinStack}
         options={{
-          headerShown: true,
+          headerShown: false,
           tabBarIcon: ({ size, color }) => (
             <Ionicons name="location" size={24} color={color} />
           ),

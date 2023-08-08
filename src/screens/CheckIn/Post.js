@@ -1,16 +1,23 @@
 import { SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React, { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import ImagePickerC from "../../components/ImagePickerC";
+import { createPost } from "../../apis/posts";
+import { checkIn } from "../../apis/places";
 
-const Post = () => {
+const Post = ({ navigation, route }) => {
+    const { _id } = route.params
+
     const queryClient = useQueryClient();
     const [data, setData] = useState({});
     const [image, setImage] = useState(null);
+    // const placeName = route.params.placeName;
+    console.log(data)
     const { mutate: createPostFun } = useMutation({
         mutationFn: () =>
-            createTrip({
+            checkIn({
                 ...data,
-
+                place: _id, image: image
             }),
         onSuccess: () => {
 
@@ -18,6 +25,7 @@ const Post = () => {
             setImage(null);
 
             queryClient.invalidateQueries(["posts"]);
+            // navigation.navigate();
 
         },
     });
@@ -31,26 +39,26 @@ const Post = () => {
                     <Text style={styles.label}>
                         Choose an Image to share your Experiance
                     </Text>
-                    {/* <ImagePickerC
+                    <ImagePickerC
                         image={image}
                         setImage={setImage}
                         style={styles.image}
                         onImagePicked={(imageUri) =>
                             setData({ ...data, image: imageUri })
                         }
-                    > */}
-                    <View
-                        style={{
-                            flex: 1,
-                            alignItems: "center",
-                            justifyContent: "center",
-                        }}
                     >
-                        <Text style={{ color: "grey" }}>
-                            Tap to select an image
-                        </Text>
-                    </View>
-                    {/* </ImagePickerC> */}
+                        <View
+                            style={{
+                                flex: 1,
+                                alignItems: "center",
+                                justifyContent: "center",
+                            }}
+                        >
+                            <Text style={{ color: "grey" }}>
+                                Tap to select an image
+                            </Text>
+                        </View>
+                    </ImagePickerC>
 
                     {/* <Create data={data} setData={setData} /> */}
 

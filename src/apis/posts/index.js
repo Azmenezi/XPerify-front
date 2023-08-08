@@ -1,4 +1,4 @@
-import instance, { BASE_URL } from "..";
+import { instance, BASE_URL } from "..";
 import axios from "axios";
 import * as SecureStore from "expo-secure-store";
 
@@ -13,12 +13,7 @@ const getPostById = async (id) => {
 
 const createPost = async (data) => {
     const token = await SecureStore.getItemAsync("token");
-    const instance = axios.create({
-        baseURL: BASE_URL + "/api",
-        headers: {
-            Authorization: `Bearer ${token}`,
-        },
-    });
+
     const formData = new FormData();
 
     for (const key in data) {

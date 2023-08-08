@@ -3,8 +3,9 @@ import React from 'react'
 import { useNavigation } from '@react-navigation/native';
 // import ROUTES from '../../navigation';
 
-const PostCard = ({ post }) => {
-    const navigation = useNavigation();
+const PostCard = ({ post, place }) => {
+    // console.log(post)
+    // const navigation = useNavigation();
     return (
 
 
@@ -20,6 +21,7 @@ const PostCard = ({ post }) => {
                     source={{ uri: `${BASE_URL}/${post.image}` }}
                     style={styles.image}
                 />
+                <Text style={styles.title}>{place.name}</Text>
 
             </View>
         </TouchableOpacity>

@@ -1,14 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-// import Post from './Post'
-// import PlacesList from "../../components/Places/PlacesList"
+import Post from './Post'
+import PlacesList from "../../components/Places/PlacesList"
 // import PostList from '../../components/Posts/PostList'
 
 const CheckIn = () => {
     return (
-        <View>
-            <Text>CheckIn</Text>
-            {/* <PlacesList /> */}
+        <View style={{ flex: 1 }}>
+            {/* <Text>CheckIn</Text> */}
+            <PlacesList />
             {/* <Post /> */}
             {/* <PostList /> */}
         </View>

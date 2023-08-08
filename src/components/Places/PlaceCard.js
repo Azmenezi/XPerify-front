@@ -1,18 +1,26 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { BASE_URL } from "../../apis";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import ROUTES from "../../navigation";
 
+
 const PlaceCard = ({ place }) => {
-  console.log(place);
+
+  const routName = useRoute()
+  console.log(routName)
   const navigation = useNavigation();
   return (
     <TouchableOpacity
       onPress={() => {
-        navigation.navigate(ROUTES.HEDERROUTES.PLACE_STACK.PLACEDETAILS, {
-          _id: place._id,
-        });
+        routName.name === ROUTES.HEDERROUTES.PLACE_STACK.HOME ?
+          navigation.navigate(ROUTES.HEDERROUTES.PLACE_STACK.PLACEDETAILS, {
+            _id: place._id,
+          })
+          :
+          navigation.navigate(ROUTES.HEDERROUTES.CHECKIN_STACK.POST, {
+            _id: place._id,
+          })
       }}
     >
       <View style={styles.card}>
