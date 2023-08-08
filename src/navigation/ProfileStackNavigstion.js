@@ -15,7 +15,7 @@ export default function ProfileStackNavigstion() {
   const navigation = useNavigation();
   const { setUser } = useContext(UserContext);
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{ headerBackTitleVisible: false }}>
       <Stack.Screen
         name={ROUTES.HEDERROUTES.PROFILE_STACK.PROFILE}
         component={Profile}
