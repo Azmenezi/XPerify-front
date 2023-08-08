@@ -1,5 +1,12 @@
-import { ImageBackground, StyleSheet, Text, View } from "react-native";
-import React from "react";
+import {
+  ImageBackground,
+  StyleSheet,
+  Text,
+  Animated,
+  Easing,
+  View,
+} from "react-native";
+import React, { useState, useEffect } from "react";
 import { getPlaceById } from "../../apis/places";
 import { useQuery } from "@tanstack/react-query";
 import { BASE_URL } from "../../apis";
@@ -12,8 +19,20 @@ export default function PlaceInformation({ _id, isPlace }) {
   );
   const image = { uri: `${BASE_URL}/${place?.image}` };
   const theme = useTheme();
+
+  const heightAnim = useState(new Animated.Value(0))[0];
+
+  useEffect(() => {
+    Animated.timing(heightAnim, {
+      toValue: isPlace ? 600 : 0,
+      duration: 200,
+      easing: Easing.linear,
+      useNativeDriver: false,
+    }).start();
+  }, [isPlace]);
+
   return (
-    <>
+    <Animated.View style={{ height: heightAnim }}>
       {isPlace && (
         <View>
           <ImageBackground
@@ -75,7 +94,7 @@ export default function PlaceInformation({ _id, isPlace }) {
           </View>
         </View>
       )}
-    </>
+    </Animated.View>
   );
 }
 
