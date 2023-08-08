@@ -5,7 +5,6 @@ import { useNavigation } from "@react-navigation/native";
 import ROUTES from "../../navigation";
 
 const PlaceCard = ({ place }) => {
-  console.log(place);
   const navigation = useNavigation();
   return (
     <TouchableOpacity
@@ -40,6 +39,7 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     borderColor: "gray",
     width: "94%",
+    height: 240,
   },
   image: {
     width: "100%",

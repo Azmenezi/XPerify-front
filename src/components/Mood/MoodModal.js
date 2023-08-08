@@ -7,34 +7,34 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { getAllMood } from "../../apis/mood";
 import { useQuery } from "@tanstack/react-query";
-import { FontAwesome5 } from "@expo/vector-icons";
-import { MaterialIcons } from "@expo/vector-icons";
-import { Foundation } from "@expo/vector-icons";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useContext } from "react";
+import MoodContext from "../../context/MoodContext";
 
 const MoodModal = ({ isVisible, onMoodSelected, onClose }) => {
+  const [selectAll, setSelectAll] = useState(false);
+
   const { data: moods, isLoading } = useQuery({
     queryKey: ["moods"],
     queryFn: () => getAllMood(),
   });
 
+  const { setSelectedMood } = useContext(MoodContext);
+
   if (isLoading) {
     return <Text>Loading...</Text>;
   }
+
   const moodeicon = {
-    Working: <MaterialIcons name="work" size={24} color="black" />,
-    Celebratory: <MaterialIcons name="cake" size={24} color="black" />,
-    "Family-Friendly": (
-      <MaterialIcons name="family-restroom" size={24} color="black" />
-    ),
-    Relaxing: <FontAwesome5 name="user-friends" size={24} color={"black"} />,
-    Socializing: <Foundation name="social-myspace" size={24} color="black" />,
-    studying: (
-      <MaterialCommunityIcons name="bookshelf" size={24} color="black" />
-    ),
+    Working: <Text style={styles.icon}> 💼 </Text>,
+    Celebratory: <Text style={styles.icon}> 🎉 </Text>,
+    Family: <Text style={styles.icon}> 👨‍👩‍👧‍👦 </Text>,
+    Relaxing: <Text style={styles.icon}> 🏖 </Text>,
+    Socializing: <Text style={styles.icon}> 💬 </Text>,
+    Studying: <Text style={styles.icon}> 📚 </Text>,
+    Meeting: <Text style={styles.icon}> 🤝 </Text>,
   };
 
   return (
@@ -54,10 +54,15 @@ const MoodModal = ({ isVisible, onMoodSelected, onClose }) => {
                   <TouchableOpacity
                     key={mood.id}
                     style={styles.button}
-                    onPress={() => onMoodSelected(mood.name)}
+                    onPress={() => {
+                      onMoodSelected(mood.name);
+                      setSelectedMood(mood);
+                    }}
                   >
-                    <Text style={styles.buttonText}>{mood.name}</Text>
-                    {moodeicon[mood.name]}
+                    <View style={styles.row}>
+                      {moodeicon[mood.name]}
+                      <Text style={styles.buttonText}>{mood.name}</Text>
+                    </View>
                   </TouchableOpacity>
                 ))}
               </ScrollView>
@@ -76,7 +81,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-end",
     alignItems: "center",
-    backgroundColor: "rgba(0, 0, 0, 0.7)",
   },
 
   modalView: {
@@ -86,6 +90,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 20,
     padding: 20,
     shadowColor: "#000",
+    backgroundColor: "rgba(0, 0, 0, 0.7)",
 
     shadowOffset: {
       width: 0,
@@ -105,9 +110,18 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     alignItems: "center",
   },
+  row: {
+    flexDirection: "row",
+    alignItems: "center", // centers items vertically
+    justifyContent: "space-between", // add space between the items
+  },
   buttonText: {
     color: "#ECECEC",
     fontSize: 16,
     fontWeight: "bold",
+    marginRight: 10, // added space to separate text and icon
+  },
+  icon: {
+    fontSize: 33,
   },
 });
