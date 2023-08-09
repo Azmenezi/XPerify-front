@@ -1,9 +1,15 @@
 const ROUTES = {
   HEDERROUTES: {
-    CHECKIN: "Check-In",
     MEETUP: "Meet-Up",
     NOTIFICATION: "Notification",
     NOTIFICATION2: "Notification2",
+
+    CHECKIN_STACK: {
+      STACK: "Check in stack",
+      CHECKIN: "Check in",
+      POST: "Create",
+
+    },
 
     PROFILE_STACK: {
       STACK: "Profile Stack",

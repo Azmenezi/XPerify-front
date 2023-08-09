@@ -5,7 +5,7 @@ import { Button } from "react-native-paper";
 export default function ChatTextInput({ msgInfo, setMsgInfo, sendMsgFn }) {
   const [textAlign, setTextAlign] = useState((prev) => prev);
   const handleSendMessage = () => {
-    const messageToSend = msgInfo;
+    const messageToSend = msgInfo.trim();
     if (messageToSend.length > 0) {
       sendMsgFn(messageToSend);
       setMsgInfo("");
