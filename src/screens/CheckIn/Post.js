@@ -1,17 +1,17 @@
-import { SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Image, Modal, Pressable, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React, { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import ImagePickerC from "../../components/ImagePickerC";
-import { createPost } from "../../apis/posts";
 import { checkIn } from "../../apis/places";
+
 
 const Post = ({ navigation, route }) => {
     const { _id } = route.params
-
     const queryClient = useQueryClient();
     const [data, setData] = useState({});
     const [image, setImage] = useState(null);
-    // const placeName = route.params.placeName;
+    const [isModalVisible, setIsModalVisible] = useState(false);
+
     console.log(data)
     const { mutate: createPostFun } = useMutation({
         mutationFn: () =>
@@ -26,12 +26,24 @@ const Post = ({ navigation, route }) => {
 
             queryClient.invalidateQueries(["posts"]);
             // navigation.navigate();
+            setIsModalVisible(false);
 
         },
     });
     const handleCheckin = () => {
+
+        setIsModalVisible(true);
+        // createPostFun();
+
+
+
+    };
+    const closeModal = () => {
+        setIsModalVisible(false);
         createPostFun();
     };
+
+
     return (
         <SafeAreaView>
             <ScrollView>
@@ -60,7 +72,7 @@ const Post = ({ navigation, route }) => {
                         </View>
                     </ImagePickerC>
 
-                    {/* <Create data={data} setData={setData} /> */}
+
 
                     <View>
                         <TouchableOpacity
@@ -69,6 +81,21 @@ const Post = ({ navigation, route }) => {
                         >
                             <Text style={styles.buttonText}>Checkin</Text>
                         </TouchableOpacity>
+
+                        <Modal visible={isModalVisible} animationType="slide"
+
+                            presentationStyle="overFullScreen" >
+                            <View style={styles.modalContainer}>
+                                <View style={styles.modalView}>
+
+                                    <Image source={{ uri: data.image }} style={styles.modalImage} />
+                                    <Pressable style={styles.skipButton} onPress={closeModal}>
+                                        <Text style={styles.skipButtonText}>Skip</Text>
+                                    </Pressable>
+
+                                </View>
+                            </View>
+                        </Modal>
                     </View>
                 </View>
             </ScrollView>
@@ -118,5 +145,39 @@ const styles = StyleSheet.create({
         marginTop: 12,
         alignSelf: "flex-start",
         marginLeft: 20,
+    }, modalContainer: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "rgba(0, 0, 0, 0.7)", // Backdrop color
+    }, modalView: {
+        width: "100%",
+        height: "65%",
+        borderTopLeftRadius: 20,
+        borderTopRightRadius: 20,
+        padding: 20,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
+        // backgroundColor: "white", // Content background color
+        alignItems: "center",
     },
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
