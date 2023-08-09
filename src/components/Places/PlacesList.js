@@ -1,8 +1,9 @@
 import { FlatList, StyleSheet, Text, View, RefreshControl } from "react-native";
-import React, { useState, useCallback } from "react";
+import React, { useCallback, useContext } from "react";
 import { getAllPlaces } from "../../apis/places";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import PlaceCard from "./PlaceCard";
+import MoodContext from "../../context/MoodContext";
 
 const PlacesList = () => {
   const {
@@ -12,8 +13,10 @@ const PlacesList = () => {
     refetch,
   } = useQuery({
     queryKey: ["places"],
-    queryFn: getAllPlaces,
+    queryFn: () => getAllPlaces(),
   });
+
+  const { selectedMood } = useContext(MoodContext);
 
   // Callback function to be called when the user pulls to refresh
   const onRefresh = useCallback(() => {
@@ -21,6 +24,13 @@ const PlacesList = () => {
   }, [refetch]);
 
   if (isLoading) return <Text>Loading...</Text>;
+  let displayedPlaces = places;
+
+  if (selectedMood) {
+    displayedPlaces = places.filter((place) =>
+      place.moods.includes(selectedMood._id)
+    );
+  }
 
   const renderItem = ({ item }) => {
     return <PlaceCard place={item} />;
@@ -29,7 +39,7 @@ const PlacesList = () => {
   return (
     <View style={styles.container}>
       <FlatList
-        data={places}
+        data={displayedPlaces}
         renderItem={renderItem}
         keyExtractor={(item) => item._id}
         refreshControl={

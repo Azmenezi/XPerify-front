@@ -22,7 +22,6 @@ function BottomNavigation() {
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
-
         tabBarActiveTintColor: "#5BA199",
         tabBarInactiveTintColor: "#E5E3E4",
 

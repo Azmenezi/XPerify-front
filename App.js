@@ -7,6 +7,7 @@ import UserContext from "./src/context/UserContext";
 import AuthNavigation from "./src/navigation/AuthNavigation";
 import { getToken } from "./src/apis/auth/storage";
 import jwt_decode from "jwt-decode";
+import MoodContext from "./src/context/MoodContext";
 
 LogBox.ignoreLogs(["Warning: ..."]); // Ignore log notification by message
 LogBox.ignoreAllLogs(); //Ignore all log notifications
@@ -48,6 +49,7 @@ const LightTheme = {
 
 export default function App() {
   const [user, setUser] = useState(null);
+  const [selectedMood, setSelectedMood] = useState(null);
 
   const checkToken = async () => {
     const token = await getToken();
@@ -64,12 +66,14 @@ export default function App() {
   return (
     <QueryClientProvider client={new QueryClient()}>
       <UserContext.Provider value={{ user, setUser }}>
-        {/* <NavigationContainer theme={isDarkMode ? DarkTheme : LightTheme}> */}
-        <NavigationContainer theme={DarkTheme}>
-          <SafeAreaView style={styles.container}>
-            {user ? <BottomNavigation /> : <AuthNavigation />}
-          </SafeAreaView>
-        </NavigationContainer>
+        <MoodContext.Provider value={{ selectedMood, setSelectedMood }}>
+          {/* <NavigationContainer theme={isDarkMode ? DarkTheme : LightTheme}> */}
+          <NavigationContainer theme={DarkTheme}>
+            <SafeAreaView style={styles.container}>
+              {user ? <BottomNavigation /> : <AuthNavigation />}
+            </SafeAreaView>
+          </NavigationContainer>
+        </MoodContext.Provider>
       </UserContext.Provider>
     </QueryClientProvider>
   );

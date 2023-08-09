@@ -7,9 +7,12 @@ import ROUTES from "../../navigation";
 
 const PlaceCard = ({ place }) => {
 
+
   const routName = useRoute()
   console.log(routName)
+
   const navigation = useNavigation();
+  console.log(`${BASE_URL}/${place.image}`);
   return (
     <TouchableOpacity
       onPress={() => {
@@ -51,6 +54,7 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     borderColor: "gray",
     width: "94%",
+    height: 240,
   },
   image: {
     width: "100%",
