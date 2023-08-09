@@ -4,26 +4,21 @@ import { BASE_URL } from "../../apis";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import ROUTES from "../../navigation";
 
-
 const PlaceCard = ({ place }) => {
-
-
-  const routName = useRoute()
-  console.log(routName)
+  const routName = useRoute();
 
   const navigation = useNavigation();
-  console.log(`${BASE_URL}/${place.image}`);
+
   return (
     <TouchableOpacity
       onPress={() => {
-        routName.name === ROUTES.HEDERROUTES.PLACE_STACK.HOME ?
-          navigation.navigate(ROUTES.HEDERROUTES.PLACE_STACK.PLACEDETAILS, {
-            _id: place._id,
-          })
-          :
-          navigation.navigate(ROUTES.HEDERROUTES.CHECKIN_STACK.POST, {
-            _id: place._id,
-          })
+        routName.name === ROUTES.HEDERROUTES.PLACE_STACK.HOME
+          ? navigation.navigate(ROUTES.HEDERROUTES.PLACE_STACK.PLACEDETAILS, {
+              _id: place._id,
+            })
+          : navigation.navigate(ROUTES.HEDERROUTES.CHECKIN_STACK.POST, {
+              _id: place._id,
+            });
       }}
     >
       <View style={styles.card}>
