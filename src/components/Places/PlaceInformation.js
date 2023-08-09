@@ -12,6 +12,7 @@ import { useQuery } from "@tanstack/react-query";
 import { BASE_URL } from "../../apis";
 import { useTheme } from "@react-navigation/native";
 import { AntDesign, Entypo } from "@expo/vector-icons";
+import LocationInfo from "../Location/LocationInfo";
 
 export default function PlaceInformation({ _id, isPlace }) {
   const { data: place, isLoading } = useQuery(["place", _id], () =>
@@ -87,9 +88,14 @@ export default function PlaceInformation({ _id, isPlace }) {
               }}
             >
               <Entypo name="location" size={24} color="#e65955" />
-              <Text style={{ fontSize: 20, color: theme.colors.text }}>
+              {/* <Text style={{ fontSize: 20, color: theme.colors.text }}>
                 2.8 km
-              </Text>
+              </Text> */}
+
+              <LocationInfo
+                placeLon={place?.location?.lon}
+                placeLat={place?.location?.lat}
+              />
             </View>
           </View>
         </View>
