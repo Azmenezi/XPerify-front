@@ -8,7 +8,6 @@ export default function FriendRequestModal({
   index,
   isVisible,
 }) {
-  // Rename dropAnim to fadeAnim for fade in effect
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
