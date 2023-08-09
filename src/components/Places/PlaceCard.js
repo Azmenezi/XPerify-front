@@ -1,18 +1,29 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { BASE_URL } from "../../apis";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import ROUTES from "../../navigation";
 
+
 const PlaceCard = ({ place }) => {
+
+
+  const routName = useRoute()
+  console.log(routName)
+
   const navigation = useNavigation();
   console.log(`${BASE_URL}/${place.image}`);
   return (
     <TouchableOpacity
       onPress={() => {
-        navigation.navigate(ROUTES.HEDERROUTES.PLACE_STACK.PLACEDETAILS, {
-          _id: place._id,
-        });
+        routName.name === ROUTES.HEDERROUTES.PLACE_STACK.HOME ?
+          navigation.navigate(ROUTES.HEDERROUTES.PLACE_STACK.PLACEDETAILS, {
+            _id: place._id,
+          })
+          :
+          navigation.navigate(ROUTES.HEDERROUTES.CHECKIN_STACK.POST, {
+            _id: place._id,
+          })
       }}
     >
       <View style={styles.card}>
@@ -34,6 +45,8 @@ export default PlaceCard;
 
 const styles = StyleSheet.create({
   card: {
+    flexDirection: "column",
+
     backgroundColor: "rgba(0,0,0,0.3)",
     margin: 17,
     borderRadius: 10,
