@@ -98,7 +98,7 @@ export default function PublicChatComponent({ navigation, _id }) {
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={{ flex: 1 }}
-      keyboardVerticalOffset={Platform.OS === "ios" ? 135 : 90}
+      keyboardVerticalOffset={Platform.OS === "ios" ? 145 : 122}
     >
       <ChatBox user={user} data={data} scrollViewRef={scrollViewRef} />
       <View
