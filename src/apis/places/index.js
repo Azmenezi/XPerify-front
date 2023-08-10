@@ -11,7 +11,6 @@ exports.getPlaceById = async (id) => {
 };
 
 exports.checkIn = async (checkInInfo) => {
-
   const formData = new FormData();
 
   for (const key in checkInInfo) {
@@ -32,5 +31,6 @@ exports.checkIn = async (checkInInfo) => {
       "Content-Type": "multipart/form-data",
     },
   });
+
   return res.data;
 };

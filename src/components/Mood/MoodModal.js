@@ -12,10 +12,13 @@ import { getAllMood } from "../../apis/mood";
 import { useQuery } from "@tanstack/react-query";
 import { useContext } from "react";
 import MoodContext from "../../context/MoodContext";
+import { FontAwesome } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
+import { FontAwesome5 } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
 
 const MoodModal = ({ isVisible, onMoodSelected, onClose }) => {
-  const [selectAll, setSelectAll] = useState(false);
-
   const { data: moods, isLoading } = useQuery({
     queryKey: ["moods"],
     queryFn: () => getAllMood(),
@@ -28,13 +31,62 @@ const MoodModal = ({ isVisible, onMoodSelected, onClose }) => {
   }
 
   const moodeicon = {
-    Working: <Text style={styles.icon}> 💼 </Text>,
-    Celebratory: <Text style={styles.icon}> 🎉 </Text>,
-    Family: <Text style={styles.icon}> 👨‍👩‍👧‍👦 </Text>,
-    Relaxing: <Text style={styles.icon}> 🏖 </Text>,
-    Socializing: <Text style={styles.icon}> 💬 </Text>,
-    Studying: <Text style={styles.icon}> 📚 </Text>,
-    Meeting: <Text style={styles.icon}> 🤝 </Text>,
+    Working: (
+      <MaterialIcons
+        name="work"
+        size={24}
+        color="white"
+        style={{ marginRight: 20 }}
+      />
+    ),
+    Celebratory: (
+      <FontAwesome
+        name="birthday-cake"
+        size={24}
+        color="white"
+        style={{ marginRight: 20 }}
+      />
+    ),
+    Family: (
+      <MaterialIcons
+        name="family-restroom"
+        size={24}
+        color="white"
+        style={{ marginRight: 20 }}
+      />
+    ),
+    Relaxing: (
+      <FontAwesome5
+        name="umbrella-beach"
+        size={24}
+        color="white"
+        style={{ marginRight: 20 }}
+      />
+    ),
+    Socializing: (
+      <AntDesign
+        name="message1"
+        size={24}
+        color="white"
+        style={{ marginRight: 20 }}
+      />
+    ),
+    Studying: (
+      <Feather
+        name="book-open"
+        size={24}
+        color="white"
+        style={{ marginRight: 20 }}
+      />
+    ),
+    Meeting: (
+      <FontAwesome
+        name="handshake-o"
+        size={24}
+        color="white"
+        style={{ marginRight: 20 }}
+      />
+    ),
   };
 
   return (
@@ -50,6 +102,17 @@ const MoodModal = ({ isVisible, onMoodSelected, onClose }) => {
           <TouchableWithoutFeedback onPress={() => {}}>
             <View style={styles.modalView}>
               <ScrollView style={styles.scrollView}>
+                <TouchableOpacity
+                  style={styles.button}
+                  onPress={() => {
+                    onMoodSelected(null);
+                    setSelectedMood(null);
+                  }}
+                >
+                  <View style={styles.row}>
+                    <Text style={styles.buttonText}>All</Text>
+                  </View>
+                </TouchableOpacity>
                 {moods?.map((mood) => (
                   <TouchableOpacity
                     key={mood.id}
@@ -119,7 +182,6 @@ const styles = StyleSheet.create({
     color: "#ECECEC",
     fontSize: 16,
     fontWeight: "bold",
-    marginRight: 10, // added space to separate text and icon
   },
   icon: {
     fontSize: 33,

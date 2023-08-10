@@ -14,7 +14,6 @@ import UserContext from "../../context/UserContext";
 import { socket } from "../../socket";
 import ChatBox from "./ChatBox";
 import ChatTextInput from "./ChatTextInput";
-import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
 
 export default function Chat({ route, navigation }) {
