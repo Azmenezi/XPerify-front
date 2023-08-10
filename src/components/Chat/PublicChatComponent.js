@@ -37,6 +37,7 @@ export default function PublicChatComponent({ navigation, _id }) {
         ...current,
         msgs: [...current.msgs, newMessage],
       };
+
       // Update the local state with the new messages
       queryClient.setQueryData(["chat", chatId], updatedMessages);
       scrollViewRef.current?.scrollToEnd({ animated: true });

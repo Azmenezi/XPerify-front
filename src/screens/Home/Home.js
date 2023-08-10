@@ -18,7 +18,6 @@ const Home = () => {
       >
         <Text style={styles.moodButtonText}>Select your mood</Text>
       </TouchableOpacity>
-
       <MoodModal
         isVisible={isModalVisible}
         onMoodSelected={handleMoodSelected}

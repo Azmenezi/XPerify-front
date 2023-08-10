@@ -4,26 +4,22 @@ import { BASE_URL } from "../../apis";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import ROUTES from "../../navigation";
 
-
 const PlaceCard = ({ place }) => {
-
-
-  const routName = useRoute()
-  console.log(routName)
+  const routName = useRoute();
+  console.log(routName);
 
   const navigation = useNavigation();
   console.log(`${BASE_URL}/${place.image}`);
   return (
     <TouchableOpacity
       onPress={() => {
-        routName.name === ROUTES.HEDERROUTES.PLACE_STACK.HOME ?
-          navigation.navigate(ROUTES.HEDERROUTES.PLACE_STACK.PLACEDETAILS, {
-            _id: place._id,
-          })
-          :
-          navigation.navigate(ROUTES.HEDERROUTES.CHECKIN_STACK.POST, {
-            _id: place._id,
-          })
+        routName.name === ROUTES.HEDERROUTES.PLACE_STACK.HOME
+          ? navigation.navigate(ROUTES.HEDERROUTES.PLACE_STACK.PLACEDETAILS, {
+              _id: place._id,
+            })
+          : navigation.navigate(ROUTES.HEDERROUTES.CHECKIN_STACK.POST, {
+              _id: place._id,
+            });
       }}
     >
       <View style={styles.card}>
@@ -46,36 +42,30 @@ export default PlaceCard;
 const styles = StyleSheet.create({
   card: {
     flexDirection: "column",
-
-    backgroundColor: "rgba(0,0,0,0.3)",
-    margin: 17,
-    borderRadius: 10,
+    backgroundColor: "#FFFFFF",
+    margin: 20,
+    borderRadius: 15,
     overflow: "hidden",
-    borderWidth: 0.5,
-    borderColor: "gray",
-    width: "94%",
-    height: 240,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    width: "90%",
   },
   image: {
     width: "100%",
     height: 150,
     resizeMode: "cover",
   },
-
   infoLayer: {
-    position: "absolute",
-    top: 0,
-    bottom: 0,
-    right: 0,
-    width: "50%",
-    backgroundColor: "rgba(0,0,0,0.7)",
-    justifyContent: "center",
-    padding: 10,
+    padding: 12,
+    backgroundColor: "#FFFFFF",
+    borderBottomLeftRadius: 15,
+    borderBottomRightRadius: 15,
   },
-
   text: {
     fontWeight: "bold",
-    fontSize: 31,
-    color: "white",
+    fontSize: 28,
+    color: "black",
   },
 });
