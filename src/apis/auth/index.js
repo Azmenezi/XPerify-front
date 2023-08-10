@@ -37,3 +37,12 @@ exports.checkUsername = async (username) => {
 
   return res.data;
 };
+exports.getMyProfile = async () => {
+  const res = await instance.get("/auth/my-profile");
+  return res.data;
+};
+
+exports.profile = async (id) => {
+  const res = await instance.get(`/auth/profile/${id}`);
+  return res.data;
+};

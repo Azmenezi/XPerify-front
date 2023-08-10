@@ -23,7 +23,9 @@ export default function ImagePickerC({ image, setImage }) {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images, // only images
       allowsEditing: true,
+
       aspect: [1, 1], // changed to create a square
+
       quality: 1,
     });
 
@@ -39,6 +41,7 @@ export default function ImagePickerC({ image, setImage }) {
       }
     }
   };
+
 
   return (
     <View
@@ -77,3 +80,4 @@ export default function ImagePickerC({ image, setImage }) {
     </View>
   );
 }
+

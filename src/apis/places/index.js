@@ -10,6 +10,11 @@ exports.getPlaceById = async (id) => {
   return res.data;
 };
 
+exports.getNearbyPlaces = async (lat, lon) => {
+  const res = await instance.get(`/place/nearby?lat=${lat}&lon=${lon}`);
+  return res.data;
+};
+
 exports.checkIn = async (checkInInfo) => {
   const formData = new FormData();
 
