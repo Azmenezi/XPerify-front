@@ -1,18 +1,11 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import PlacesList from "../../components/Places/PlacesList"
-
+import { StyleSheet, Text, View } from "react-native";
+import React from "react";
+import NearbyPlaces from "../../components/Places/NearbyPlaces";
 
 const CheckIn = () => {
-    return (
-        <View style={{ flex: 1 }}>
+  return <View style={{ flex: 1 }}>{/* <NearbyPlaces /> */}</View>;
+};
 
-            <PlacesList />
+export default CheckIn;
 
-        </View>
-    )
-}
-
-export default CheckIn
-
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});

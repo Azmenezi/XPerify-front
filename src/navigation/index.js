@@ -8,7 +8,6 @@ const ROUTES = {
       STACK: "Check in stack",
       CHECKIN: "Check in",
       POST: "Create",
-
     },
 
     PROFILE_STACK: {
@@ -17,6 +16,8 @@ const ROUTES = {
       DM: "Profile Dm",
       FRIENDS: "Friends",
       DM_CHAT: "Dm Chat",
+      MYPOST: "my post",
+      MYCHECKINHISTORY: "my checkin",
     },
 
     PLACE_STACK: {

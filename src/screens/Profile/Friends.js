@@ -26,6 +26,7 @@ const Friends = ({ navigation }) => {
     queryKey: ["users"],
     queryFn: () => getUsers(),
   });
+
   const theme = useTheme(); // Get the currently active theme
   const { mutate: getChatUserFn } = useMutation({
     mutationFn: (userId) => getChatUser(userId),

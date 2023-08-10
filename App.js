@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import UserContext from "./src/context/UserContext";
 import AuthNavigation from "./src/navigation/AuthNavigation";
-import { getToken } from "./src/apis/auth/storage";
+import { getToken, removeToken } from "./src/apis/auth/storage";
 import jwt_decode from "jwt-decode";
 import MoodContext from "./src/context/MoodContext";
 
@@ -55,6 +55,11 @@ export default function App() {
     const token = await getToken();
     if (token) {
       const decodeUser = jwt_decode(token);
+      const currentTime = Date.now() / 1000;
+      if (decodeUser.exp < currentTime) {
+        removeToken();
+        return setUser(null);
+      }
       setUser(decodeUser);
     }
   };
