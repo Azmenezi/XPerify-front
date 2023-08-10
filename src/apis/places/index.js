@@ -9,7 +9,10 @@ exports.getPlaceById = async (id) => {
   const res = await instance.get(`/place/${id}`);
   return res.data;
 };
-
+exports.getPlacePosts = async (id) => {
+  const res = await instance.get(`/place/posts/${id}`);
+  return res.data;
+};
 exports.getNearbyPlaces = async (lat, lon) => {
   const res = await instance.get(`/place/nearby?lat=${lat}&lon=${lon}`);
   return res.data;

@@ -65,6 +65,7 @@ const Friends = ({ navigation }) => {
         {filteredUsers?.map((user) => {
           return (
             <Pressable
+              key={user._id}
               style={{
                 height: 100,
                 borderWidth: 0.2,

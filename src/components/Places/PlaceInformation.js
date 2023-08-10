@@ -15,17 +15,15 @@ import { AntDesign, Entypo } from "@expo/vector-icons";
 import LocationInfo from "../Location/LocationInfo";
 
 export default function PlaceInformation({ _id, isPlace }) {
-  const { data: place, isLoading } = useQuery(["place", _id], () =>
-    getPlaceById(_id)
-  );
+  const { data: place } = useQuery(["place", _id], () => getPlaceById(_id));
   const image = { uri: `${BASE_URL}/${place?.image}` };
   const theme = useTheme();
 
-  const heightAnim = useState(new Animated.Value(0))[0];
+  const heightAnim = useState(new Animated.Value(0))[0]; // 200 is the height of the ImageBackground
 
   useEffect(() => {
     Animated.timing(heightAnim, {
-      toValue: isPlace ? 600 : 0,
+      toValue: isPlace ? 400 : 0,
       duration: 200,
       easing: Easing.linear,
       useNativeDriver: false,
