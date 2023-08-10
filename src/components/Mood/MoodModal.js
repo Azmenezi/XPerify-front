@@ -123,6 +123,17 @@ const MoodModal = ({ isVisible, onMoodSelected, onClose }) => {
           <TouchableWithoutFeedback onPress={() => {}}>
             <View style={styles.modalView}>
               <ScrollView style={styles.scrollView}>
+                <TouchableOpacity
+                  style={styles.button}
+                  onPress={() => {
+                    onMoodSelected(null);
+                    setSelectedMood(null);
+                  }}
+                >
+                  <View style={styles.row}>
+                    <Text style={styles.buttonText}>All</Text>
+                  </View>
+                </TouchableOpacity>
                 {moods?.map((mood) => (
                   <TouchableOpacity
                     key={mood.id}
