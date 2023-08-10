@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import ImagePickerC from "../../components/ImagePickerC";
 import { checkIn } from "../../apis/places";
+// import AmenitiesList2 from "../../components/Amenity/AmenityList2";
 
 
 const Post = ({ navigation, route }) => {
@@ -92,6 +93,7 @@ const Post = ({ navigation, route }) => {
                                     <Pressable style={styles.skipButton} onPress={closeModal}>
                                         <Text style={styles.skipButtonText}>Skip</Text>
                                     </Pressable>
+                                    {/* <AmenitiesList2 onRateAmenity={(amenityName, rating) => console.log(amenityName, rating)} /> */}
 
                                 </View>
                             </View>
