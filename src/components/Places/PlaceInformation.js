@@ -92,10 +92,7 @@ export default function PlaceInformation({ _id, isPlace }) {
                 2.8 km
               </Text> */}
 
-              <LocationInfo
-                placeLon={place?.location?.lon}
-                placeLat={place?.location?.lat}
-              />
+              <LocationInfo placeLon={place?.lon} placeLat={place?.lat} />
             </View>
           </View>
         </View>
