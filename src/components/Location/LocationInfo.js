@@ -55,9 +55,9 @@ const LocationInfoContent = ({ placeLon, placeLat, userLocation }) => {
     distance = distance.toFixed(1);
   }
 
-  if (!locationDetails) {
-    return <Text style={styles.textStyle}>Loading...</Text>;
-  }
+  // if (!locationDetails) {
+  //   return <Text style={styles.textStyle}>Loading...</Text>;
+  // }
 
   return (
     <View style={styles.container}>
@@ -68,7 +68,7 @@ const LocationInfoContent = ({ placeLon, placeLat, userLocation }) => {
       </TouchableOpacity>
 
       {/* Displaying user's current latitude and longitude */}
-      {/* <View>
+      <View>
         {userLocation && (
           <>
             <Text
@@ -79,7 +79,7 @@ const LocationInfoContent = ({ placeLon, placeLat, userLocation }) => {
             >{` Longitude: ${userLocation.longitude}`}</Text>
           </>
         )}
-      </View> */}
+      </View>
     </View>
   );
 };
