@@ -1,8 +1,11 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import React from "react";
-import AmenitiesList from "../../components/Amenity/AmenitiesList";
 
 const Notification = () => {
-  return <AmenitiesList />;
+  return (
+    <View>
+      <Text>Notification</Text>
+    </View>
+  );
 };
 export default Notification;
