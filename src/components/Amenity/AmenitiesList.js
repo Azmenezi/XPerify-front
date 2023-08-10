@@ -3,25 +3,21 @@ import { StyleSheet, ScrollView } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import { useMemoOne } from "use-memo-one";
 import AmenitiesCard from "../Amenity/AmenitiesCard";
+import { getAllAmenities } from "../../apis/amenity";
+import { useQuery } from "@tanstack/react-query";
 
 const AmenitiesList = () => {
   const { colors } = useTheme();
 
-  const amenities = useMemoOne(
-    () => [
-      { name: "Free Wi-Fi", icon: "wifi" },
-      { name: "Parking", icon: "car" },
-      { name: "Outdoor Seating", icon: "tree" },
-      { name: "Pet Friendly", icon: "paw" },
-      { name: "Wheelchair Accessible", icon: "wheelchair" },
-      { name: "Air Conditioning", icon: "snowflake-o" },
-      { name: "Smoking Area", icon: "cloud" },
-      { name: "Toilets", icon: "bath" },
-      { name: "Playground", icon: "child" },
-      { name: "Vegan Options", icon: "leaf" },
-    ],
-    []
-  );
+  const {
+    data: amenities,
+    isLoading,
+    isFetching,
+    refetch,
+  } = useQuery({
+    queryKey: ["amenities"],
+    queryFn: () => getAllAmenities(),
+  });
 
   const styles = useStyles(colors);
 
@@ -31,7 +27,7 @@ const AmenitiesList = () => {
       style={styles.container}
       showsHorizontalScrollIndicator={false}
     >
-      {amenities.map((amenity, index) => (
+      {amenities?.map((amenity, index) => (
         <AmenitiesCard key={index} icon={amenity.icon} name={amenity.name} />
       ))}
     </ScrollView>
