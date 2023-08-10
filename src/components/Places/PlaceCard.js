@@ -15,6 +15,7 @@ const PlaceCard = ({ place }) => {
         routName.name === ROUTES.HEDERROUTES.PLACE_STACK.HOME
           ? navigation.navigate(ROUTES.HEDERROUTES.PLACE_STACK.PLACEDETAILS, {
               _id: place._id,
+              posts: place.posts,
             })
           : navigation.navigate(ROUTES.HEDERROUTES.CHECKIN_STACK.POST, {
               _id: place._id,

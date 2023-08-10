@@ -22,7 +22,7 @@ function PlaceTopNavigations({ _id, navigation, setIsPlace }) {
     >
       <Tab.Screen
         name={ROUTES.HEDERROUTES.PLACE_STACK.POSTS}
-        component={Posts}
+        children={() => <Posts _id={_id} navigation={navigation} />}
       />
       <Tab.Screen
         name={ROUTES.HEDERROUTES.PLACE_STACK.PUBLIC_CHAT}
