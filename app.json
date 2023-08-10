@@ -1,7 +1,12 @@
 {
   "expo": {
     "name": "capstone-front",
-    "slug": "capstone-front",
+    "slug": "capstone",
+    "extra": {
+      "eas": {
+        "projectId": "13d5ab49-98e1-4dac-bff5-0ebb4b8ef299"
+      }
+    },
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -25,6 +30,7 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "owner": "azmenezi"
   }
 }

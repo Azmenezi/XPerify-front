@@ -66,6 +66,7 @@ export default function App() {
 
   useEffect(() => {
     checkToken();
+
   }, []);
 
   return (

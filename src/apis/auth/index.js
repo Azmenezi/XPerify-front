@@ -37,6 +37,11 @@ exports.checkUsername = async (username) => {
 
   return res.data;
 };
+
+exports.addNotificationToken = async (token) => {
+  const res = await instance.put('/auth/store-notification-token', { token })
+  return res.data
+}
 exports.getMyProfile = async () => {
   const res = await instance.get("/auth/my-profile");
   return res.data;
