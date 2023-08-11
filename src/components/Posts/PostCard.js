@@ -3,7 +3,6 @@ import React from "react";
 import { BASE_URL } from "../../apis";
 
 const PostCard = ({ post, place }) => {
-  console.log(post);
   return (
     <View
       style={{

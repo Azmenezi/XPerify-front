@@ -6,7 +6,7 @@ import PostCard from "../../../components/Posts/PostCard";
 
 export default function Posts({ _id, navigation }) {
   const { data: posts } = useQuery(["place-posts"], () => getPlacePosts(_id));
-
+  posts?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
   const numColumns = 2;
   return (
     <ScrollView contentContainerStyle={styles.container}>
