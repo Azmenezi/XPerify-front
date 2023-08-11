@@ -77,7 +77,6 @@ function BottomNavigation() {
         name={ROUTES.HEDERROUTES.PROFILE_STACK.STACK}
         component={ProfileStackNavigstion}
         options={{
-          title: ROUTES.HEDERROUTES.PROFILE_STACK.PROFILE,
           tabBarIcon: ({ size, color }) => (
             // <Ionicons name="person" size={24} color={color} />
             <View

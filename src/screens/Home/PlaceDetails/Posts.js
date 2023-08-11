@@ -1,26 +1,27 @@
-import React, { useEffect } from "react";
+import React, { useContext } from "react";
 import { ScrollView, View, StyleSheet } from "react-native";
 import { getPlacePosts } from "../../../apis/places";
 import { useQuery } from "@tanstack/react-query";
 import PostCard from "../../../components/Posts/PostCard";
 import { useFocusEffect } from "@react-navigation/native";
 
+import UserContext from "../../../context/UserContext";
+
 export default function Posts({ _id, navigation, setIsPlace, isPlace }) {
   const { data: posts } = useQuery(["place-posts"], () => getPlacePosts(_id));
-
+  const { user } = useContext(UserContext);
   useFocusEffect(
     React.useCallback(() => {
       setIsPlace(true);
     }, [])
   );
-
   posts?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
   const numColumns = 2;
   return (
     <ScrollView
       contentContainerStyle={styles.container}
       onScroll={(e) => {
-        if (e.nativeEvent.contentOffset.y >= 200) {
+        if (e.nativeEvent.contentOffset.y >= 100) {
           if (isPlace) {
             setIsPlace(false);
           }
@@ -38,7 +39,12 @@ export default function Posts({ _id, navigation, setIsPlace, isPlace }) {
                 {posts
                   .slice(rowIndex * numColumns, (rowIndex + 1) * numColumns)
                   .map((post) => (
-                    <PostCard post={post} key={post.id} />
+                    <PostCard
+                      post={post}
+                      key={post.id}
+                      navigation={navigation}
+                      checkedUser={user}
+                    />
                   ))}
               </View>
             )

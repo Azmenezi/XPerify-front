@@ -1,9 +1,9 @@
 import { Image, Pressable, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { BASE_URL } from "../../apis";
+import ROUTES from "../../navigation";
 
-const PostCard = ({ post, place }) => {
-  // console.log(post);
+const PostCard = ({ post, navigation, checkedUser }) => {
   return (
     <View
       style={{
@@ -21,7 +21,12 @@ const PostCard = ({ post, place }) => {
       />
       <Pressable
         onPress={() => {
-          // console.log(post.user.username);
+          post?.user?._id === checkedUser._id
+            ? navigation.navigate(ROUTES.HEDERROUTES.PROFILE_STACK.STACK)
+            : navigation.navigate(ROUTES.HEDERROUTES.PLACE_STACK.PROFILE, {
+                userId: post.user._id,
+                checkedUser,
+              });
         }}
         style={{
           height: 40,

@@ -1,10 +1,22 @@
-import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import {
+  Image,
+  RefreshControl,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import React from "react";
 import { BASE_URL } from "../../../apis";
 
-const MyCheckInHistory = ({ history }) => {
+const MyCheckInHistory = ({ history, refetch, isFetching }) => {
   return (
-    <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+    <ScrollView
+      refreshControl={
+        <RefreshControl refreshing={isFetching} onRefresh={refetch} />
+      }
+      contentContainerStyle={{ flexGrow: 1 }}
+    >
       {history.map((item) => (
         <View
           key={item._id}
