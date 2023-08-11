@@ -1,15 +1,19 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import React, { useContext } from "react";
 import DmButton from "../../components/Profile/DmButton";
-import ProfileInfo from "../../components/Profile/ProfileInfo";
 import ProfileTopNavigation from "../../navigation/ProfileTopNavigation";
 import { getMyProfile } from "../../apis/auth";
 import { useQuery } from "@tanstack/react-query";
 import { BASE_URL } from "../../apis";
 import MoodContext from "../../context/MoodContext";
+import ROUTES from "../../navigation";
 
 const Profile = ({ navigation }) => {
-  const { data: profile } = useQuery(["profile"], () => getMyProfile());
+  const {
+    data: profile,
+    isFetching,
+    refetch,
+  } = useQuery(["profile"], () => getMyProfile());
   const { selectedMood } = useContext(MoodContext);
   return (
     <View style={{ flex: 1 }}>
@@ -19,6 +23,7 @@ const Profile = ({ navigation }) => {
             width: "30%",
             justifyContent: "center",
             alignItems: "center",
+            top: -10,
           }}
         >
           <View style={{ left: 40 }}>
@@ -62,7 +67,12 @@ const Profile = ({ navigation }) => {
               >
                 Freinds
               </Text>
-              <View
+              <Pressable
+                onPress={() => {
+                  navigation.navigate(
+                    ROUTES.HEDERROUTES.PROFILE_STACK.MY_FRIENDS
+                  );
+                }}
                 style={{
                   width: 100,
                   height: 40,
@@ -77,7 +87,7 @@ const Profile = ({ navigation }) => {
                 >
                   {profile?.friends.length}
                 </Text>
-              </View>
+              </Pressable>
             </View>
           </View>
           <View
@@ -114,7 +124,12 @@ const Profile = ({ navigation }) => {
           </View>
         </View>
       </View>
-      <ProfileTopNavigation history={profile?.history} posts={profile?.posts} />
+      <ProfileTopNavigation
+        history={profile?.history}
+        posts={profile?.posts}
+        refetch={refetch}
+        isFetching={isFetching}
+      />
     </View>
   );
 };

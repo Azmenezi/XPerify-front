@@ -39,15 +39,24 @@ exports.checkUsername = async (username) => {
 };
 
 exports.addNotificationToken = async (token) => {
-  const res = await instance.put('/auth/store-notification-token', { token })
-  return res.data
-}
+  const res = await instance.put("/auth/store-notification-token", { token });
+  return res.data;
+};
 exports.getMyProfile = async () => {
   const res = await instance.get("/auth/my-profile");
   return res.data;
 };
 
+exports.getUserProfile = async (id) => {
+  const res = await instance.get(`/auth/profile/${id}`);
+  return res.data;
+};
 exports.profile = async (id) => {
   const res = await instance.get(`/auth/profile/${id}`);
+  return res.data;
+};
+
+exports.getMyFriends = async () => {
+  const res = await instance.get("/auth/my-friends");
   return res.data;
 };

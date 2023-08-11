@@ -93,17 +93,24 @@ const DM = ({ navigation }) => {
                 overflow: "hidden",
               }}
             >
-              <Text
-                style={{
-                  color: `${theme.colors.text}70`,
-                  fontSize: 16,
-                }}
-              >
-                {chat?.msgs[0]?.from?.username}:{" "}
-              </Text>
-              <Text style={{ color: `${theme.colors.text}70`, fontSize: 16 }}>
-                {chat?.msgs[0]?.text}
-              </Text>
+              {chat?.msgs.length > 0 && (
+                <>
+                  <Text
+                    style={{
+                      color: `${theme.colors.text}70`,
+                      fontSize: 16,
+                    }}
+                  >
+                    {chat?.msgs[0]?.from?.username}:{" "}
+                  </Text>
+
+                  <Text
+                    style={{ color: `${theme.colors.text}70`, fontSize: 16 }}
+                  >
+                    {chat?.msgs[0]?.text}
+                  </Text>
+                </>
+              )}
             </View>
             <View
               style={{

@@ -8,7 +8,6 @@ const PlaceDetails = ({ route, navigation }) => {
   const { _id } = route.params;
 
   const [isPlace, setIsPlace] = useState(true);
-  console.log({ isPlace });
   return (
     <ScrollView
       keyboardShouldPersistTaps="handled"
