@@ -3,7 +3,7 @@ import React from "react";
 import { BASE_URL } from "../../apis";
 
 const PostCard = ({ post, place }) => {
-  console.log(post);
+  // console.log(post);
   return (
     <View
       style={{
@@ -21,7 +21,7 @@ const PostCard = ({ post, place }) => {
       />
       <Pressable
         onPress={() => {
-          console.log(post.user.username);
+          // console.log(post.user.username);
         }}
         style={{
           height: 40,

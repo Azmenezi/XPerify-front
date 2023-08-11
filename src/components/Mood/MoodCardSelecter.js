@@ -25,7 +25,7 @@ const MoodCardSelecter = ({ icon, name, _id, data, setData }) => {
       // If the amenity is not pressed, add the _id to the array
       moods.push(_id);
     }
-    console.log(moods);
+    // console.log(moods);
     // Set the new moods
     setData({ ...data, moods });
     // Toggle the pressed state
