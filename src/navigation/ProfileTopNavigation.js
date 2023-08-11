@@ -6,17 +6,17 @@ import MyCheckInHistory from "../screens/Profile/ProfileDetails/MyCheckInHistory
 
 const Tab = createMaterialTopTabNavigator();
 
-function ProfileTopNavigation() {
+function ProfileTopNavigation({ posts, history }) {
   return (
     <Tab.Navigator lazy={true}>
       <Tab.Screen
         name={ROUTES.HEDERROUTES.PROFILE_STACK.MYPOST}
-        component={MyPost}
+        children={() => <MyPost posts={posts} />}
         options={{ title: "Posts" }}
       />
       <Tab.Screen
         name={ROUTES.HEDERROUTES.PROFILE_STACK.MYCHECKINHISTORY}
-        component={MyCheckInHistory}
+        children={() => <MyCheckInHistory history={history} />}
         options={{ title: "History" }}
       />
     </Tab.Navigator>

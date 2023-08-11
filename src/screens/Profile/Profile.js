@@ -114,7 +114,7 @@ const Profile = ({ navigation }) => {
           </View>
         </View>
       </View>
-      <ProfileTopNavigation />
+      <ProfileTopNavigation history={profile?.history} posts={profile?.posts} />
     </View>
   );
 };
