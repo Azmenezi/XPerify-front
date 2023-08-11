@@ -14,6 +14,7 @@ export default function Posts({ _id, navigation, setIsPlace, isPlace }) {
     }, [])
   );
 
+  posts?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
   const numColumns = 2;
   return (
     <ScrollView
