@@ -47,8 +47,8 @@ const LocationInfoContent = ({ placeLon, placeLat, userLocation }) => {
   console.log({ userLocation });
   if (userLocation) {
     distance = CalculateDistance(
-      userLocation.longitude,
       userLocation.latitude,
+      userLocation.longitude,
       parseFloat(placeLat),
       parseFloat(placeLon)
     );
