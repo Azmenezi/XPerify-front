@@ -5,32 +5,44 @@ import PlaceDetails from "../screens/Home/PlaceDetails/PlaceDetails";
 import { Pressable } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
-import * as Notifications from 'expo-notifications';
+import * as Notifications from "expo-notifications";
 import { useEffect } from "react";
-import Constants from 'expo-constants';
+import Constants from "expo-constants";
 import { registerForPushNotificationsAsync } from "../utils/notifications";
 import { useMutation } from "@tanstack/react-query";
-import { addNotificationToken } from "../apis/auth";
-
+import { addNotificationToken, updateUserLocation } from "../apis/auth";
+import { useUserLocation } from "../components/Location/UserLocation";
 const Stack = createStackNavigator();
 
 function PlaceStackNavigation() {
   const theme = useTheme();
 
+  const userLocation = useUserLocation();
+
   const { mutate: addToken } = useMutation({
-    mutationFn: (token) => addNotificationToken(token)
-  })
+    mutationFn: (token) => addNotificationToken(token),
+  });
+
+  const { mutate: updateUserLocationFn } = useMutation({
+    mutationFn: () =>
+      updateUserLocation(userLocation.longitude, userLocation.latitude),
+  });
+
   const getNotificationToken = async () => {
-    const token = await registerForPushNotificationsAsync()
+    const token = await registerForPushNotificationsAsync();
     if (token) {
       // update the user with this token
-      addToken(token.data)
+      addToken(token.data);
     }
-  }
-  useEffect(() => {
-    getNotificationToken()
-  }, [])
+  };
 
+  useEffect(() => {
+    getNotificationToken();
+  }, []);
+
+  useEffect(() => {
+    updateUserLocationFn();
+  }, [userLocation?.latitude, userLocation?.longitude]);
 
   return (
     <Stack.Navigator screenOptions={{ headerBackTitleVisible: false }}>

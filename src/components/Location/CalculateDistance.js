@@ -19,6 +19,8 @@ export const CalculateDistance = (lat1, lon1, lat2, lon2) => {
       Math.sin(dLon / 2);
 
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+  console.log({ R, dLat, dLon, a, c, lat1, lat2, lon1, lon2 });
   return R * c; // Distance in km
 };
 

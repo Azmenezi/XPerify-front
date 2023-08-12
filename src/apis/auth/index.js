@@ -39,9 +39,9 @@ exports.checkUsername = async (username) => {
 };
 
 exports.addNotificationToken = async (token) => {
-  const res = await instance.put('/auth/store-notification-token', { token })
-  return res.data
-}
+  const res = await instance.put("/auth/store-notification-token", { token });
+  return res.data;
+};
 exports.getMyProfile = async () => {
   const res = await instance.get("/auth/my-profile");
   return res.data;
@@ -50,4 +50,15 @@ exports.getMyProfile = async () => {
 exports.profile = async (id) => {
   const res = await instance.get(`/auth/profile/${id}`);
   return res.data;
+};
+exports.updateUserLocation = async (lon, lat) => {
+  try {
+    const res = await instance.put("/auth/updateLocation", {
+      lon: lon,
+      lat: lat,
+    });
+    return res.data;
+  } catch (error) {
+    throw error;
+  }
 };

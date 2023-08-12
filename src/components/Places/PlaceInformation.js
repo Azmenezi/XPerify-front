@@ -88,11 +88,11 @@ export default function PlaceInformation({ _id, isPlace }) {
               }}
             >
               <Entypo name="location" size={24} color="#e65955" />
-              {/* <Text style={{ fontSize: 20, color: theme.colors.text }}>
-                2.8 km
-              </Text> */}
 
-              <LocationInfo placeLon={place?.lon} placeLat={place?.lat} />
+              <LocationInfo
+                placeLon={place?.location.coordinates[0]}
+                placeLat={place?.location.coordinates[1]}
+              />
             </View>
           </View>
         </View>
