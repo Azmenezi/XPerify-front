@@ -29,7 +29,7 @@ export default function PlaceInformation({ _id, isPlace }) {
       useNativeDriver: false,
     }).start();
   }, [isPlace]);
-
+  // console.log(place);
   return (
     <Animated.View style={{ height: heightAnim }}>
       {isPlace && (
@@ -88,8 +88,8 @@ export default function PlaceInformation({ _id, isPlace }) {
               <Entypo name="location" size={24} color="#e65955" />
 
               <LocationInfo
-                placeLon={place?.location.coordinates[0]}
-                placeLat={place?.location.coordinates[1]}
+                placeLon={place?.location?.coordinates[0]}
+                placeLat={place?.location?.coordinates[1]}
               />
             </View>
           </View>

@@ -36,7 +36,7 @@ const RegisterUsername = ({ navigation }) => {
       }
     },
     onError: (err) => {
-      console.log("err", err);
+      // console.log("err", err);
     },
   });
 
