@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   Text,
   StyleSheet,
@@ -8,13 +8,18 @@ import {
 } from "react-native"; // import StyleSheet
 import { useQuery, QueryClient, QueryClientProvider } from "react-query";
 import { getLocationAddress } from "../../apis/location";
+import UserContext from "../../context/UserContext";
 import { CalculateDistance } from "./CalculateDistance";
-import { useUserLocation } from "./UserLocation";
+// import { useUserLocation } from "./UserLocation";
 
 const LocationInfo = ({ placeLon, placeLat }) => {
   const queryClient = new QueryClient();
-  const userLocation = useUserLocation();
-
+  // const userLocation = useUserLocation();
+  const { user } = useContext(UserContext);
+  const userLocation = {
+    latitude: user?.location.coordinates[1],
+    longitude: user?.location.coordinates[0],
+  };
   return (
     <QueryClientProvider client={queryClient}>
       <LocationInfoContent

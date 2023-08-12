@@ -10,7 +10,7 @@ import { useContext, useEffect } from "react";
 import Constants from "expo-constants";
 import { registerForPushNotificationsAsync } from "../utils/notifications";
 import { useMutation } from "@tanstack/react-query";
-import { addNotificationToken } from "../apis/auth";
+import { addNotificationToken, updateUserLocation } from "../apis/auth";
 import UserProfile from "../screens/Profile/UserProfile";
 import UserContext from "../context/UserContext";
 import { useUserLocation } from "../components/Location/UserLocation";
@@ -20,7 +20,7 @@ const Stack = createStackNavigator();
 function PlaceStackNavigation() {
   const theme = useTheme();
 
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const userLocation = useUserLocation();
 
   const { mutate: addToken } = useMutation({
@@ -30,6 +30,10 @@ function PlaceStackNavigation() {
   const { mutate: updateUserLocationFn } = useMutation({
     mutationFn: () =>
       updateUserLocation(userLocation.longitude, userLocation.latitude),
+    onSuccess: (data) => {
+      console.log(data);
+      // setUser()
+    },
   });
 
   const getNotificationToken = async () => {
