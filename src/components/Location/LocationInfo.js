@@ -27,11 +27,11 @@ const LocationInfo = ({ placeLon, placeLat }) => {
 };
 
 const LocationInfoContent = ({ placeLon, placeLat, userLocation }) => {
-  const { data: locationDetails } = useQuery({
-    queryKey: ["location", placeLon, placeLat],
-    queryFn: () => getLocationAddress(placeLon, placeLat),
-    enabled: !!placeLon && !!placeLat,
-  });
+  // const { data: locationDetails } = useQuery({
+  //   queryKey: ["location", placeLon, placeLat],
+  //   queryFn: () => getLocationAddress(placeLon, placeLat),
+  //   enabled: !!placeLon && !!placeLat,
+  // });
 
   const openMap = (latitude, longitude) => {
     const url = `http://maps.google.com/maps?q=${latitude},${longitude}`;
@@ -43,15 +43,20 @@ const LocationInfoContent = ({ placeLon, placeLat, userLocation }) => {
       }
     });
   };
-
-  let distance;
-  if (userLocation && locationDetails) {
+  let distance = 0;
+  console.log({ userLocation });
+  if (userLocation) {
     distance = CalculateDistance(
       userLocation.latitude,
       userLocation.longitude,
       parseFloat(placeLat),
       parseFloat(placeLon)
     );
+    console.log(`
+    
+    ${distance}
+    
+    `);
     distance = distance.toFixed(1);
   }
 
@@ -68,7 +73,8 @@ const LocationInfoContent = ({ placeLon, placeLat, userLocation }) => {
       </TouchableOpacity>
 
       {/* Displaying user's current latitude and longitude */}
-      <View>
+
+      {/* <View>
         {userLocation && (
           <>
             <Text
@@ -79,7 +85,7 @@ const LocationInfoContent = ({ placeLon, placeLat, userLocation }) => {
             >{` Longitude: ${userLocation.longitude}`}</Text>
           </>
         )}
-      </View>
+      </View> */}
     </View>
   );
 };

@@ -4,23 +4,17 @@ import React, { useCallback, useContext } from "react";
 import { useQuery } from "@tanstack/react-query";
 import PlaceCard from "./PlaceCard";
 import { getNearbyPlaces } from "../../apis/places";
-import { useUserLocation } from "../Location/UserLocation";
+// import { useUserLocation } from "../Location/UserLocation";
 
 const NearbyPlaces = () => {
-  const userLocation = useUserLocation();
-
-  if (!userLocation) return <Text>Fetching Location...</Text>;
-
   const {
     data: places,
     isLoading,
     isFetching,
     refetch,
   } = useQuery({
-    queryKey: ["places", userLocation?.latitude, userLocation?.longitude],
-    queryFn: () =>
-      getNearbyPlaces(userLocation?.latitude, userLocation?.longitude),
-    enabled: !!userLocation,
+    queryKey: ["nearbyPlaces"],
+    queryFn: () => getNearbyPlaces(),
   });
 
   // Callback function to be called when the user pulls to refresh

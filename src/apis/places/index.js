@@ -2,7 +2,7 @@ const { instance } = require("..");
 
 exports.getAllPlaces = async () => {
   const res = await instance.get("/place/");
-  return res.data;
+  return res.data.reverse();
 };
 
 exports.getPlaceById = async (id) => {
