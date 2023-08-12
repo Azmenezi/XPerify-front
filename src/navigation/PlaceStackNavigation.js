@@ -6,17 +6,21 @@ import { Pressable } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
 import * as Notifications from "expo-notifications";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import Constants from "expo-constants";
 import { registerForPushNotificationsAsync } from "../utils/notifications";
 import { useMutation } from "@tanstack/react-query";
-import { addNotificationToken, updateUserLocation } from "../apis/auth";
+import { addNotificationToken } from "../apis/auth";
+import UserProfile from "../screens/Profile/UserProfile";
+import UserContext from "../context/UserContext";
 import { useUserLocation } from "../components/Location/UserLocation";
+
 const Stack = createStackNavigator();
 
 function PlaceStackNavigation() {
   const theme = useTheme();
 
+  const { user } = useContext(UserContext);
   const userLocation = useUserLocation();
 
   const { mutate: addToken } = useMutation({
@@ -53,6 +57,13 @@ function PlaceStackNavigation() {
       <Stack.Screen
         name={ROUTES.HEDERROUTES.PLACE_STACK.PLACEDETAILS}
         component={PlaceDetails}
+        options={{
+          title: "",
+        }}
+      />
+      <Stack.Screen
+        name={ROUTES.HEDERROUTES.PLACE_STACK.PROFILE}
+        component={UserProfile}
       />
     </Stack.Navigator>
   );

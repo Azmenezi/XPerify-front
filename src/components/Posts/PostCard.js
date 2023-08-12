@@ -1,54 +1,51 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Image, Pressable, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
-import { useNavigation } from "@react-navigation/native";
-// import ROUTES from '../../navigation';
+import { BASE_URL } from "../../apis";
+import ROUTES from "../../navigation";
 
-const PostCard = ({ post, place }) => {
-  // console.log(post)
-  // const navigation = useNavigation();
+const PostCard = ({ post, navigation, checkedUser }) => {
   return (
-    <TouchableOpacity
-      onPress={() => {
-        // navigation.navigate(ROUTES.HEDERROUTES.POST_DETAIL, {
-        //     _id: post._id,
-        //   });
+    <View
+      style={{
+        width: 180,
+        height: 180,
+        borderRadius: 20,
+        backgroundColor: "gray",
+        margin: 10,
+        overflow: "hidden",
       }}
     >
-      <View style={styles.card}>
+      <Image
+        source={{ uri: `${BASE_URL}/${post.image}` }}
+        style={{ height: "100%", width: "100%" }}
+      />
+      <Pressable
+        onPress={() => {
+          post?.user?._id === checkedUser._id
+            ? navigation.navigate(ROUTES.HEDERROUTES.PROFILE_STACK.STACK)
+            : navigation.navigate(ROUTES.HEDERROUTES.PLACE_STACK.PROFILE, {
+                userId: post.user._id,
+                checkedUser,
+              });
+        }}
+        style={{
+          height: 40,
+          width: 40,
+          position: "absolute",
+          backgroundColor: "white",
+          borderRadius: 100,
+          top: 10,
+          left: 10,
+          overflow: "hidden",
+        }}
+      >
         <Image
-          source={{ uri: `${BASE_URL}/${post.image}` }}
-          style={styles.image}
+          source={{ uri: `${BASE_URL}/${post.user.image}` }}
+          style={{ height: "100%", width: "100%" }}
         />
-        <Text style={styles.title}>{place.name}</Text>
-      </View>
-    </TouchableOpacity>
+      </Pressable>
+    </View>
   );
 };
 
 export default PostCard;
-
-const styles = StyleSheet.create({
-  cardContainer: {
-    marginLeft: 20,
-    marginRight: 20,
-    marginBottom: 26,
-    height: 400,
-    margin: 20,
-  },
-  card: {
-    backgroundColor: "#fff",
-    borderRadius: 10,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-  },
-  image: {
-    width: "100%",
-    height: "100%",
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
-    position: "relative",
-  },
-});

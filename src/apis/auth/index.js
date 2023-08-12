@@ -47,6 +47,10 @@ exports.getMyProfile = async () => {
   return res.data;
 };
 
+exports.getUserProfile = async (id) => {
+  const res = await instance.get(`/auth/profile/${id}`);
+  return res.data;
+};
 exports.profile = async (id) => {
   const res = await instance.get(`/auth/profile/${id}`);
   return res.data;
@@ -61,4 +65,23 @@ exports.updateUserLocation = async (lon, lat) => {
   } catch (error) {
     throw error;
   }
+};
+
+exports.acceptFriendRequest = async (friendRequestId) => {
+  const res = await instance.put(
+    `/auth/friend-request/accept/${friendRequestId}`
+  );
+  return res.data;
+};
+
+exports.declineFriendRequest = async (friendRequestId) => {
+  const res = await instance.put(
+    `/auth/friend-request/decline/${friendRequestId}`
+  );
+};
+
+exports.getMyFriends = async () => {
+  const res = await instance.get("/auth/my-friends");
+
+  return res.data;
 };
