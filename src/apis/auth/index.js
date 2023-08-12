@@ -56,6 +56,20 @@ exports.profile = async (id) => {
   return res.data;
 };
 
+exports.addFriendRequest = async (id) => {
+  const res = await instance.post(
+    `/auth/friend-request/${id}`
+  );
+  return res.data;
+};
+
+exports.removeFriend = async (id) => {
+  const res = await instance.put(
+    `/auth/friends/remove/${id}`
+  );
+  return res.data;
+};
+
 exports.acceptFriendRequest = async (friendRequestId) => {
   const res = await instance.put(
     `/auth/friend-request/accept/${friendRequestId}`
@@ -64,10 +78,11 @@ exports.acceptFriendRequest = async (friendRequestId) => {
 };
 
 exports.declineFriendRequest = async (friendRequestId) => {
-  const res = await instance.put(
+  const res = await instance.delete(
     `/auth/friend-request/decline/${friendRequestId}`
   );
-
+  res.data;
+}
 
 exports.getMyFriends = async () => {
   const res = await instance.get("/auth/my-friends");

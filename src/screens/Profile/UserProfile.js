@@ -9,7 +9,7 @@ import {
   View,
 } from "react-native";
 import React, { useContext } from "react";
-import { getUserProfile } from "../../apis/auth";
+import { addFriendRequest, getUserProfile, removeFriend } from "../../apis/auth";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { BASE_URL } from "../../apis";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -26,6 +26,7 @@ export default function UserProfile({ route, navigation }) {
     refetch,
   } = useQuery(["user-profile"], () => getUserProfile(userId));
   const checkedUser = user;
+
   const { mutate: getChatUserFn } = useMutation({
     mutationFn: (userId) => getChatUser(userId),
     onSuccess: (data) => {
@@ -36,8 +37,23 @@ export default function UserProfile({ route, navigation }) {
       });
     },
   });
+  const { mutate: addFriendFn } = useMutation({
+    mutationFn: () => addFriendRequest(profile?._id),
+    onSuccess: () => {
+      refetch()
+    },
+  });
+  const { mutate: removeFriendFn } = useMutation({
+    mutationFn: () => removeFriend(profile?._id),
+    onSuccess: () => {
+      refetch()
+    },
+  });
   const checkIfFriend = profile?.friends?.find(
     (friend) => friend === checkedUser._id
+  );
+  const checkIfRequestedFriend = profile?.friendRequests?.find(
+    (requestedFriend) => requestedFriend.from === checkedUser._id
   );
   profile?.posts?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
   const numColumns = 2;
@@ -157,11 +173,26 @@ export default function UserProfile({ route, navigation }) {
               </View>
             </View>
           </View>
-          <TouchableOpacity
+          {checkIfRequestedFriend ? <View
+
+            style={{
+              width: "86%",
+              backgroundColor: "gray",
+              position: "absolute",
+              bottom: 10,
+              padding: 2,
+              borderRadius: 10,
+              right: 17,
+            }}
+          >
+            <Text style={{ color: "white", fontSize: 20, textAlign: "center" }}>
+              Pending..
+            </Text>
+          </View> : <TouchableOpacity
             onPress={() => {
-              //   checkIfFriend
-              //     ? removeFriendFn(profile._id)
-              //     : addFriendFn(profile._id);
+              checkIfFriend
+                ? removeFriendFn()
+                : addFriendFn();
             }}
             style={{
               width: "86%",
@@ -176,7 +207,8 @@ export default function UserProfile({ route, navigation }) {
             <Text style={{ color: "white", fontSize: 20, textAlign: "center" }}>
               {checkIfFriend ? "Remove Friend" : "Add Friend"}
             </Text>
-          </TouchableOpacity>
+          </TouchableOpacity>}
+
         </View>
       </View>
       <ScrollView
@@ -187,30 +219,30 @@ export default function UserProfile({ route, navigation }) {
       >
         {profile?.posts
           ? Array.from({
-              length: Math.ceil(profile?.posts.length / numColumns),
-            }).map((_, rowIndex) => (
-              <View style={styles.row} key={rowIndex}>
-                {profile?.posts
-                  .slice(rowIndex * numColumns, (rowIndex + 1) * numColumns)
-                  .map((post) => (
-                    <View
-                      style={{
-                        width: 180,
-                        height: 180,
-                        borderRadius: 20,
-                        backgroundColor: "gray",
-                        margin: 10,
-                        overflow: "hidden",
-                      }}
-                    >
-                      <Image
-                        source={{ uri: `${BASE_URL}/${post?.image}` }}
-                        style={{ height: "100%", width: "100%" }}
-                      />
-                    </View>
-                  ))}
-              </View>
-            ))
+            length: Math.ceil(profile?.posts.length / numColumns),
+          }).map((_, rowIndex) => (
+            <View style={styles.row} key={rowIndex}>
+              {profile?.posts
+                .slice(rowIndex * numColumns, (rowIndex + 1) * numColumns)
+                .map((post) => (
+                  <View
+                    style={{
+                      width: 180,
+                      height: 180,
+                      borderRadius: 20,
+                      backgroundColor: "gray",
+                      margin: 10,
+                      overflow: "hidden",
+                    }}
+                  >
+                    <Image
+                      source={{ uri: `${BASE_URL}/${post?.image}` }}
+                      style={{ height: "100%", width: "100%" }}
+                    />
+                  </View>
+                ))}
+            </View>
+          ))
           : null}
       </ScrollView>
     </View>
