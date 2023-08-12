@@ -15,7 +15,7 @@ export default function ImagePickerC({ image, setImage }) {
   const requestImagePickerPermission = async () => {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (status !== "granted") {
-      console.log("Permission denied");
+      // console.log("Permission denied");
     }
   };
 
@@ -41,7 +41,6 @@ export default function ImagePickerC({ image, setImage }) {
       }
     }
   };
-
 
   return (
     <View
@@ -80,4 +79,3 @@ export default function ImagePickerC({ image, setImage }) {
     </View>
   );
 }
-

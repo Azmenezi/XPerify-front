@@ -1,9 +1,12 @@
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { BASE_URL } from "../../apis";
 import moment from "moment";
+import ROUTES from "../../navigation/index";
+import { useNavigation } from "@react-navigation/native";
 
 export default function RecievedMsgBubble({ msg }) {
+  const navigation = useNavigation();
   return (
     <View style={{ marginRight: "auto", marginTop: 10 }}>
       <View
@@ -17,13 +20,21 @@ export default function RecievedMsgBubble({ msg }) {
           gap: 5,
         }}
       >
-        <Image
-          style={{ width: 30, height: 30, borderRadius: 50 }}
-          source={{
-            uri: `${BASE_URL}/${msg.from.image}`,
+        <Pressable
+          onPress={() => {
+            navigation.navigate(ROUTES.HEDERROUTES.PROFILE_STACK.USER_PROFILE, {
+              userId: msg.from._id,
+            });
           }}
-        />
-        <Text style={{ color: "white", top: 10 }}>{msg.from.username}</Text>
+        >
+          <Image
+            style={{ width: 30, height: 30, borderRadius: 50 }}
+            source={{
+              uri: `${BASE_URL}/${msg.from.image}`,
+            }}
+          />
+          <Text style={{ color: "white", top: 10 }}>{msg.from.username}</Text>
+        </Pressable>
       </View>
       <View
         style={{

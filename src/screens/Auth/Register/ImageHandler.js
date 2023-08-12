@@ -31,7 +31,7 @@ const RegisterImage = ({ route, navigation }) => {
       setUser(true);
     },
     onError: (err) => {
-      console.log("========>", err);
+      // console.log("========>", err);
     },
   });
 

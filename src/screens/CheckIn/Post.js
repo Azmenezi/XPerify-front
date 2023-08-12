@@ -89,7 +89,13 @@ const Post = ({ navigation, route }) => {
             <Text style={{ color: "white" }}>
               What was the vibe of the place?
             </Text>
-            <View style={{ flexDirection: "row", marginTop: 20 }}>
+            <View
+              style={{
+                flexDirection: "row",
+                marginTop: 20,
+                flexWrap: "wrap",
+              }}
+            >
               {moods?.map((amenity, index) => (
                 <AmenitiesCardSelecter
                   key={index}

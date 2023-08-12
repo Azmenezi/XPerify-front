@@ -14,7 +14,7 @@ export default function ImageHandler({ image, setImage }) {
   const requestImagePickerPermission = async () => {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (status !== "granted") {
-      console.log("Permission denied");
+      // console.log("Permission denied");
     }
   };
 

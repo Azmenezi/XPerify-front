@@ -17,8 +17,8 @@ const LocationInfo = ({ placeLon, placeLat }) => {
   // const userLocation = useUserLocation();
   const { user } = useContext(UserContext);
   const userLocation = {
-    latitude: user?.location.coordinates[1],
-    longitude: user?.location.coordinates[0],
+    latitude: user?.location?.coordinates[1] || 0,
+    longitude: user?.location?.coordinates[0] || 0,
   };
   return (
     <QueryClientProvider client={queryClient}>
@@ -49,7 +49,7 @@ const LocationInfoContent = ({ placeLon, placeLat, userLocation }) => {
     });
   };
   let distance = 0;
-  console.log({ userLocation });
+  // console.log({ userLocation });
   if (userLocation) {
     distance = CalculateDistance(
       userLocation.latitude,
@@ -57,11 +57,11 @@ const LocationInfoContent = ({ placeLon, placeLat, userLocation }) => {
       parseFloat(placeLat),
       parseFloat(placeLon)
     );
-    console.log(`
-    
-    ${distance}
-    
-    `);
+    // console.log(`
+
+    // ${distance}
+
+    // `);
     distance = distance.toFixed(1);
   }
 

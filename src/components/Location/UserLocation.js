@@ -3,7 +3,7 @@ import * as Location from "expo-location";
 
 export const useUserLocation = () => {
   const [userLocation, setUserLocation] = useState(null);
-  console.log(userLocation);
+  // console.log(userLocation);
   useEffect(() => {
     (async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
