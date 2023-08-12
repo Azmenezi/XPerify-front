@@ -8,31 +8,24 @@ import {
   TextInput,
   View,
 } from "react-native";
-import React, { useState } from "react";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { getMyFriends } from "../../apis/auth";
-import { getChatUser } from "../../apis/chat";
+import React, { useContext, useState } from "react";
+import { getMyFriends, getUsers } from "../../apis/auth";
+
 import ROUTES from "../../navigation";
 import { BASE_URL } from "../../apis";
 import { useTheme } from "@react-navigation/native";
+import { useQuery } from "@tanstack/react-query";
+import UserContext from "../../context/UserContext";
 
-const Friends = ({ navigation }) => {
+const MyFriends = ({ navigation }) => {
   const [searchText, setSearchText] = useState("");
   const {
     data: friends,
     isFetching,
     refetch,
   } = useQuery(["my friends"], () => getMyFriends());
-
+  const { user } = useContext(UserContext);
   const theme = useTheme(); // Get the currently active theme
-  const { mutate: getChatUserFn } = useMutation({
-    mutationFn: (userId) => getChatUser(userId),
-    onSuccess: (data) => {
-      navigation.navigate(ROUTES.HEDERROUTES.PROFILE_STACK.DM_CHAT, {
-        chatId: data._id,
-      });
-    },
-  });
 
   const filteredUsers = friends?.filter((user) =>
     user.username.toLowerCase().includes(searchText.toLowerCase())
@@ -71,7 +64,13 @@ const Friends = ({ navigation }) => {
                 alignItems: "center",
               }}
               onPress={() => {
-                getChatUserFn(user._id);
+                navigation.navigate(
+                  ROUTES.HEDERROUTES.PROFILE_STACK.USER_PROFILE,
+                  {
+                    userId: user._id,
+                    checkedUser: user,
+                  }
+                );
               }}
             >
               <View
@@ -103,6 +102,6 @@ const Friends = ({ navigation }) => {
   );
 };
 
-export default Friends;
+export default MyFriends;
 
 const styles = StyleSheet.create({});

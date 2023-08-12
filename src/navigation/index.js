@@ -15,9 +15,11 @@ const ROUTES = {
       PROFILE: "Profile",
       DM: "Profile Dm",
       FRIENDS: "Friends",
+      MY_FRIENDS: "My Friends",
       DM_CHAT: "Dm Chat",
       MYPOST: "my post",
       MYCHECKINHISTORY: "my checkin",
+      USER_PROFILE: "User Profile",
     },
 
     PLACE_STACK: {
@@ -26,6 +28,7 @@ const ROUTES = {
       PLACEDETAILS: "Place Details",
       PUBLIC_CHAT: "Public Chat",
       POSTS: "Posts",
+      PROFILE: "Place Profile",
     },
   },
 };

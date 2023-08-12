@@ -1,16 +1,34 @@
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 
 import ROUTES from ".";
+import MyPost from "../screens/Profile/ProfileDetails/MyPost";
+import MyCheckInHistory from "../screens/Profile/ProfileDetails/MyCheckInHistory";
 
 const Tab = createMaterialTopTabNavigator();
 
-function PlaceTopNavigations({ _id, navigation, setIsPlace }) {
+function ProfileTopNavigation({ posts, history, refetch, isFetching }) {
   return (
-    <Tab.Navigator>
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Settings" component={SettingsScreen} />
+    <Tab.Navigator lazy={true}>
+      <Tab.Screen
+        name={ROUTES.HEDERROUTES.PROFILE_STACK.MYPOST}
+        children={() => (
+          <MyPost posts={posts} refetch={refetch} isFetching={isFetching} />
+        )}
+        options={{ title: "Posts" }}
+      />
+      <Tab.Screen
+        name={ROUTES.HEDERROUTES.PROFILE_STACK.MYCHECKINHISTORY}
+        children={() => (
+          <MyCheckInHistory
+            history={history}
+            refetch={refetch}
+            isFetching={isFetching}
+          />
+        )}
+        options={{ title: "History" }}
+      />
     </Tab.Navigator>
   );
 }
 
-export default PlaceTopNavigations;
+export default ProfileTopNavigation;

@@ -9,17 +9,21 @@ import { removeToken } from "../apis/auth/storage";
 import { useContext } from "react";
 import UserContext from "../context/UserContext";
 import DmChat from "../screens/Profile/DmChat";
+import MyFriends from "../screens/Profile/MyFriends";
+import UserProfile from "../screens/Profile/UserProfile";
+
 const Stack = createStackNavigator();
 
 export default function ProfileStackNavigstion() {
   const navigation = useNavigation();
-  const { setUser } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   return (
     <Stack.Navigator screenOptions={{ headerBackTitleVisible: false }}>
       <Stack.Screen
         name={ROUTES.HEDERROUTES.PROFILE_STACK.PROFILE}
         component={Profile}
         options={{
+          title: user?.username,
           headerRight: () => {
             return (
               <Button
@@ -32,6 +36,14 @@ export default function ProfileStackNavigstion() {
             );
           },
         }}
+      />
+      <Stack.Screen
+        name={ROUTES.HEDERROUTES.PROFILE_STACK.MY_FRIENDS}
+        component={MyFriends}
+      />
+      <Stack.Screen
+        name={ROUTES.HEDERROUTES.PROFILE_STACK.USER_PROFILE}
+        component={UserProfile}
       />
       <Stack.Screen
         name={ROUTES.HEDERROUTES.PROFILE_STACK.DM}
