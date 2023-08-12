@@ -1,8 +1,7 @@
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-
-import ROUTES from ".";
 import MyPost from "../screens/Profile/ProfileDetails/MyPost";
 import MyCheckInHistory from "../screens/Profile/ProfileDetails/MyCheckInHistory";
+import ROUTES from ".";
 
 const Tab = createMaterialTopTabNavigator();
 

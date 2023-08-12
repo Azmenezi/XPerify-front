@@ -13,15 +13,25 @@ import { useMutation } from "@tanstack/react-query";
 import { addNotificationToken } from "../apis/auth";
 import UserProfile from "../screens/Profile/UserProfile";
 import UserContext from "../context/UserContext";
+import { useUserLocation } from "../components/Location/UserLocation";
 
 const Stack = createStackNavigator();
 
 function PlaceStackNavigation() {
   const theme = useTheme();
+
   const { user } = useContext(UserContext);
+  const userLocation = useUserLocation();
+
   const { mutate: addToken } = useMutation({
     mutationFn: (token) => addNotificationToken(token),
   });
+
+  const { mutate: updateUserLocationFn } = useMutation({
+    mutationFn: () =>
+      updateUserLocation(userLocation.longitude, userLocation.latitude),
+  });
+
   const getNotificationToken = async () => {
     const token = await registerForPushNotificationsAsync();
     if (token) {
@@ -29,9 +39,14 @@ function PlaceStackNavigation() {
       addToken(token.data);
     }
   };
+
   useEffect(() => {
     getNotificationToken();
   }, []);
+
+  useEffect(() => {
+    updateUserLocationFn();
+  }, [userLocation?.latitude, userLocation?.longitude]);
 
   return (
     <Stack.Navigator screenOptions={{ headerBackTitleVisible: false }}>

@@ -55,6 +55,17 @@ exports.profile = async (id) => {
   const res = await instance.get(`/auth/profile/${id}`);
   return res.data;
 };
+exports.updateUserLocation = async (lon, lat) => {
+  try {
+    const res = await instance.put("/auth/updateLocation", {
+      lon: lon,
+      lat: lat,
+    });
+    return res.data;
+  } catch (error) {
+    throw error;
+  }
+};
 
 exports.acceptFriendRequest = async (friendRequestId) => {
   const res = await instance.put(
@@ -67,7 +78,7 @@ exports.declineFriendRequest = async (friendRequestId) => {
   const res = await instance.put(
     `/auth/friend-request/decline/${friendRequestId}`
   );
-
+};
 
 exports.getMyFriends = async () => {
   const res = await instance.get("/auth/my-friends");
