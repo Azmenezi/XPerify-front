@@ -51,3 +51,16 @@ exports.profile = async (id) => {
   const res = await instance.get(`/auth/profile/${id}`);
   return res.data;
 };
+exports.acceptFriendRequest = async (friendRequestId) => {
+  const res = await instance.put(
+    `/auth/friend-request/accept/${friendRequestId}`
+  );
+  return res.data;
+};
+
+exports.declineFriendRequest = async (friendRequestId) => {
+  const res = await instance.put(
+    `/auth/friend-request/decline/${friendRequestId}`
+  );
+  return res.data;
+};
