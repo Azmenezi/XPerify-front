@@ -1,17 +1,19 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useContext } from "react";
 import { View, Text, Image, Button, StyleSheet, Animated } from "react-native";
+import UserContext from "../../context/UserContext";
+import { BASE_URL } from "../../apis";
 
 export default function FriendRequestModal({
-  user,
   onAccept,
   onDecline,
+  friendRequest,
   index,
-  isVisible,
 }) {
+  const { user } = useContext(UserContext);
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
-    if (isVisible) {
+    if (true) {
       Animated.timing(fadeAnim, {
         toValue: 1,
         duration: 300,
@@ -19,29 +21,40 @@ export default function FriendRequestModal({
         useNativeDriver: true,
       }).start();
     }
-  }, [fadeAnim, index, isVisible]);
+  }, [fadeAnim, index]);
 
-  return (
-    <Animated.View style={[styles.centeredView, { opacity: fadeAnim }]}>
-      <View style={styles.modalView}>
-        <Image
-          style={styles.profilePic}
-          source={{ uri: user.profilePicture }}
-        />
-        <View style={styles.textContainer}>
-          <Text style={styles.requestText}>{user.fullName}</Text>
-          <Text style={styles.smallText}>sent a friend request</Text>
+  return (user._id === friendRequest.from._id ? (<Animated.View style={[styles.centeredView, { opacity: fadeAnim }]}>
+    <View style={styles.modalView}>
+      <Image
+        style={styles.profilePic}
+        source={{ uri: BASE_URL + "/" + friendRequest.to.image }}
+      />
+      <View style={styles.textContainer}>
+        <Text style={styles.requestText}>{friendRequest.to.username}</Text>
+        <Text style={styles.smallText}>friend request is pending...</Text>
+      </View>
+    </View>
+  </Animated.View>) : (<Animated.View style={[styles.centeredView, { opacity: fadeAnim }]}>
+    <View style={styles.modalView}>
+      <Image
+        style={styles.profilePic}
+        source={{ uri: BASE_URL + "/" + friendRequest.from.image }}
+      />
+      <View style={styles.textContainer}>
+        <Text style={styles.requestText}>{friendRequest.from.username}</Text>
+        <Text style={styles.smallText}>sent a friend request</Text>
+      </View>
+      <View style={styles.buttonContainer}>
+        <View style={{ marginRight: 10 }}>
+          <Button title="✓" color="green" onPress={onAccept} />
         </View>
-        <View style={styles.buttonContainer}>
-          <View style={{ marginRight: 10 }}>
-            <Button title="✓" color="green" onPress={onAccept} />
-          </View>
-          <View>
-            <Button title="✗" color="red" onPress={onDecline} />
-          </View>
+        <View>
+          <Button title="✗" color="red" onPress={onDecline} />
         </View>
       </View>
-    </Animated.View>
+    </View>
+  </Animated.View>)
+
   );
 }
 
