@@ -31,9 +31,9 @@ export default function UserProfile({ route, navigation }) {
   } = useQuery({
     queryKey: ["userProfile", userId],
     queryFn: () => getUserProfile(userId),
-    onSuccess: () => {
+    onSuccess: (data) => {
       navigation.setOptions({
-        title: profile?.username || "Profile",
+        title: data.username || "Profile",
       });
     },
   });

@@ -21,9 +21,16 @@ export default function Chat({ route, navigation }) {
   const { user } = useContext(UserContext);
   const [msgInfo, setMsgInfo] = useState("");
   const theme = useTheme();
-  const { data: data, refetch } = useQuery({
+  const { data, refetch } = useQuery({
     queryKey: ["chat", chatId],
     queryFn: () => getChatMsgs(chatId),
+    onSuccess: (data) => {
+      navigation.setOptions({
+        title:
+          data.members.find((member) => member._id != user._id).username ||
+          "Chat",
+      });
+    },
   });
   const queryClient = useQueryClient();
 
@@ -48,16 +55,12 @@ export default function Chat({ route, navigation }) {
   });
 
   const scrollViewRef = useRef();
-  const otherMember = data?.members?.find((member) => member._id !== user._id);
 
   useEffect(() => {
     navigation.getParent()?.setOptions({
       tabBarStyle: {
         display: "none",
       },
-    });
-    navigation.setOptions({
-      title: otherMember?.username,
     });
 
     return () =>
@@ -115,5 +118,3 @@ export default function Chat({ route, navigation }) {
     </KeyboardAvoidingView>
   );
 }
-
-const styles = StyleSheet.create({});
