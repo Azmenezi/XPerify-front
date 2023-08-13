@@ -16,9 +16,10 @@ const DarkTheme = {
   dark: true,
   colors: {
     primary: "#5BA199",
-    background: "#141519",
+    background: "#000000",
     card: "transparent",
     text: "#E5E3E4",
+    invertedText: "#000000",
     inputText: "#FFFFFF", // Text color for text inputs
     inputBackground: "#1c1c1c", // Background color for text inputs
     inputPlaceholder: "#FFFFFF40", // Color for input placeholders
@@ -36,7 +37,7 @@ const LightTheme = {
     background: "#F8F8F8",
     card: "#F8F8F8",
     text: "black",
-
+    invertedText: "#000000",
     border: "#000000",
     notification: "rgb(255, 69, 58)",
     inputText: "red", // Text color for text inputs
@@ -66,7 +67,6 @@ export default function App() {
 
   useEffect(() => {
     checkToken();
-
   }, []);
 
   return (

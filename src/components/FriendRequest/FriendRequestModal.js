@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import UserContext from "../../context/UserContext";
 import { BASE_URL } from "../../apis";
+import { useTheme } from "@react-navigation/native";
 
 export default function FriendRequestModal({
   onAccept,
@@ -19,7 +20,7 @@ export default function FriendRequestModal({
 }) {
   const { user } = useContext(UserContext);
   const fadeAnim = useRef(new Animated.Value(0)).current;
-
+  const theme = useTheme(); // Get the currently active theme
   useEffect(() => {
     if (true) {
       Animated.timing(fadeAnim, {
@@ -39,8 +40,23 @@ export default function FriendRequestModal({
           source={{ uri: BASE_URL + "/" + friendRequest.to.image }}
         />
         <View style={styles.textContainer}>
-          <Text style={styles.requestText}>{friendRequest.to.username}</Text>
-          <Text style={styles.smallText}>friend request is pending...</Text>
+          <Text
+            style={{
+              fontWeight: "bold",
+              fontSize: 18,
+              color: theme.colors.text,
+            }}
+          >
+            {friendRequest.to.username}
+          </Text>
+          <Text
+            style={{
+              fontSize: 15,
+              color: theme.colors.text,
+            }}
+          >
+            friend request is pending...
+          </Text>
         </View>
       </View>
     </Animated.View>
@@ -52,8 +68,23 @@ export default function FriendRequestModal({
           source={{ uri: BASE_URL + "/" + friendRequest.from.image }}
         />
         <View style={styles.textContainer}>
-          <Text style={styles.requestText}>{friendRequest.from.username}</Text>
-          <Text style={styles.smallText}>sent a friend request</Text>
+          <Text
+            style={{
+              fontWeight: "bold",
+              fontSize: 18,
+              color: theme.colors.text,
+            }}
+          >
+            {friendRequest.from.username}
+          </Text>
+          <Text
+            style={{
+              fontSize: 15,
+              color: theme.colors.text,
+            }}
+          >
+            sent a friend request
+          </Text>
         </View>
         <View style={styles.buttonContainer}>
           <TouchableOpacity
@@ -64,7 +95,11 @@ export default function FriendRequestModal({
               borderRadius: 10,
             }}
           >
-            <Button title="Accept" color="white" onPress={onAccept} />
+            <Button
+              title="Accept"
+              color={theme.colors.text}
+              onPress={onAccept}
+            />
           </TouchableOpacity>
           <TouchableOpacity
             style={{
@@ -74,7 +109,7 @@ export default function FriendRequestModal({
               borderRadius: 10,
             }}
           >
-            <Button title="✗" color="white" onPress={onDecline} />
+            <Button title="✗" color={theme.colors.text} onPress={onDecline} />
           </TouchableOpacity>
         </View>
       </View>
@@ -117,15 +152,7 @@ const styles = StyleSheet.create({
   textContainer: {
     flex: 2,
   },
-  requestText: {
-    fontWeight: "bold",
-    fontSize: 18,
-    color: "white",
-  },
-  smallText: {
-    fontSize: 15,
-    color: "white",
-  },
+
   buttonContainer: {
     flexDirection: "row",
     justifyContent: "center",
