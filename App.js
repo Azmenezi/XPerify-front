@@ -12,23 +12,40 @@ import MoodContext from "./src/context/MoodContext";
 LogBox.ignoreLogs(["Warning: ..."]); // Ignore log notification by message
 LogBox.ignoreAllLogs(); //Ignore all log notifications
 
+// const DarkTheme = {
+//   dark: true,
+//   colors: {
+//     primary: "#5BA199",
+//     background: "#141519",
+//     card: "transparent",
+//     text: "#E5E3E4",
+//     inputText: "#FFFFFF", // Text color for text inputs
+//     inputBackground: "#1c1c1c", // Background color for text inputs
+//     inputPlaceholder: "#FFFFFF40", // Color for input placeholders
+//     popMenu: "#1c1c1c",
+
+//     // border: "#ffffff",
+//     notification: "rgb(255, 69, 58)",
+//     GradientColors: ["#000000", "#1C535A"],
+//   },
+// };
+
 const DarkTheme = {
   dark: true,
   colors: {
-    primary: "#5BA199",
-    background: "#141519",
+    primary: "#5BA199", // keeping your original primary color
+    background: "#fef0ea", // setting background to white as requested
     card: "transparent",
-    text: "#E5E3E4",
-    inputText: "#FFFFFF", // Text color for text inputs
-    inputBackground: "#1c1c1c", // Background color for text inputs
-    inputPlaceholder: "#FFFFFF40", // Color for input placeholders
+    text: "#252c79", // changed to dark blue to provide contrast with the white background
+    inputText: "#ff9056", // using the primary orange color for input text
+    inputBackground: "#1c1c1c",
+    inputPlaceholder: "#f67262", // using the secondary orange for input placeholders
     popMenu: "#1c1c1c",
-
-    // border: "#ffffff",
-    notification: "rgb(255, 69, 58)",
-    GradientColors: ["#000000", "#1C535A"],
+    notification: "#4ccdff", // using the primary blue for notifications
+    GradientColors: ["#5f67ec", "#4ccdff"], // using the secondary blue and primary blue for gradients
   },
 };
+
 const LightTheme = {
   dark: false,
   colors: {
@@ -66,7 +83,6 @@ export default function App() {
 
   useEffect(() => {
     checkToken();
-
   }, []);
 
   return (

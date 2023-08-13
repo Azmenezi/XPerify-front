@@ -5,12 +5,12 @@ import {
   View,
   TouchableOpacity,
   Linking,
-} from "react-native"; // import StyleSheet
+} from "react-native";
 import { useQuery, QueryClient, QueryClientProvider } from "react-query";
 import { getLocationAddress } from "../../apis/location";
 import UserContext from "../../context/UserContext";
 import { CalculateDistance } from "./CalculateDistance";
-// import { useUserLocation } from "./UserLocation";
+import { Ionicons } from "@expo/vector-icons";
 
 const LocationInfo = ({ placeLon, placeLat }) => {
   const queryClient = new QueryClient();
@@ -32,11 +32,11 @@ const LocationInfo = ({ placeLon, placeLat }) => {
 };
 
 const LocationInfoContent = ({ placeLon, placeLat, userLocation }) => {
-  // const { data: locationDetails } = useQuery({
-  //   queryKey: ["location", placeLon, placeLat],
-  //   queryFn: () => getLocationAddress(placeLon, placeLat),
-  //   enabled: !!placeLon && !!placeLat,
-  // });
+  const { data: locationDetails } = useQuery({
+    queryKey: ["location", placeLon, placeLat],
+    queryFn: () => getLocationAddress(placeLon, placeLat),
+    enabled: !!placeLon && !!placeLat,
+  });
 
   const openMap = (latitude, longitude) => {
     const url = `http://maps.google.com/maps?q=${latitude},${longitude}`;
@@ -49,7 +49,7 @@ const LocationInfoContent = ({ placeLon, placeLat, userLocation }) => {
     });
   };
   let distance = 0;
-  // console.log({ userLocation });
+
   if (userLocation) {
     distance = CalculateDistance(
       userLocation.latitude,
@@ -57,40 +57,27 @@ const LocationInfoContent = ({ placeLon, placeLat, userLocation }) => {
       parseFloat(placeLat),
       parseFloat(placeLon)
     );
-    // console.log(`
 
-    // ${distance}
-
-    // `);
     distance = distance.toFixed(1);
   }
-
-  // if (!locationDetails) {
-  //   return <Text style={styles.textStyle}>Loading...</Text>;
-  // }
 
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={() => openMap(placeLat, placeLon)}>
-        <Text style={styles.textStyle}>{`Distance: ${
-          distance ? `${distance} km` : "Calculating..."
-        }`}</Text>
+        <View>
+          <Text style={styles.city}>
+            {locationDetails
+              ? `${locationDetails?.city}`
+              : "No location provided"}
+          </Text>
+        </View>
+        <View style={styles.distanceContainer}>
+          <Ionicons name="location-sharp" size={24} color="#252c79" />
+          <Text style={styles.textStyle}>{`${
+            distance ? `${distance} km` : "Calculating..."
+          }`}</Text>
+        </View>
       </TouchableOpacity>
-
-      {/* Displaying user's current latitude and longitude */}
-
-      {/* <View>
-        {userLocation && (
-          <>
-            <Text
-              style={styles.textStyle}
-            >{` Latitude: ${userLocation.latitude}`}</Text>
-            <Text
-              style={styles.textStyle}
-            >{` Longitude: ${userLocation.longitude}`}</Text>
-          </>
-        )}
-      </View> */}
     </View>
   );
 };
@@ -100,8 +87,16 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
   },
+  distanceContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
   textStyle: {
-    color: "white",
+    color: "black",
+    marginLeft: 5, // adding some space between the icon and the text
+  },
+  city: {
+    marginLeft: 5,
   },
 });
 

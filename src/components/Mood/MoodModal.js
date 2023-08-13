@@ -7,6 +7,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
+
 import React, { useState } from "react";
 import { getAllMood } from "../../apis/mood";
 import { useQuery } from "@tanstack/react-query";
@@ -187,7 +188,6 @@ const styles = StyleSheet.create({
   },
 
   button: {
-    // backgroundColor: "#00A5A5", // Adjusted button color
     borderRadius: 10,
     marginVertical: 10,
     paddingVertical: 10,
@@ -210,14 +210,14 @@ const styles = StyleSheet.create({
   },
 
   buttonText: {
-    color: "black", // Changed text color to white
+    color: "black",
     fontSize: 16,
     fontWeight: "bold",
   },
 
   icon: {
     fontSize: 33,
-    marginRight: 15, // Added margin to separate the icon and text
-    color: "#FFFFFF", // Adjusted icon color to white
+    marginRight: 15,
+    color: "#FFFFFF",
   },
 });

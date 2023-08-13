@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { SafeAreaView, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { SafeAreaView, StyleSheet, TextInput, View } from "react-native";
 import PlacesList from "../../components/Places/PlacesList";
-import MoodModal from "../../components/Mood/MoodModal";
+import MoodList from "../../components/Mood/MoodList";
 
 const Home = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleMoodSelected = (mood) => {
     setIsModalVisible(false);
@@ -12,18 +13,17 @@ const Home = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <TouchableOpacity
-        style={styles.moodButton}
-        onPress={() => setIsModalVisible(true)}
-      >
-        <Text style={styles.moodButtonText}>Select your mood</Text>
-      </TouchableOpacity>
-      <MoodModal
-        isVisible={isModalVisible}
-        onMoodSelected={handleMoodSelected}
-        onClose={() => setIsModalVisible(false)}
+      <TextInput
+        style={styles.searchInput}
+        value={searchTerm}
+        onChangeText={setSearchTerm}
+        placeholder="Search for a place..."
       />
-      <PlacesList />
+      <View>
+        <MoodList onMoodSelected={handleMoodSelected} />
+      </View>
+      {/* You can pass searchTerm to PlacesList if you want to filter places */}
+      <PlacesList searchTerm={searchTerm} />
     </SafeAreaView>
   );
 };
@@ -34,6 +34,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+
+  searchInput: {
+    height: 40,
+    borderColor: "#ECECEC",
+    borderWidth: 1,
+    borderRadius: 4,
+    paddingLeft: 8,
+    margin: 10,
+  },
+
   moodButton: {
     backgroundColor: "rgba(0, 128, 128, 0.6)", // Transparent deep teal
     padding: 12,
@@ -41,7 +51,6 @@ const styles = StyleSheet.create({
     width: "94%",
     marginLeft: 16,
   },
-
   moodButtonText: {
     color: "#ECECEC",
     fontWeight: "bold",

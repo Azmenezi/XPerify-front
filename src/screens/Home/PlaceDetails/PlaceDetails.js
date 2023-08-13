@@ -14,6 +14,7 @@ const PlaceDetails = ({ route, navigation }) => {
       contentContainerStyle={styles.container}
     >
       <PlaceInformation _id={_id} isPlace={isPlace} setIsPlace={setIsPlace} />
+
       <PlaceTopNavigations
         _id={_id}
         navigation={navigation}
@@ -29,6 +30,5 @@ export default PlaceDetails;
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    // minHeight: 200,
   },
 });

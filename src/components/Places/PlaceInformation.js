@@ -13,6 +13,7 @@ import { BASE_URL } from "../../apis";
 import { useTheme } from "@react-navigation/native";
 import { AntDesign, Entypo } from "@expo/vector-icons";
 import LocationInfo from "../Location/LocationInfo";
+import { FontAwesome } from "@expo/vector-icons";
 
 export default function PlaceInformation({ _id, isPlace }) {
   const { data: place } = useQuery(["place", _id], () => getPlaceById(_id));
@@ -59,6 +60,7 @@ export default function PlaceInformation({ _id, isPlace }) {
             >
               {place?.name}
             </Text>
+
             <Text
               style={{
                 fontSize: 20,
@@ -69,14 +71,7 @@ export default function PlaceInformation({ _id, isPlace }) {
             >
               {place?.description}
             </Text>
-            <View
-              style={{ flexDirection: "row", gap: 7, marginHorizontal: 10 }}
-            >
-              <AntDesign name="star" size={24} color="#e69640" />
-              <Text style={{ fontSize: 20, color: theme.colors.text }}>
-                4.5
-              </Text>
-            </View>
+
             <View
               style={{
                 flexDirection: "row",
@@ -92,6 +87,19 @@ export default function PlaceInformation({ _id, isPlace }) {
                 placeLat={place?.location?.coordinates[1]}
               />
             </View>
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                marginHorizontal: 10,
+                marginTop: 5,
+              }}
+            >
+              <FontAwesome name="star" size={24} color="yellow" />
+              <Text style={{ marginLeft: 5, color: theme.colors.primary }}>
+                {place?.ratings}
+              </Text>
+            </View>
           </View>
         </View>
       )}
@@ -100,3 +108,20 @@ export default function PlaceInformation({ _id, isPlace }) {
 }
 
 const styles = StyleSheet.create({});
+{
+  /* <View
+style={{ flexDirection: "row", gap: 7, marginHorizontal: 10 }}
+> */
+}
+{
+  /* <AntDesign name="star" size={24} color="#e69640" /> */
+}
+{
+  /* <Text style={{ fontSize: 20, color: theme.colors.text }}>
+  4.5
+</Text> */
+}
+
+{
+  /* </View> */
+}

@@ -3,10 +3,11 @@ import React from "react";
 import { BASE_URL } from "../../apis";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import ROUTES from "../../navigation";
+import LocationInfo from "../Location/LocationInfo";
+import { FontAwesome } from "@expo/vector-icons";
 
 const PlaceCard = ({ place }) => {
   const routName = useRoute();
-
   const navigation = useNavigation();
 
   return (
@@ -27,14 +28,27 @@ const PlaceCard = ({ place }) => {
       }}
     >
       <View style={styles.card}>
-        <Image
-          source={{ uri: `${BASE_URL}/${place.image}` }}
-          style={styles.image}
-          blurRadius={2}
-        />
+        <View style={styles.imageContainer}>
+          <Image
+            source={{ uri: `${BASE_URL}/${place.image}` }}
+            style={styles.image}
+            blurRadius={2}
+          />
+        </View>
         <View style={styles.infoLayer}>
           <Text style={styles.text}>{place.name}</Text>
-          {/* Additional information here */}
+          <View style={styles.bottomInfo}>
+            <View style={styles.locationContainer}>
+              <LocationInfo
+                placeLon={place?.location?.coordinates[0]}
+                placeLat={place?.location?.coordinates[1]}
+              />
+            </View>
+            <View style={styles.ratingContainer}>
+              <FontAwesome name="star" size={24} color="#252c79" />
+              <Text style={styles.ratingText}>{` ${place.ratings}`}</Text>
+            </View>
+          </View>
         </View>
       </View>
     </TouchableOpacity>
@@ -46,30 +60,68 @@ export default PlaceCard;
 const styles = StyleSheet.create({
   card: {
     flexDirection: "column",
-    backgroundColor: "#FFFFFF",
     margin: 20,
-    borderRadius: 15,
+    borderRadius: 20,
     overflow: "hidden",
     shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 4.5,
+    elevation: 5,
     width: "90%",
+    borderColor: "gray",
+    borderWidth: 0.2,
+    // backgroundColor: "#fef0ea",
+    backgroundColor: "rgba(255, 255, 255, 0.9)",
+  },
+  imageContainer: {
+    alignItems: "center",
+    // backgroundColor: "#f5f5f5",
+    paddingVertical: 10,
+    shadowColor: "gray",
+    shadowOffset: { width: 0, height: 4 },
   },
   image: {
-    width: "100%",
-    height: 150,
-    resizeMode: "cover",
+    width: "90%",
+    height: 180,
+    borderRadius: 12,
+    margin: 2,
+    borderWidth: 0.3,
+    borderColor: "gray",
+    shadowOpacity: 0.3,
   },
   infoLayer: {
-    padding: 12,
-    backgroundColor: "#FFFFFF",
-    borderBottomLeftRadius: 15,
-    borderBottomRightRadius: 15,
+    paddingHorizontal: 15,
   },
   text: {
     fontWeight: "bold",
-    fontSize: 28,
-    color: "black",
+    fontSize: 26,
+    color: "#252c79",
+    marginBottom: 8,
+    marginLeft: 5,
+  },
+  bottomInfo: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  locationContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    flex: 0.5,
+    // marginVertical: 5,
+    margin: 4,
+  },
+
+  ratingContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+
+    flex: 0.5,
+    marginLeft: 190,
+  },
+  ratingText: {
+    marginLeft: 5,
+    fontSize: 18,
   },
 });
