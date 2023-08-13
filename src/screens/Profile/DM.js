@@ -51,7 +51,7 @@ const DM = ({ navigation }) => {
             }}
             style={{
               height: 100,
-              borderColor: "black",
+              bordercolor: theme.colors.invertedText,
               borderBottomWidth: 0.2,
               justifyContent: "center",
               alignItems: "center",

@@ -3,12 +3,13 @@ import React from "react";
 import { BASE_URL } from "../../apis";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import ROUTES from "../../navigation";
+import { useTheme } from "@react-navigation/native";
 
 const PlaceCard = ({ place }) => {
   const routName = useRoute();
 
   const navigation = useNavigation();
-
+  const theme = useTheme();
   return (
     <TouchableOpacity
       onPress={() => {
@@ -33,7 +34,15 @@ const PlaceCard = ({ place }) => {
           blurRadius={2}
         />
         <View style={styles.infoLayer}>
-          <Text style={styles.text}>{place.name}</Text>
+          <Text
+            style={{
+              fontWeight: "bold",
+              fontSize: 28,
+              color: theme.colors.invertedText,
+            }}
+          >
+            {place.name}
+          </Text>
           {/* Additional information here */}
         </View>
       </View>
@@ -66,10 +75,5 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
     borderBottomLeftRadius: 15,
     borderBottomRightRadius: 15,
-  },
-  text: {
-    fontWeight: "bold",
-    fontSize: 28,
-    color: "black",
   },
 });

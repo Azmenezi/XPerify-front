@@ -2,8 +2,10 @@ import { Image, Pressable, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { BASE_URL } from "../../apis";
 import ROUTES from "../../navigation";
+import { useTheme } from "@react-navigation/native";
 
 const PostCard = ({ post, navigation, checkedUser }) => {
+  const theme = useTheme(); // Get the currently active theme
   return (
     <View
       style={{
@@ -32,7 +34,7 @@ const PostCard = ({ post, navigation, checkedUser }) => {
           height: 40,
           width: 40,
           position: "absolute",
-          backgroundColor: "white",
+          backgroundColor: theme.colors.text,
           borderRadius: 100,
           top: 10,
           left: 10,

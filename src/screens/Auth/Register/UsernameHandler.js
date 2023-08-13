@@ -93,7 +93,7 @@ const RegisterUsername = ({ navigation }) => {
               borderColor: "gray",
               borderRadius: 15,
               backgroundColor: "#1c1c1c",
-              color: "white",
+              color: theme.colors.text,
             }}
             placeholder="Username"
             onBlur={handleBlur("username")}

@@ -10,6 +10,7 @@ import { useQuery, QueryClient, QueryClientProvider } from "react-query";
 import { getLocationAddress } from "../../apis/location";
 import UserContext from "../../context/UserContext";
 import { CalculateDistance } from "./CalculateDistance";
+import { useTheme } from "@react-navigation/native";
 // import { useUserLocation } from "./UserLocation";
 
 const LocationInfo = ({ placeLon, placeLat }) => {
@@ -20,6 +21,7 @@ const LocationInfo = ({ placeLon, placeLat }) => {
     latitude: user?.location?.coordinates[1] || 0,
     longitude: user?.location?.coordinates[0] || 0,
   };
+  const theme = useTheme(); // Get the currently active theme
   return (
     <QueryClientProvider client={queryClient}>
       <LocationInfoContent
@@ -68,11 +70,11 @@ const LocationInfoContent = ({ placeLon, placeLat, userLocation }) => {
   // if (!locationDetails) {
   //   return <Text style={styles.textStyle}>Loading...</Text>;
   // }
-
+  const theme = useTheme(); // Get the currently active theme
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={() => openMap(placeLat, placeLon)}>
-        <Text style={styles.textStyle}>{`Distance: ${
+        <Text style={{ color: theme.colors.text }}>{`Distance: ${
           distance ? `${distance} km` : "Calculating..."
         }`}</Text>
       </TouchableOpacity>
@@ -99,9 +101,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: "column",
-  },
-  textStyle: {
-    color: "white",
   },
 });
 
