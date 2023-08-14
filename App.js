@@ -33,6 +33,7 @@ LogBox.ignoreAllLogs(); //Ignore all log notifications
 const DarkTheme = {
   dark: true,
   colors: {
+
     primary: "#5BA199", // keeping your original primary color
     background: "#fff", // setting background to white as requested
     card: "transparent",
@@ -40,6 +41,7 @@ const DarkTheme = {
     inputText: "#ff9056", // using the primary orange color for input text
     inputBackground: "#1c1c1c",
     inputPlaceholder: "#f67262", // using the secondary orange for input placeholders
+
     popMenu: "#1c1c1c",
     notification: "#4ccdff", // using the primary blue for notifications
     GradientColors: ["#5f67ec", "#4ccdff"], // using the secondary blue and primary blue for gradients
@@ -53,7 +55,7 @@ const LightTheme = {
     background: "#F8F8F8",
     card: "#F8F8F8",
     text: "black",
-
+    invertedText: "#000000",
     border: "#000000",
     notification: "rgb(255, 69, 58)",
     inputText: "red", // Text color for text inputs

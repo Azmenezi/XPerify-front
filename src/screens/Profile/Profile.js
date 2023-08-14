@@ -7,7 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import { BASE_URL } from "../../apis";
 import MoodContext from "../../context/MoodContext";
 import ROUTES from "../../navigation";
-
+import { useTheme } from "@react-navigation/native";
 const Profile = ({ navigation }) => {
   const {
     data: profile,
@@ -15,6 +15,7 @@ const Profile = ({ navigation }) => {
     refetch,
   } = useQuery(["profile"], () => getMyProfile());
   const { selectedMood } = useContext(MoodContext);
+  const theme = useTheme(); // Get the currently active theme
   return (
     <View style={{ flex: 1 }}>
       <View style={{ height: 140, flexDirection: "row" }}>
@@ -34,7 +35,7 @@ const Profile = ({ navigation }) => {
               width: 82,
               height: 82,
               borderRadius: 50,
-              backgroundColor: "white",
+              backgroundColor: theme.colors.text,
               justifyContent: "center",
               alignItems: "center",
             }}
@@ -63,7 +64,11 @@ const Profile = ({ navigation }) => {
           >
             <View style={{ width: 100, height: 70 }}>
               <Text
-                style={{ color: "white", textAlign: "center", fontSize: 20 }}
+                style={{
+                  color: theme.colors.text,
+                  textAlign: "center",
+                  fontSize: 20,
+                }}
               >
                 Freinds
               </Text>
@@ -83,7 +88,11 @@ const Profile = ({ navigation }) => {
                 }}
               >
                 <Text
-                  style={{ color: "white", textAlign: "center", fontSize: 20 }}
+                  style={{
+                    color: theme.colors.text,
+                    textAlign: "center",
+                    fontSize: 20,
+                  }}
                 >
                   {profile?.friends.length}
                 </Text>
@@ -100,7 +109,11 @@ const Profile = ({ navigation }) => {
           >
             <View style={{ width: 100, height: 70 }}>
               <Text
-                style={{ color: "white", textAlign: "center", fontSize: 20 }}
+                style={{
+                  color: theme.colors.text,
+                  textAlign: "center",
+                  fontSize: 20,
+                }}
               >
                 Mood
               </Text>
@@ -115,7 +128,11 @@ const Profile = ({ navigation }) => {
                 }}
               >
                 <Text
-                  style={{ color: "white", textAlign: "center", fontSize: 20 }}
+                  style={{
+                    color: theme.colors.text,
+                    textAlign: "center",
+                    fontSize: 20,
+                  }}
                 >
                   {selectedMood ? selectedMood : "None"}
                 </Text>

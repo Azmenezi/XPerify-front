@@ -18,6 +18,7 @@ import ROUTES from "../../navigation";
 import AmenitiesCardSelecter from "../../components/Mood/MoodCardSelecter";
 import { getAllAmenities } from "../../apis/amenity";
 import { getAllMood } from "../../apis/mood";
+import { useTheme } from "@react-navigation/native";
 
 const Post = ({ navigation, route }) => {
   const { _id } = route.params;
@@ -59,12 +60,22 @@ const Post = ({ navigation, route }) => {
     setIsModalVisible(false);
     createPostFun();
   };
-
+  const theme = useTheme(); // Get the currently active theme
   return (
     <SafeAreaView>
       <ScrollView>
         <View>
-          <Text style={styles.label}>
+          <Text
+            style={{
+              fontSize: 16,
+              fontWeight: "bold",
+              marginBottom: 5,
+              marginTop: 12,
+              alignSelf: "flex-start",
+              marginLeft: 20,
+              color: theme.colors.text,
+            }}
+          >
             Choose an Image to share your Experiance
           </Text>
           <View
@@ -86,7 +97,7 @@ const Post = ({ navigation, route }) => {
             </ImagePickerC>
           </View>
           <View style={{ marginTop: 50, marginLeft: 30 }}>
-            <Text style={{ color: "white" }}>
+            <Text style={{ color: theme.colors.text }}>
               What was the vibe of the place?
             </Text>
             <View
@@ -113,7 +124,14 @@ const Post = ({ navigation, route }) => {
               style={styles.buttonContainer}
               onPress={handleCheckin}
             >
-              <Text style={styles.buttonText}>Checkin</Text>
+              <Text
+                style={{
+                  color: theme.colors.text,
+                  fontSize: 18,
+                }}
+              >
+                Checkin
+              </Text>
             </TouchableOpacity>
 
             <Modal
@@ -141,7 +159,9 @@ const Post = ({ navigation, route }) => {
                           }}
                           onPress={submitModal}
                         >
-                          <Text style={{ color: "white", fontSize: 20 }}>
+                          <Text
+                            style={{ color: theme.colors.text, fontSize: 20 }}
+                          >
                             Does The Place Have?
                           </Text>
                           <Text style={{ color: "gray", fontSize: 20 }}>
@@ -192,19 +212,6 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
 
-  buttonText: {
-    color: "white",
-    fontSize: 18,
-  },
-  label: {
-    fontSize: 16,
-    fontWeight: "bold",
-    marginBottom: 5,
-    marginTop: 12,
-    alignSelf: "flex-start",
-    marginLeft: 20,
-    color: "white",
-  },
   modalContainer: {
     flex: 1,
     justifyContent: "center",

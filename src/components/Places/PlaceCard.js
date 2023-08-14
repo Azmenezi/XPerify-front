@@ -3,13 +3,16 @@ import React from "react";
 import { BASE_URL } from "../../apis";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import ROUTES from "../../navigation";
+
 import LocationInfo from "../Location/LocationInfo";
 import { FontAwesome } from "@expo/vector-icons";
+import { useTheme } from "@react-navigation/native";
+
 
 const PlaceCard = ({ place }) => {
   const routName = useRoute();
   const navigation = useNavigation();
-
+  const theme = useTheme();
   return (
     <TouchableOpacity
       onPress={() => {
@@ -50,6 +53,18 @@ const PlaceCard = ({ place }) => {
               <Text style={styles.ratingText}>{` ${place.ratings}`}</Text>
             </View>
           </View>
+
+//           <Text
+//             style={{
+//               fontWeight: "bold",
+//               fontSize: 28,
+//               color: theme.colors.invertedText,
+//             }}
+//           >
+//             {place.name}
+//           </Text>
+//           {/* Additional information here */}
+
         </View>
       </View>
     </TouchableOpacity>
@@ -95,6 +110,7 @@ const styles = StyleSheet.create({
   infoLayer: {
     paddingHorizontal: 15,
   },
+
   text: {
     fontWeight: "bold",
     fontSize: 26,
@@ -129,4 +145,5 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: "#fff",
   },
+
 });

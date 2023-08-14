@@ -19,13 +19,14 @@ import { AntDesign } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import Svg, { Path, Rect } from "react-native-svg";
+import { useTheme } from "@react-navigation/native";
 
 const MoodModal = ({ isVisible, onMoodSelected, onClose }) => {
   const { data: moods, isLoading } = useQuery({
     queryKey: ["moods"],
     queryFn: () => getAllMood(),
   });
-
+  const theme = useTheme();
   const { setSelectedMood } = useContext(MoodContext);
 
   if (isLoading) {
@@ -132,7 +133,15 @@ const MoodModal = ({ isVisible, onMoodSelected, onClose }) => {
                   }}
                 >
                   <View style={styles.row}>
-                    <Text style={styles.buttonText}>All</Text>
+                    <Text
+                      style={{
+                        color: theme.colors.invertedText, // Changed text color to white
+                        fontSize: 16,
+                        fontWeight: "bold",
+                      }}
+                    >
+                      All
+                    </Text>
                   </View>
                 </TouchableOpacity>
                 {moods?.map((mood) => (
@@ -146,7 +155,15 @@ const MoodModal = ({ isVisible, onMoodSelected, onClose }) => {
                   >
                     <View style={styles.row}>
                       {moodeicon[mood.name]}
-                      <Text style={styles.buttonText}>{mood.name}</Text>
+                      <Text
+                        style={{
+                          color: theme.colors.invertedText, // Changed text color to white
+                          fontSize: 16,
+                          fontWeight: "bold",
+                        }}
+                      >
+                        {mood.name}
+                      </Text>
                     </View>
                   </TouchableOpacity>
                 ))}

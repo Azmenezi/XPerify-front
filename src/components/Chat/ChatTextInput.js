@@ -1,6 +1,7 @@
 import { StyleSheet, Text, TextInput, View } from "react-native";
 import React, { useState } from "react";
 import { Button } from "react-native-paper";
+import { useTheme } from "@react-navigation/native";
 
 export default function ChatTextInput({ msgInfo, setMsgInfo, sendMsgFn }) {
   const [textAlign, setTextAlign] = useState((prev) => prev);
@@ -21,6 +22,7 @@ export default function ChatTextInput({ msgInfo, setMsgInfo, sendMsgFn }) {
       setTextAlign("left");
     }
   };
+  const theme = useTheme(); // Get the currently active theme
   return (
     <>
       <TextInput
@@ -34,7 +36,7 @@ export default function ChatTextInput({ msgInfo, setMsgInfo, sendMsgFn }) {
           marginBottom: 20,
           marginTop: 10,
           backgroundColor: "#1c1c1c",
-          borderColor: "black",
+          bordercolor: theme.colors.invertedText,
           borderWidth: 1,
           borderRadius: 10,
           minHeight: 25,
@@ -42,7 +44,7 @@ export default function ChatTextInput({ msgInfo, setMsgInfo, sendMsgFn }) {
           justifyContent: "center",
           textAlign: textAlign, // Apply the text alignment
           marginHorizontal: 2,
-          color: "white",
+          color: theme.colors.text,
         }}
         onChangeText={handleChangeText}
       />
@@ -57,7 +59,7 @@ export default function ChatTextInput({ msgInfo, setMsgInfo, sendMsgFn }) {
       >
         <Text
           style={{
-            color: "black",
+            color: theme.colors.invertedText,
           }}
         >
           Send

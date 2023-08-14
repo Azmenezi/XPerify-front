@@ -57,7 +57,7 @@ export default function PlaceInformation({ _id, isPlace }) {
               style={{
                 height: 200,
                 width: 500,
-                backgroundColor: "black",
+                backgroundcolor: theme.colors.invertedText,
                 opacity: 0.2,
                 position: "absolute",
               }}
@@ -65,7 +65,11 @@ export default function PlaceInformation({ _id, isPlace }) {
           </ImageBackground>
           <View style={{ padding: 20 }}>
             <Text
-              style={{ fontSize: 45, color: "white", marginHorizontal: 10 }}
+              style={{
+                fontSize: 45,
+                color: theme.colors.text,
+                marginHorizontal: 10,
+              }}
             >
               {place?.name}
             </Text>

@@ -20,6 +20,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import ROUTES from "../../navigation";
 import { getChatUser } from "../../apis/chat";
 import UserContext from "../../context/UserContext";
+import { useTheme } from "@react-navigation/native";
 
 export default function UserProfile({ route, navigation }) {
   const { userId } = route.params;
@@ -31,14 +32,14 @@ export default function UserProfile({ route, navigation }) {
   } = useQuery({
     queryKey: ["userProfile", userId],
     queryFn: () => getUserProfile(userId),
-    onSuccess: () => {
+    onSuccess: (data) => {
       navigation.setOptions({
-        title: profile?.username || "Profile",
+        title: data.username || "Profile",
       });
     },
   });
   const checkedUser = user;
-
+  const theme = useTheme(); // Get the currently active theme
   const { mutate: getChatUserFn } = useMutation({
     mutationFn: (userId) => getChatUser(userId),
     onSuccess: (data) => {
@@ -87,7 +88,7 @@ export default function UserProfile({ route, navigation }) {
                   <MaterialCommunityIcons
                     name="message-badge"
                     size={24}
-                    color="white"
+                    color={theme.colors.text}
                   />
                 </Pressable>
               </View>
@@ -99,7 +100,7 @@ export default function UserProfile({ route, navigation }) {
               width: 82,
               height: 82,
               borderRadius: 50,
-              backgroundColor: "white",
+              backgroundColor: theme.colors.text,
               justifyContent: "center",
               alignItems: "center",
             }}
@@ -130,7 +131,11 @@ export default function UserProfile({ route, navigation }) {
           >
             <View style={{ width: 100, height: 70 }}>
               <Text
-                style={{ color: "white", textAlign: "center", fontSize: 20 }}
+                style={{
+                  color: theme.colors.text,
+                  textAlign: "center",
+                  fontSize: 20,
+                }}
               >
                 Freinds
               </Text>
@@ -145,7 +150,11 @@ export default function UserProfile({ route, navigation }) {
                 }}
               >
                 <Text
-                  style={{ color: "white", textAlign: "center", fontSize: 20 }}
+                  style={{
+                    color: theme.colors.text,
+                    textAlign: "center",
+                    fontSize: 20,
+                  }}
                 >
                   {profile?.friends.length}
                 </Text>
@@ -163,7 +172,11 @@ export default function UserProfile({ route, navigation }) {
           >
             <View style={{ width: 100, height: 70 }}>
               <Text
-                style={{ color: "white", textAlign: "center", fontSize: 20 }}
+                style={{
+                  color: theme.colors.text,
+                  textAlign: "center",
+                  fontSize: 20,
+                }}
               >
                 Mood
               </Text>
@@ -178,7 +191,11 @@ export default function UserProfile({ route, navigation }) {
                 }}
               >
                 <Text
-                  style={{ color: "white", textAlign: "center", fontSize: 20 }}
+                  style={{
+                    color: theme.colors.text,
+                    textAlign: "center",
+                    fontSize: 20,
+                  }}
                 >
                   Happy
                 </Text>
@@ -198,7 +215,11 @@ export default function UserProfile({ route, navigation }) {
               }}
             >
               <Text
-                style={{ color: "white", fontSize: 20, textAlign: "center" }}
+                style={{
+                  color: theme.colors.text,
+                  fontSize: 20,
+                  textAlign: "center",
+                }}
               >
                 Pending..
               </Text>
@@ -219,7 +240,11 @@ export default function UserProfile({ route, navigation }) {
               }}
             >
               <Text
-                style={{ color: "white", fontSize: 20, textAlign: "center" }}
+                style={{
+                  color: theme.colors.text,
+                  fontSize: 20,
+                  textAlign: "center",
+                }}
               >
                 {checkIfFriend ? "Remove Friend" : "Add Friend"}
               </Text>

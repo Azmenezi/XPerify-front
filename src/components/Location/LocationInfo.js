@@ -10,7 +10,12 @@ import { useQuery, QueryClient, QueryClientProvider } from "react-query";
 import { getLocationAddress } from "../../apis/location";
 import UserContext from "../../context/UserContext";
 import { CalculateDistance } from "./CalculateDistance";
+
 import { Ionicons } from "@expo/vector-icons";
+
+import { useTheme } from "@react-navigation/native";
+// import { useUserLocation } from "./UserLocation";
+
 
 const LocationInfo = ({ placeLon, placeLat }) => {
   const queryClient = new QueryClient();
@@ -20,6 +25,7 @@ const LocationInfo = ({ placeLon, placeLat }) => {
     latitude: user?.location?.coordinates[1] || 0,
     longitude: user?.location?.coordinates[0] || 0,
   };
+  const theme = useTheme(); // Get the currently active theme
   return (
     <QueryClientProvider client={queryClient}>
       <LocationInfoContent
@@ -61,6 +67,7 @@ const LocationInfoContent = ({ placeLon, placeLat, userLocation }) => {
     distance = distance.toFixed(1);
   }
 
+
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={() => openMap(placeLat, placeLon)}>
@@ -77,6 +84,18 @@ const LocationInfoContent = ({ placeLon, placeLat, userLocation }) => {
             distance ? `${distance} km` : "Calculating..."
           }`}</Text>
         </View>
+
+//   // if (!locationDetails) {
+//   //   return <Text style={styles.textStyle}>Loading...</Text>;
+//   // }
+//   const theme = useTheme(); // Get the currently active theme
+//   return (
+//     <View style={styles.container}>
+//       <TouchableOpacity onPress={() => openMap(placeLat, placeLon)}>
+//         <Text style={{ color: theme.colors.text }}>{`Distance: ${
+//           distance ? `${distance} km` : "Calculating..."
+//         }`}</Text>
+
       </TouchableOpacity>
     </View>
   );
@@ -87,6 +106,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
   },
+
   distanceContainer: {
     flexDirection: "row",
     alignItems: "center",
@@ -101,6 +121,7 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 16,
   },
+
 });
 
 export default LocationInfo;
