@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { View, StyleSheet } from "react-native";
-import FriendRequestModal from "./FriendRequestModal/";
+import FriendRequestModal from "./FriendRequestModal";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { acceptFriendRequest, declineFriendRequest, getMyProfile } from "../../apis/auth";
 
 export default function FriendRequest() {
   const queryClient = useQueryClient();
+
   const {
     data: user,
     isFetching,
@@ -42,6 +43,7 @@ export default function FriendRequest() {
   return (
     <View style={styles.container}>
       {user?.friendRequests.map((friendRequest, index) => (
+
         <FriendRequestModal
           key={friendRequest.id}
           index={index}
@@ -50,6 +52,8 @@ export default function FriendRequest() {
           friendRequest={friendRequest}
         />
       ))}
+
+
     </View>
   );
 }
