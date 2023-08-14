@@ -23,7 +23,7 @@ const MoodList = ({ onMoodSelected }) => {
         horizontal={true}
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={styles.listContainer}
-        ItemSeparatorComponent={() => <View style={{ width: 8 }} />}
+        ItemSeparatorComponent={() => <View style={{ width: 10 }} />}
         renderItem={({ item }) => (
           <MoodCard
             mood={item}

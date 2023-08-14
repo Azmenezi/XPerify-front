@@ -15,7 +15,7 @@ const Home = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.titleContainer}>
-        <Text style={styles.title}>MoodMatch</Text>
+        <Text style={styles.title}>MoodMap</Text>
         <Text style={styles.subTitle}>Find places that fit your mood</Text>
       </View>
       <View style={styles.searchBarContainer}>
