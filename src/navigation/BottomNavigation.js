@@ -47,10 +47,12 @@ function BottomNavigation() {
         tabBarInactiveTintColor: "#E5E3E4",
         tabBarShowLabel: false,
         tabBarStyle: {
-          backgroundColor: "#141519",
+          height: 60,
+          backgroundColor: "#182039",
           borderTopColor: "#E5E3E420",
           borderTopWidth: 0.2,
         },
+
         tabBarButton: (props) => {
           let animation;
 
@@ -100,7 +102,7 @@ function BottomNavigation() {
           ),
         }}
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         name={ROUTES.HEDERROUTES.MEETUP}
         component={MeetUp}
         options={{
@@ -109,7 +111,7 @@ function BottomNavigation() {
             <FontAwesome5 name="user-friends" size={24} color={color} />
           ),
         }}
-      />
+      /> */}
       <Tab.Screen
         name={ROUTES.HEDERROUTES.CHECKIN_STACK.STACK}
         component={CheckinStack}

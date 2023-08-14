@@ -16,7 +16,6 @@ import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
 // import { useUserLocation } from "./UserLocation";
 
-
 const LocationInfo = ({ placeLon, placeLat }) => {
   const queryClient = new QueryClient();
   // const userLocation = useUserLocation();
@@ -67,7 +66,6 @@ const LocationInfoContent = ({ placeLon, placeLat, userLocation }) => {
     distance = distance.toFixed(1);
   }
 
-
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={() => openMap(placeLat, placeLon)}>
@@ -79,27 +77,32 @@ const LocationInfoContent = ({ placeLon, placeLat, userLocation }) => {
           </Text>
         </View>
         <View style={styles.distanceContainer}>
-          <Ionicons name="location-sharp" size={24} color="#f67262" />
+          <Ionicons name="location-sharp" size={24} color="#252c79" />
           <Text style={styles.textStyle}>{`${
             distance ? `${distance} km` : "Calculating..."
           }`}</Text>
         </View>
-
-//   // if (!locationDetails) {
-//   //   return <Text style={styles.textStyle}>Loading...</Text>;
-//   // }
-//   const theme = useTheme(); // Get the currently active theme
-//   return (
-//     <View style={styles.container}>
-//       <TouchableOpacity onPress={() => openMap(placeLat, placeLon)}>
-//         <Text style={{ color: theme.colors.text }}>{`Distance: ${
-//           distance ? `${distance} km` : "Calculating..."
-//         }`}</Text>
-
       </TouchableOpacity>
     </View>
   );
 };
+
+{
+  /* if (!locationDetails) {
+    return <Text style={styles.textStyle}>Loading...</Text>;
+  }
+  const theme = useTheme(); // Get the currently active theme
+  return (
+    <View style={styles.container}>
+      <TouchableOpacity onPress={() => openMap(placeLat, placeLon)}>
+        <Text style={{ color: theme.colors.text }}>{`Distance: ${
+          distance ? `${distance} km` : "Calculating..."
+        }`}</Text>
+
+      </TouchableOpacity>
+    </View>
+  );} */
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -112,16 +115,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   textStyle: {
-    color: "#fff",
+    color: "black",
     marginLeft: 5,
     fontSize: 16,
   },
   city: {
     marginLeft: 5,
-    color: "#fff",
+    color: "black",
     fontSize: 16,
   },
-
 });
 
 export default LocationInfo;

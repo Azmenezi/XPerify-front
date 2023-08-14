@@ -53,41 +53,86 @@ const moodIcon = {
   },
 };
 
-const MoodCard = ({ mood, onPress }) => (
-  <TouchableOpacity style={styles.card} onPress={onPress}>
-    <View
+// const MoodCard = ({ mood, onPress }) => (
+//   <TouchableOpacity style={styles.card} onPress={onPress}>
+//     <View
+//       style={[
+//         styles.iconBackground,
+//         { backgroundColor: moodIcon[mood.name]?.color || "#E0E0E0" },
+//       ]}
+//     >
+//       {moodIcon[mood.name]?.icon}
+//     </View>
+//     <Text style={styles.moodText}>{mood.name}</Text>
+//   </TouchableOpacity>
+// );
+const MoodCard = ({ mood, onPress }) => {
+  const [isActive, setIsActive] = React.useState(false);
+
+  const handlePress = () => {
+    setIsActive(!isActive);
+    onPress();
+  };
+
+  return (
+    <TouchableOpacity
       style={[
-        styles.iconBackground,
-        { backgroundColor: moodIcon[mood.name]?.color || "#E0E0E0" },
+        styles.card,
+        isActive
+          ? { backgroundColor: moodIcon[mood.name]?.color || "#E0E0E0" }
+          : {},
       ]}
+      onPress={handlePress}
     >
-      {moodIcon[mood.name]?.icon}
-    </View>
-    <Text style={styles.moodText}>{mood.name}</Text>
-  </TouchableOpacity>
-);
+      <Text style={[styles.moodText, isActive ? styles.activeText : {}]}>
+        {mood.name}
+      </Text>
+    </TouchableOpacity>
+  );
+};
+
+// const styles = StyleSheet.create({
+//   card: {
+//     padding: 10,
+//     margin: 5,
+//     borderRadius: 10,
+//     flexDirection: "column",
+//     alignItems: "center",
+//     justifyContent: "center",
+//   },
+//   moodText: {
+//     marginTop: 10,
+//     fontSize: 16,
+//     fontWeight: "bold",
+//     color: "#252c79",
+//   },
+//   iconBackground: {
+//     width: 50,
+//     height: 50,
+//     borderRadius: 10,
+//     alignItems: "center",
+//     justifyContent: "center",
+//   },
+// });
 
 const styles = StyleSheet.create({
   card: {
-    padding: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
     margin: 5,
     borderRadius: 10,
-    flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
+    borderColor: "transparent",
+    borderWidth: 2,
   },
   moodText: {
-    marginTop: 10,
     fontSize: 16,
     fontWeight: "bold",
     color: "#252c79",
   },
-  iconBackground: {
-    width: 50,
-    height: 50,
-    borderRadius: 10,
-    alignItems: "center",
-    justifyContent: "center",
+  activeText: {
+    color: "#FFFFFF",
   },
 });
 

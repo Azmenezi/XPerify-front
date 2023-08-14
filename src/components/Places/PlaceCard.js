@@ -8,7 +8,6 @@ import LocationInfo from "../Location/LocationInfo";
 import { FontAwesome } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
 
-
 const PlaceCard = ({ place }) => {
   const routName = useRoute();
   const navigation = useNavigation();
@@ -49,22 +48,21 @@ const PlaceCard = ({ place }) => {
               />
             </View>
             <View style={styles.ratingContainer}>
-              <FontAwesome name="star" size={24} color="#ff9056" />
+              <FontAwesome name="star" size={24} color="#182039" />
               <Text style={styles.ratingText}>{` ${place.ratings}`}</Text>
             </View>
           </View>
 
-//           <Text
-//             style={{
-//               fontWeight: "bold",
-//               fontSize: 28,
-//               color: theme.colors.invertedText,
-//             }}
-//           >
-//             {place.name}
-//           </Text>
-//           {/* Additional information here */}
-
+          {/* <Text
+            style={{
+              fontWeight: "bold",
+              fontSize: 28,
+              color: theme.colors.invertedText,
+            }}
+          >
+            {place.name}
+          </Text> */}
+          {/* Additional information here */}
         </View>
       </View>
     </TouchableOpacity>
@@ -79,43 +77,42 @@ const styles = StyleSheet.create({
     margin: 20,
     borderRadius: 20,
     overflow: "hidden",
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 4.5,
-    elevation: 5,
     width: "90%",
-    borderColor: "#182039",
     borderWidth: 1,
-    backgroundColor: "#23293e",
+    borderColor: "lightgray",
+    shadowRadius: 0.2,
+    backgroundColor: "#fff",
   },
-
   imageContainer: {
+    flex: 0.6,
     alignItems: "center",
-    // backgroundColor: "#f5f5f5",
-    paddingVertical: 10,
     shadowColor: "gray",
-    shadowOffset: { width: 0, height: 4 },
     overflow: "hidden",
   },
 
   image: {
     width: "100%",
-    height: 200,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
+    resizeMode: "contain",
+    height: 140,
     resizeMode: "cover",
+    margin: 2,
+    borderWidth: 0.3,
+    borderColor: "gray",
+    shadowOpacity: 0.3,
   },
 
   infoLayer: {
+    flex: 0.4,
+    padding: 12,
+    borderBottomLeftRadius: 15,
+    borderBottomRightRadius: 15,
     paddingHorizontal: 15,
   },
 
   text: {
     fontWeight: "bold",
     fontSize: 26,
-    // color: "#252c79",
-    color: "#fff",
+    color: "#182039",
     marginBottom: 8,
     marginLeft: 5,
   },
@@ -130,7 +127,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flex: 0.7,
     margin: 6,
-    // backgroundColor: "pink",
   },
 
   ratingContainer: {
@@ -138,12 +134,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flex: 0.5,
     marginLeft: 180,
-    // backgroundColor: "red",
   },
   ratingText: {
     marginLeft: 5,
     fontSize: 18,
-    color: "#fff",
+    color: "black",
   },
-
 });

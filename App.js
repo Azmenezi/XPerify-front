@@ -33,9 +33,8 @@ LogBox.ignoreAllLogs(); //Ignore all log notifications
 const DarkTheme = {
   dark: true,
   colors: {
-
     primary: "#5BA199", // keeping your original primary color
-    background: "#fff", // setting background to white as requested
+    background: "#f3f4f6", // setting background to white as requested
     card: "transparent",
     text: "#252c79", // changed to dark blue to provide contrast with the white background
     inputText: "#ff9056", // using the primary orange color for input text
