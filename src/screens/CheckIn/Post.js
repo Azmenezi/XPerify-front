@@ -14,11 +14,11 @@ import React, { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import ImagePickerC from "../../components/ImagePickerC";
 import { checkIn } from "../../apis/places";
-import ROUTES from "../../navigation";
-import AmenitiesCardSelecter from "../../components/Mood/MoodCardSelecter";
 import { getAllAmenities } from "../../apis/amenity";
 import { getAllMood } from "../../apis/mood";
 import { useTheme } from "@react-navigation/native";
+import MoodCardSelecter from "../../components/Mood/MoodCardSelecter";
+import AmenitiesCardSelecter from "../../components/Amenity/AmenitiesCardSelecter copy";
 
 const Post = ({ navigation, route }) => {
   const { _id } = route.params;
@@ -108,7 +108,7 @@ const Post = ({ navigation, route }) => {
               }}
             >
               {moods?.map((amenity, index) => (
-                <AmenitiesCardSelecter
+                <MoodCardSelecter
                   key={index}
                   icon={amenity.icon}
                   name={amenity.name}
@@ -159,9 +159,7 @@ const Post = ({ navigation, route }) => {
                           }}
                           onPress={submitModal}
                         >
-                          <Text
-                            style={{ color: theme.colors.text, fontSize: 20 }}
-                          >
+                          <Text style={{ color: "white", fontSize: 20 }}>
                             Does The Place Have?
                           </Text>
                           <Text style={{ color: "gray", fontSize: 20 }}>
@@ -169,7 +167,13 @@ const Post = ({ navigation, route }) => {
                           </Text>
                         </Pressable>
                       </View>
-                      <View style={{ flexDirection: "row", marginTop: 20 }}>
+                      <View
+                        style={{
+                          flexDirection: "row",
+                          marginTop: 20,
+                          flexWrap: "wrap",
+                        }}
+                      >
                         {amenities?.map((amenity, index) => (
                           <AmenitiesCardSelecter
                             key={index}

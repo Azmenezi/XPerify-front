@@ -11,7 +11,7 @@ const MoodList = ({ onMoodSelected }) => {
     queryFn: getAllMood,
   });
 
-  const { setSelectedMood } = useContext(MoodContext);
+  const { setSelectedMood, selectedMood } = useContext(MoodContext);
 
   if (isLoading) {
     return <Text>Loading...</Text>;
@@ -28,16 +28,21 @@ const MoodList = ({ onMoodSelected }) => {
           <MoodCard
             mood={item}
             onPress={() => {
+              if (selectedMood === item.name) {
+                setSelectedMood(null);
+                onMoodSelected(null);
+                return;
+              }
               onMoodSelected(item.name);
-              setSelectedMood(item);
+              setSelectedMood(item.name);
             }}
+            isActive={selectedMood === item.name} // Here's the condition to activate the card
           />
         )}
       />
     </View>
   );
 };
-
 const styles = StyleSheet.create({
   container: {
     padding: 10,

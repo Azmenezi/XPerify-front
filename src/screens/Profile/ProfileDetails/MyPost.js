@@ -10,8 +10,9 @@ import { getPlacePosts } from "../../../apis/places";
 import { useQuery } from "@tanstack/react-query";
 import PostCard from "../../../components/Posts/PostCard";
 import { BASE_URL } from "../../../apis";
+import SkeletonPost from "../../../components/Skeleton/SkeletonPost";
 
-export default function MyPost({ posts, refetch, isFetching }) {
+export default function MyPost({ posts, refetch, isFetching, isLoading }) {
   posts?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
   const numColumns = 2;
   return (
@@ -21,33 +22,35 @@ export default function MyPost({ posts, refetch, isFetching }) {
       }
       contentContainerStyle={styles.container}
     >
-      {posts
-        ? Array.from({ length: Math.ceil(posts.length / numColumns) }).map(
-            (_, rowIndex) => (
-              <View style={styles.row} key={rowIndex}>
-                {posts
-                  .slice(rowIndex * numColumns, (rowIndex + 1) * numColumns)
-                  .map((post) => (
-                    <View
-                      style={{
-                        width: 180,
-                        height: 180,
-                        borderRadius: 20,
-                        backgroundColor: "gray",
-                        margin: 10,
-                        overflow: "hidden",
-                      }}
-                    >
-                      <Image
-                        source={{ uri: `${BASE_URL}/${post?.image}` }}
-                        style={{ height: "100%", width: "100%" }}
-                      />
-                    </View>
-                  ))}
-              </View>
-            )
+      {isLoading ? (
+        <View>{<SkeletonPost />}</View>
+      ) : posts ? (
+        Array.from({ length: Math.ceil(posts.length / numColumns) }).map(
+          (_, rowIndex) => (
+            <View style={styles.row} key={rowIndex}>
+              {posts
+                .slice(rowIndex * numColumns, (rowIndex + 1) * numColumns)
+                .map((post) => (
+                  <View
+                    style={{
+                      width: 180,
+                      height: 180,
+                      borderRadius: 20,
+                      backgroundColor: "gray",
+                      margin: 10,
+                      overflow: "hidden",
+                    }}
+                  >
+                    <Image
+                      source={{ uri: `${BASE_URL}/${post?.image}` }}
+                      style={{ height: "100%", width: "100%" }}
+                    />
+                  </View>
+                ))}
+            </View>
           )
-        : null}
+        )
+      ) : null}
     </ScrollView>
   );
 }

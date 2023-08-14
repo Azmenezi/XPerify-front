@@ -6,15 +6,19 @@ import PostCard from "../../../components/Posts/PostCard";
 import { useFocusEffect } from "@react-navigation/native";
 
 import UserContext from "../../../context/UserContext";
+import SkeletonPost from "../../../components/Skeleton/SkeletonPost";
 
 export default function Posts({ _id, navigation, setIsPlace, isPlace }) {
-  const { data: posts } = useQuery(["place-posts"], () => getPlacePosts(_id));
+  const { data: posts, isLoading } = useQuery(["place-posts"], () =>
+    getPlacePosts(_id)
+  );
   const { user } = useContext(UserContext);
   useFocusEffect(
     React.useCallback(() => {
       setIsPlace(true);
     }, [])
   );
+  if (isLoading) return <View>{<SkeletonPost />}</View>;
   posts?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
   const numColumns = 2;
   return (

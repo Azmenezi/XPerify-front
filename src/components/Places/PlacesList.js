@@ -4,37 +4,41 @@ import { getAllPlaces } from "../../apis/places";
 import { useQuery } from "@tanstack/react-query";
 import PlaceCard from "./PlaceCard";
 import MoodContext from "../../context/MoodContext";
+import PostCard from "../Posts/PostCard";
+import SkeletonCard from "../Skeleton/SkeletonCard";
 
-const PlacesList = ({ searchTerm = "" }) => {
-  const {
-    data: placesData,
-    isLoading,
-    isFetching,
-    refetch,
-  } = useQuery({
-    queryKey: ["places"],
-    queryFn: getAllPlaces,
-  });
-
+const PlacesList = ({
+  searchTerm = "",
+  placesData,
+  isLoading,
+  isFetching,
+  refetch,
+}) => {
   const { selectedMood } = useContext(MoodContext);
   //Callback function to be called when the user pulls to refresh
   const onRefresh = useCallback(() => {
     refetch();
   }, [refetch]);
 
-  if (isLoading) return <Text>Loading...</Text>;
-
+  if (isLoading)
+    return (
+      <View>
+        {<SkeletonCard />}
+        {<SkeletonCard />}
+      </View>
+    );
   let displayedPlaces = placesData;
-
   if (selectedMood) {
-    displayedPlaces = displayedPlaces.filter((place) =>
-      place.moods.includes(selectedMood._id)
+    displayedPlaces = displayedPlaces?.filter(
+      (place) =>
+        place?.moods?.find((element) => element.name === selectedMood)?.name ===
+        selectedMood
     );
   }
 
   if (searchTerm) {
-    displayedPlaces = displayedPlaces.filter((place) =>
-      place.name.toLowerCase().includes(searchTerm.toLowerCase())
+    displayedPlaces = displayedPlaces?.filter((place) =>
+      place?.name?.toLowerCase().includes(searchTerm.toLowerCase())
     );
   }
 

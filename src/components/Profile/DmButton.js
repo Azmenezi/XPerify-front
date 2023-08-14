@@ -1,7 +1,7 @@
 import { Pressable, Text, View } from "react-native";
 import React from "react";
 import ROUTES from "../../navigation";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
 
 export default function DmButton({ navigation }) {
@@ -11,9 +11,9 @@ export default function DmButton({ navigation }) {
       <Pressable
         onPress={() => navigation.navigate(ROUTES.HEDERROUTES.PROFILE_STACK.DM)}
       >
-        <MaterialCommunityIcons
-          name="message-badge"
-          size={24}
+        <Ionicons
+          name="md-chatbubbles-outline"
+          size={26}
           color={theme.colors.text}
         />
       </Pressable>

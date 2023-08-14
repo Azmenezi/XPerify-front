@@ -13,6 +13,7 @@ const Profile = ({ navigation }) => {
     data: profile,
     isFetching,
     refetch,
+    isLoading,
   } = useQuery(["profile"], () => getMyProfile());
   const { selectedMood } = useContext(MoodContext);
   const theme = useTheme(); // Get the currently active theme
@@ -27,9 +28,7 @@ const Profile = ({ navigation }) => {
             top: -10,
           }}
         >
-          <View style={{ left: 40 }}>
-            <DmButton navigation={navigation} />
-          </View>
+          <View style={{ left: 40 }}></View>
           <View
             style={{
               width: 82,
@@ -81,7 +80,7 @@ const Profile = ({ navigation }) => {
                 style={{
                   width: 100,
                   height: 40,
-                  backgroundColor: "gray",
+                  backgroundColor: "lightgray",
                   borderRadius: 20,
                   justifyContent: "center",
                   alignItems: "center",
@@ -121,7 +120,7 @@ const Profile = ({ navigation }) => {
                 style={{
                   width: 100,
                   height: 40,
-                  backgroundColor: "gray",
+                  backgroundColor: "lightgray",
                   borderRadius: 20,
                   justifyContent: "center",
                   alignItems: "center",
@@ -146,6 +145,7 @@ const Profile = ({ navigation }) => {
         posts={profile?.posts}
         refetch={refetch}
         isFetching={isFetching}
+        isLoading={isLoading}
       />
     </View>
   );

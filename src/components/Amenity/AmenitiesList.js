@@ -6,18 +6,18 @@ import AmenitiesCard from "../Amenity/AmenitiesCard";
 import { getAllAmenities } from "../../apis/amenity";
 import { useQuery } from "@tanstack/react-query";
 
-const AmenitiesList = () => {
+const AmenitiesList = ({ amenities }) => {
   const { colors } = useTheme();
 
-  const {
-    data: amenities,
-    isLoading,
-    isFetching,
-    refetch,
-  } = useQuery({
-    queryKey: ["amenities"],
-    queryFn: () => getAllAmenities(),
-  });
+  // const {
+  //   data: amenities,
+  //   isLoading,
+  //   isFetching,
+  //   refetch,
+  // } = useQuery({
+  //   queryKey: ["amenities"],
+  //   queryFn: () => getAllAmenities(),
+  // });
 
   const styles = useStyles(colors);
 

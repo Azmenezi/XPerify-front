@@ -1,41 +1,36 @@
 import { View, TouchableOpacity } from "react-native";
 import React, { useEffect } from "react";
-import * as ImagePicker from "expo-image-picker";
 
 import { Image } from "react-native";
 
 import { StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import * as ImagePicker from "expo-image-picker";
 
 export default function ImagePickerC({ image, setImage }) {
   useEffect(() => {
-    requestImagePickerPermission();
+    requestCameraPermission();
   }, []);
 
-  const requestImagePickerPermission = async () => {
-    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+  const requestCameraPermission = async () => {
+    const { status } = await ImagePicker.requestCameraPermissionsAsync();
     if (status !== "granted") {
       // console.log("Permission denied");
     }
   };
 
-  const pickImage = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images, // only images
+  const takePhoto = async () => {
+    let result = await ImagePicker.launchCameraAsync({
       allowsEditing: true,
-
-      aspect: [1, 1], // changed to create a square
-
+      aspect: [1, 1],
       quality: 1,
     });
 
-    if (!result.canceled) {
-      // Get the file extension
-      let fileExtension = result.assets[0].uri.split(".").pop();
-
+    if (!result.cancelled) {
       // Check if the file extension is jpg, jpeg, or png
+      let fileExtension = result.uri.split(".").pop();
       if (["jpg", "jpeg", "png"].includes(fileExtension.toLowerCase())) {
-        setImage(result.assets[0].uri);
+        setImage(result.uri);
       } else {
         alert("Only jpg, jpeg, or png images are allowed");
       }
@@ -56,7 +51,7 @@ export default function ImagePickerC({ image, setImage }) {
           alignItems: "center",
           width: 300,
         }}
-        onPress={pickImage}
+        onPress={takePhoto}
       >
         {image ? (
           <Image

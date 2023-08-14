@@ -1,11 +1,8 @@
-import React, { useState } from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import React from "react";
+import { Text, TouchableOpacity, StyleSheet } from "react-native";
 
-const MoodCard = ({ mood, onPress }) => {
-  const [isActive, setIsActive] = useState(false);
-
+const MoodCard = ({ mood, onPress, isActive }) => {
   const handlePress = () => {
-    setIsActive(!isActive);
     onPress();
   };
 
