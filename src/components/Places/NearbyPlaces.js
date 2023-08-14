@@ -1,10 +1,9 @@
 import { FlatList, StyleSheet, Text, View, RefreshControl } from "react-native";
-import React, { useCallback, useContext } from "react";
+import React, { useCallback } from "react";
 
 import { useQuery } from "@tanstack/react-query";
 import PlaceCard from "./PlaceCard";
 import { getNearbyPlaces } from "../../apis/places";
-// import { useUserLocation } from "../Location/UserLocation";
 
 const NearbyPlaces = () => {
   const {
