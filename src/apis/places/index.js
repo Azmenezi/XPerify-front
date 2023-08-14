@@ -42,3 +42,7 @@ exports.checkIn = async (checkInInfo) => {
 
   return res.data;
 };
+exports.getPlaceAmenities = async (id) => {
+  const res = await instance.get(`/place/${id}/amenities`);
+  return res.data;
+};

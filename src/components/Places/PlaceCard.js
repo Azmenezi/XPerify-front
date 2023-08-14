@@ -33,6 +33,7 @@ const PlaceCard = ({ place }) => {
             source={{ uri: `${BASE_URL}/${place.image}` }}
             style={styles.image}
             blurRadius={2}
+            resizeMode="cover"
           />
         </View>
         <View style={styles.infoLayer}>
@@ -45,7 +46,7 @@ const PlaceCard = ({ place }) => {
               />
             </View>
             <View style={styles.ratingContainer}>
-              <FontAwesome name="star" size={24} color="#252c79" />
+              <FontAwesome name="star" size={24} color="#ff9056" />
               <Text style={styles.ratingText}>{` ${place.ratings}`}</Text>
             </View>
           </View>
@@ -69,34 +70,36 @@ const styles = StyleSheet.create({
     shadowRadius: 4.5,
     elevation: 5,
     width: "90%",
-    borderColor: "gray",
-    borderWidth: 0.2,
-    // backgroundColor: "#fef0ea",
-    backgroundColor: "rgba(255, 255, 255, 0.9)",
+    borderColor: "#182039",
+    borderWidth: 1,
+    backgroundColor: "#23293e",
   },
+
   imageContainer: {
     alignItems: "center",
     // backgroundColor: "#f5f5f5",
     paddingVertical: 10,
     shadowColor: "gray",
     shadowOffset: { width: 0, height: 4 },
+    overflow: "hidden",
   },
+
   image: {
-    width: "90%",
-    height: 180,
-    borderRadius: 12,
-    margin: 2,
-    borderWidth: 0.3,
-    borderColor: "gray",
-    shadowOpacity: 0.3,
+    width: "100%",
+    height: 200,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    resizeMode: "cover",
   },
+
   infoLayer: {
     paddingHorizontal: 15,
   },
   text: {
     fontWeight: "bold",
     fontSize: 26,
-    color: "#252c79",
+    // color: "#252c79",
+    color: "#fff",
     marginBottom: 8,
     marginLeft: 5,
   },
@@ -105,23 +108,25 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
   },
+
   locationContainer: {
     flexDirection: "row",
     alignItems: "center",
-    flex: 0.5,
-    // marginVertical: 5,
-    margin: 4,
+    flex: 0.7,
+    margin: 6,
+    // backgroundColor: "pink",
   },
 
   ratingContainer: {
     flexDirection: "row",
     alignItems: "center",
-
     flex: 0.5,
-    marginLeft: 190,
+    marginLeft: 180,
+    // backgroundColor: "red",
   },
   ratingText: {
     marginLeft: 5,
     fontSize: 18,
+    color: "#fff",
   },
 });

@@ -7,7 +7,7 @@ import {
   View,
 } from "react-native";
 import React, { useState, useEffect } from "react";
-import { getPlaceById } from "../../apis/places";
+import { getPlaceAmenities, getPlaceById } from "../../apis/places";
 import { useQuery } from "@tanstack/react-query";
 import { BASE_URL } from "../../apis";
 import { useTheme } from "@react-navigation/native";
@@ -17,6 +17,15 @@ import { FontAwesome } from "@expo/vector-icons";
 
 export default function PlaceInformation({ _id, isPlace }) {
   const { data: place } = useQuery(["place", _id], () => getPlaceById(_id));
+  const {
+    data: aminity,
+    isLoading,
+    isFetching,
+    refetch,
+  } = useQuery({
+    queryKey: ["aminity"],
+    queryFn: () => getPlaceAmenities(),
+  });
   const image = { uri: `${BASE_URL}/${place?.image}` };
   const theme = useTheme();
 
@@ -30,7 +39,7 @@ export default function PlaceInformation({ _id, isPlace }) {
       useNativeDriver: false,
     }).start();
   }, [isPlace]);
-  // console.log(place);
+
   return (
     <Animated.View style={{ height: heightAnim }}>
       {isPlace && (
@@ -80,8 +89,6 @@ export default function PlaceInformation({ _id, isPlace }) {
                 marginTop: 5,
               }}
             >
-              <Entypo name="location" size={24} color="#e65955" />
-
               <LocationInfo
                 placeLon={place?.location?.coordinates[0]}
                 placeLat={place?.location?.coordinates[1]}

@@ -145,7 +145,7 @@ const Post = ({ navigation, route }) => {
                             Does The Place Have?
                           </Text>
                           <Text style={{ color: "gray", fontSize: 20 }}>
-                            Skip
+                            Done
                           </Text>
                         </Pressable>
                       </View>

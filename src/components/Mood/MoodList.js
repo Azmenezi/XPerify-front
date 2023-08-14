@@ -16,7 +16,6 @@ const MoodList = ({ onMoodSelected }) => {
   if (isLoading) {
     return <Text>Loading...</Text>;
   }
-
   return (
     <View style={styles.container}>
       <FlatList
@@ -31,7 +30,6 @@ const MoodList = ({ onMoodSelected }) => {
             }}
           />
         )}
-        //keyExtractor={(item) => item.id.toString()}
       />
     </View>
   );
@@ -40,20 +38,6 @@ const MoodList = ({ onMoodSelected }) => {
 const styles = StyleSheet.create({
   container: {
     padding: 10,
-  },
-  moodButton: {
-    padding: 10,
-    flexDirection: "row",
-    alignItems: "center",
-    marginRight: 10,
-    borderRadius: 10,
-    borderColor: "#e0e0e0",
-    borderWidth: 1,
-  },
-  buttonText: {
-    marginLeft: 10,
-    fontSize: 16,
-    fontWeight: "bold",
   },
   icon: {
     fontSize: 24,

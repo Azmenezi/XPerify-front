@@ -72,7 +72,7 @@ const LocationInfoContent = ({ placeLon, placeLat, userLocation }) => {
           </Text>
         </View>
         <View style={styles.distanceContainer}>
-          <Ionicons name="location-sharp" size={24} color="#252c79" />
+          <Ionicons name="location-sharp" size={24} color="#f67262" />
           <Text style={styles.textStyle}>{`${
             distance ? `${distance} km` : "Calculating..."
           }`}</Text>
@@ -92,11 +92,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   textStyle: {
-    color: "black",
-    marginLeft: 5, // adding some space between the icon and the text
+    color: "#fff",
+    marginLeft: 5,
+    fontSize: 16,
   },
   city: {
     marginLeft: 5,
+    color: "#fff",
+    fontSize: 16,
   },
 });
 

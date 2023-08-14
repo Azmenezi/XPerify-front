@@ -2,7 +2,6 @@ import { ScrollView, StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
 import PlaceTopNavigations from "../../../navigation/PlaceTopNavigation";
 import PlaceInformation from "../../../components/Places/PlaceInformation";
-import { Animated } from "react-native";
 
 const PlaceDetails = ({ route, navigation }) => {
   const { _id } = route.params;
