@@ -1,8 +1,18 @@
 import React, { useState } from "react";
-import { SafeAreaView, StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  RefreshControl,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 import PlacesList from "../../components/Places/PlacesList";
 import MoodList from "../../components/Mood/MoodList";
 import { FontAwesome5 } from "@expo/vector-icons";
+import { useQuery } from "@tanstack/react-query";
+import { getAllPlaces } from "../../apis/places";
 
 const Home = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -11,34 +21,54 @@ const Home = () => {
   const handleMoodSelected = (mood) => {
     setIsModalVisible(false);
   };
-
+  const {
+    data: placesData,
+    isLoading,
+    isFetching,
+    refetch,
+  } = useQuery({
+    queryKey: ["places"],
+    queryFn: getAllPlaces,
+  });
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.titleContainer}>
-        <Text style={styles.title}>MoodMap</Text>
-        <Text style={styles.subTitle}>Find places that fit your mood</Text>
-      </View>
-      <View style={styles.searchBarContainer}>
-        <FontAwesome5
-          name="search-location"
-          size={24}
-          color="182039"
-          style={styles.searchIcon}
-        />
-        <TextInput
-          style={styles.searchInput}
-          value={searchTerm}
-          onChangeText={setSearchTerm}
-          placeholder="Search for a place..."
-        />
-      </View>
-      {/* <Text style={styles.subTitle}>
+      <ScrollView
+        refreshControl={
+          <RefreshControl refreshing={isFetching} onRefresh={refetch} />
+        }
+      >
+        <View style={styles.titleContainer}>
+          <Text style={styles.title}>MoodMap</Text>
+          <Text style={styles.subTitle}>Find places that fit your mood</Text>
+        </View>
+        <View style={styles.searchBarContainer}>
+          <FontAwesome5
+            name="search-location"
+            size={24}
+            color="182039"
+            style={styles.searchIcon}
+          />
+          <TextInput
+            style={styles.searchInput}
+            value={searchTerm}
+            onChangeText={setSearchTerm}
+            placeholder="Search for a place..."
+          />
+        </View>
+        {/* <Text style={styles.subTitle}>
         Match your vibe: Filter places by mood!
       </Text> */}
-      <View style={{ backgroundColor: "" }}>
-        <MoodList onMoodSelected={handleMoodSelected} />
-      </View>
-      <PlacesList searchTerm={searchTerm} />
+        <View style={{ backgroundColor: "" }}>
+          <MoodList onMoodSelected={handleMoodSelected} />
+        </View>
+        <PlacesList
+          searchTerm={searchTerm}
+          placesData={placesData}
+          refetch={refetch}
+          isFetching={isFetching}
+          isLoading={isLoading}
+        />
+      </ScrollView>
     </SafeAreaView>
   );
 };

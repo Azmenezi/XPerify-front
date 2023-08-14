@@ -5,13 +5,24 @@ import ROUTES from ".";
 
 const Tab = createMaterialTopTabNavigator();
 
-function ProfileTopNavigation({ posts, history, refetch, isFetching }) {
+function ProfileTopNavigation({
+  posts,
+  history,
+  refetch,
+  isFetching,
+  isLoading,
+}) {
   return (
     <Tab.Navigator lazy={true}>
       <Tab.Screen
         name={ROUTES.HEDERROUTES.PROFILE_STACK.MYPOST}
         children={() => (
-          <MyPost posts={posts} refetch={refetch} isFetching={isFetching} />
+          <MyPost
+            posts={posts}
+            refetch={refetch}
+            isFetching={isFetching}
+            isLoading={isLoading}
+          />
         )}
         options={{ title: "Posts" }}
       />

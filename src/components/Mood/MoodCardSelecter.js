@@ -40,8 +40,19 @@ const MoodCardSelecter = ({ icon, name, _id, data, setData }) => {
         { backgroundColor: isPressed ? colors.primary : colors.popMenu },
       ]}
     >
-      <Icon name={icon} size={20} color={colors.text} style={styles.icon} />
-      <Text style={styles.text}>{name}</Text>
+      <Icon
+        name={icon}
+        size={20}
+        color={colors.background}
+        style={styles.icon}
+      />
+      <Text
+        style={{
+          color: colors.background,
+        }}
+      >
+        {name}
+      </Text>
     </TouchableOpacity>
   );
 };
@@ -59,9 +70,6 @@ const useStyles = (colors) =>
     },
     icon: {
       marginRight: 10,
-    },
-    text: {
-      color: colors.text,
     },
   });
 

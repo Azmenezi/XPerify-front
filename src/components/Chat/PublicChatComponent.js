@@ -65,7 +65,12 @@ export default function PublicChatComponent({ navigation, _id }) {
 
     return () =>
       navigation.getParent()?.setOptions({
-        tabBarStyle: undefined,
+        tabBarStyle: {
+          height: 60,
+          backgroundColor: "#182039",
+          borderTopColor: "#E5E3E420",
+          borderTopWidth: 0.2,
+        },
       });
   }, [navigation]);
   useEffect(() => {

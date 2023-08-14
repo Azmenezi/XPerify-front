@@ -16,30 +16,16 @@ import {
 } from "../../apis/auth";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { BASE_URL } from "../../apis";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import ROUTES from "../../navigation";
 import { getChatUser } from "../../apis/chat";
 import UserContext from "../../context/UserContext";
 import { useTheme } from "@react-navigation/native";
+import SkeletonPost from "../../components/Skeleton/SkeletonPost";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export default function UserProfile({ route, navigation }) {
   const { userId } = route.params;
   const { user } = useContext(UserContext);
-  const {
-    data: profile,
-    isFetching,
-    refetch,
-  } = useQuery({
-    queryKey: ["userProfile", userId],
-    queryFn: () => getUserProfile(userId),
-    onSuccess: (data) => {
-      navigation.setOptions({
-        title: data.username || "Profile",
-      });
-    },
-  });
-  const checkedUser = user;
-  const theme = useTheme(); // Get the currently active theme
   const { mutate: getChatUserFn } = useMutation({
     mutationFn: (userId) => getChatUser(userId),
     onSuccess: (data) => {
@@ -50,6 +36,34 @@ export default function UserProfile({ route, navigation }) {
       });
     },
   });
+  const {
+    data: profile,
+    isFetching,
+    refetch,
+    isLoading,
+  } = useQuery({
+    queryKey: ["userProfile", userId],
+    queryFn: () => getUserProfile(userId),
+    onSuccess: (data) => {
+      navigation.setOptions({
+        title: data.username || "Profile",
+        headerRight: () => (
+          <View style={{ marginRight: 20 }}>
+            <Pressable onPress={() => getChatUserFn(data._id)}>
+              <MaterialCommunityIcons
+                name="chat-plus-outline"
+                size={26}
+                color={theme.colors.text}
+              />
+            </Pressable>
+          </View>
+        ),
+      });
+    },
+  });
+  const checkedUser = user;
+  const theme = useTheme(); // Get the currently active theme
+
   const { mutate: addFriendFn } = useMutation({
     mutationFn: () => addFriendRequest(profile?._id),
     onSuccess: () => {
@@ -72,194 +86,184 @@ export default function UserProfile({ route, navigation }) {
   const numColumns = 2;
   return (
     <View style={{ flex: 1 }}>
-      <View style={{ height: 140, flexDirection: "row" }}>
-        <View
-          style={{
-            width: "30%",
-            justifyContent: "center",
-            alignItems: "center",
-            top: -10,
-          }}
-        >
-          <View style={{ left: 40 }}>
-            {checkIfFriend && (
-              <View>
-                <Pressable onPress={() => getChatUserFn(profile._id)}>
-                  <MaterialCommunityIcons
-                    name="message-badge"
-                    size={24}
-                    color={theme.colors.text}
-                  />
-                </Pressable>
-              </View>
-            )}
-          </View>
-
-          <View
-            style={{
-              width: 82,
-              height: 82,
-              borderRadius: 50,
-              backgroundColor: theme.colors.text,
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <Image
-              style={{ width: 80, height: 80, borderRadius: 50 }}
-              source={{
-                uri: `${BASE_URL}/${profile?.image}`,
-              }}
-            />
-          </View>
-        </View>
-        <View
-          style={{
-            width: "70%",
-            flexDirection: "row",
-            justifyContent: "center",
-          }}
-        >
-          <View
-            style={{
-              width: "50%",
-              height: "100%",
-              justifyContent: "center",
-              alignItems: "center",
-              top: -20,
-            }}
-          >
-            <View style={{ width: 100, height: 70 }}>
-              <Text
-                style={{
-                  color: theme.colors.text,
-                  textAlign: "center",
-                  fontSize: 20,
-                }}
-              >
-                Freinds
-              </Text>
-              <View
-                style={{
-                  width: 100,
-                  height: 40,
-                  backgroundColor: "gray",
-                  borderRadius: 20,
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <Text
-                  style={{
-                    color: theme.colors.text,
-                    textAlign: "center",
-                    fontSize: 20,
-                  }}
-                >
-                  {profile?.friends.length}
-                </Text>
-              </View>
-            </View>
-          </View>
-          <View
-            style={{
-              width: "50%",
-              height: "100%",
-              justifyContent: "center",
-              alignItems: "center",
-              top: -20,
-            }}
-          >
-            <View style={{ width: 100, height: 70 }}>
-              <Text
-                style={{
-                  color: theme.colors.text,
-                  textAlign: "center",
-                  fontSize: 20,
-                }}
-              >
-                Mood
-              </Text>
-              <View
-                style={{
-                  width: 100,
-                  height: 40,
-                  backgroundColor: "gray",
-                  borderRadius: 20,
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <Text
-                  style={{
-                    color: theme.colors.text,
-                    textAlign: "center",
-                    fontSize: 20,
-                  }}
-                >
-                  Happy
-                </Text>
-              </View>
-            </View>
-          </View>
-          {checkIfRequestedFriend ? (
-            <View
-              style={{
-                width: "86%",
-                backgroundColor: "gray",
-                position: "absolute",
-                bottom: 10,
-                padding: 2,
-                borderRadius: 10,
-                right: 17,
-              }}
-            >
-              <Text
-                style={{
-                  color: theme.colors.text,
-                  fontSize: 20,
-                  textAlign: "center",
-                }}
-              >
-                Pending..
-              </Text>
-            </View>
-          ) : (
-            <TouchableOpacity
-              onPress={() => {
-                checkIfFriend ? removeFriendFn() : addFriendFn();
-              }}
-              style={{
-                width: "86%",
-                backgroundColor: "gray",
-                position: "absolute",
-                bottom: 10,
-                padding: 2,
-                borderRadius: 10,
-                right: 17,
-              }}
-            >
-              <Text
-                style={{
-                  color: theme.colors.text,
-                  fontSize: 20,
-                  textAlign: "center",
-                }}
-              >
-                {checkIfFriend ? "Remove Friend" : "Add Friend"}
-              </Text>
-            </TouchableOpacity>
-          )}
-        </View>
-      </View>
       <ScrollView
         refreshControl={
           <RefreshControl refreshing={isFetching} onRefresh={refetch} />
         }
-        contentContainerStyle={styles.container}
       >
-        {profile?.posts
-          ? Array.from({
+        <View
+          style={{ height: 140, flexDirection: "row", borderBottomWidth: 0.2 }}
+        >
+          <View
+            style={{
+              width: "30%",
+              justifyContent: "center",
+              alignItems: "center",
+              top: -10,
+            }}
+          >
+            <View
+              style={{
+                width: 82,
+                height: 82,
+                borderRadius: 50,
+                backgroundColor: theme.colors.text,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Image
+                style={{ width: 80, height: 80, borderRadius: 50 }}
+                source={{
+                  uri: `${BASE_URL}/${profile?.image}`,
+                }}
+              />
+            </View>
+          </View>
+          <View
+            style={{
+              width: "70%",
+              flexDirection: "row",
+              justifyContent: "center",
+            }}
+          >
+            <View
+              style={{
+                width: "50%",
+                height: "100%",
+                justifyContent: "center",
+                alignItems: "center",
+                top: -20,
+              }}
+            >
+              <View style={{ width: 100, height: 70 }}>
+                <Text
+                  style={{
+                    color: theme.colors.text,
+                    textAlign: "center",
+                    fontSize: 20,
+                  }}
+                >
+                  Freinds
+                </Text>
+                <View
+                  style={{
+                    width: 100,
+                    height: 40,
+                    backgroundColor: "lightgray",
+                    borderRadius: 20,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: theme.colors.text,
+                      textAlign: "center",
+                      fontSize: 20,
+                    }}
+                  >
+                    {profile?.friends.length}
+                  </Text>
+                </View>
+              </View>
+            </View>
+            <View
+              style={{
+                width: "50%",
+                height: "100%",
+                justifyContent: "center",
+                alignItems: "center",
+                top: -20,
+              }}
+            >
+              <View style={{ width: 100, height: 70 }}>
+                <Text
+                  style={{
+                    color: theme.colors.text,
+                    textAlign: "center",
+                    fontSize: 20,
+                  }}
+                >
+                  Mood
+                </Text>
+                <View
+                  style={{
+                    width: 100,
+                    height: 40,
+                    backgroundColor: "lightgray",
+                    borderRadius: 20,
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: theme.colors.text,
+                      textAlign: "center",
+                      fontSize: 20,
+                    }}
+                  >
+                    Happy
+                  </Text>
+                </View>
+              </View>
+            </View>
+            {checkIfRequestedFriend ? (
+              <View
+                style={{
+                  width: "86%",
+                  backgroundColor: "lightgray",
+                  position: "absolute",
+                  bottom: 10,
+                  padding: 2,
+                  borderRadius: 10,
+                  right: 17,
+                }}
+              >
+                <Text
+                  style={{
+                    color: theme.colors.text,
+                    fontSize: 20,
+                    textAlign: "center",
+                  }}
+                >
+                  Pending..
+                </Text>
+              </View>
+            ) : (
+              <TouchableOpacity
+                onPress={() => {
+                  checkIfFriend ? removeFriendFn() : addFriendFn();
+                }}
+                style={{
+                  width: "86%",
+                  backgroundColor: "lightgray",
+                  position: "absolute",
+                  bottom: 10,
+                  padding: 2,
+                  borderRadius: 10,
+                  right: 17,
+                }}
+              >
+                <Text
+                  style={{
+                    color: theme.colors.text,
+                    fontSize: 20,
+                    textAlign: "center",
+                  }}
+                >
+                  {checkIfFriend ? "Remove Friend" : "Add Friend"}
+                </Text>
+              </TouchableOpacity>
+            )}
+          </View>
+        </View>
+        <View style={styles.container}>
+          {isLoading ? (
+            <View>{<SkeletonPost />}</View>
+          ) : profile?.posts ? (
+            Array.from({
               length: Math.ceil(profile?.posts.length / numColumns),
             }).map((_, rowIndex) => (
               <View style={styles.row} key={rowIndex}>
@@ -271,7 +275,7 @@ export default function UserProfile({ route, navigation }) {
                         width: 180,
                         height: 180,
                         borderRadius: 20,
-                        backgroundColor: "gray",
+                        backgroundColor: "lightgray",
                         margin: 10,
                         overflow: "hidden",
                       }}
@@ -284,7 +288,8 @@ export default function UserProfile({ route, navigation }) {
                   ))}
               </View>
             ))
-          : null}
+          ) : null}
+        </View>
       </ScrollView>
     </View>
   );

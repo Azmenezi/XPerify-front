@@ -67,23 +67,24 @@ const LocationInfoContent = ({ placeLon, placeLat, userLocation }) => {
   }
 
   return (
-    <View style={styles.container}>
-      <TouchableOpacity onPress={() => openMap(placeLat, placeLon)}>
-        <View>
-          <Text style={styles.city}>
-            {locationDetails
-              ? `${locationDetails?.city}`
-              : "No location provided"}
-          </Text>
-        </View>
-        <View style={styles.distanceContainer}>
-          <Ionicons name="location-sharp" size={24} color="#252c79" />
-          <Text style={styles.textStyle}>{`${
-            distance ? `${distance} km` : "Calculating..."
-          }`}</Text>
-        </View>
-      </TouchableOpacity>
-    </View>
+    <TouchableOpacity
+      onPress={() => openMap(placeLat, placeLon)}
+      style={styles.container}
+    >
+      <Ionicons name="location-sharp" size={24} color="#252c79" />
+      <View>
+        <Text style={styles.city}>
+          {locationDetails
+            ? `${locationDetails?.city}`
+            : "No location provided"}
+        </Text>
+      </View>
+      <View style={styles.distanceContainer}>
+        <Text style={styles.textStyle}>{`${
+          distance ? `${distance} km` : "Calculating..."
+        }`}</Text>
+      </View>
+    </TouchableOpacity>
   );
 };
 
@@ -107,7 +108,7 @@ const LocationInfoContent = ({ placeLon, placeLat, userLocation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "column",
+    flexDirection: "row",
   },
 
   distanceContainer: {

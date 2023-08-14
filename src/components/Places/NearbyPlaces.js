@@ -1,11 +1,21 @@
-import { FlatList, StyleSheet, Text, View, RefreshControl } from "react-native";
+import {
+  FlatList,
+  StyleSheet,
+  Text,
+  View,
+  RefreshControl,
+  ScrollView,
+} from "react-native";
 import React, { useCallback } from "react";
 
 import { useQuery } from "@tanstack/react-query";
 import PlaceCard from "./PlaceCard";
 import { getNearbyPlaces } from "../../apis/places";
+import { useTheme } from "@react-navigation/native";
+import SkeletonCard from "../Skeleton/SkeletonCard";
 
 const NearbyPlaces = () => {
+  const theme = useTheme(); // Get the currently active theme
   const {
     data: places,
     isLoading,
@@ -20,12 +30,36 @@ const NearbyPlaces = () => {
   const onRefresh = useCallback(() => {
     refetch();
   }, [refetch]);
-  if (isLoading) return <Text>Loading...</Text>;
+
   let displayedPlaces = places;
   const renderItem = ({ item }) => {
     return <PlaceCard place={item} />;
   };
 
+  if (isLoading)
+    return (
+      <View>
+        {<SkeletonCard />}
+        {<SkeletonCard />}
+      </View>
+    );
+  if (!displayedPlaces)
+    return (
+      <ScrollView
+        contentContainerStyle={{
+          flex: 1,
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+        refreshControl={
+          <RefreshControl refreshing={isFetching} onRefresh={onRefresh} />
+        }
+      >
+        <Text style={{ color: theme.colors.text }}>
+          No nearby location to check in to
+        </Text>
+      </ScrollView>
+    );
   return (
     <View style={styles.container}>
       <FlatList

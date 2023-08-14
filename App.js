@@ -40,7 +40,7 @@ const DarkTheme = {
     inputText: "#ff9056", // using the primary orange color for input text
     inputBackground: "#1c1c1c",
     inputPlaceholder: "#f67262", // using the secondary orange for input placeholders
-
+    whiteText: "#ffffff",
     popMenu: "#1c1c1c",
     notification: "#4ccdff", // using the primary blue for notifications
     GradientColors: ["#5f67ec", "#4ccdff"], // using the secondary blue and primary blue for gradients

@@ -44,7 +44,7 @@ export default function FriendRequestModal({
             style={{
               fontWeight: "bold",
               fontSize: 18,
-              color: theme.colors.text,
+              color: theme.colors.whiteText,
             }}
           >
             {friendRequest.to.username}
@@ -52,7 +52,7 @@ export default function FriendRequestModal({
           <Text
             style={{
               fontSize: 15,
-              color: theme.colors.text,
+              color: theme.colors.whiteText,
             }}
           >
             friend request is pending...
@@ -72,7 +72,7 @@ export default function FriendRequestModal({
             style={{
               fontWeight: "bold",
               fontSize: 18,
-              color: theme.colors.text,
+              color: theme.colors.whiteText,
             }}
           >
             {friendRequest.from.username}
@@ -80,7 +80,7 @@ export default function FriendRequestModal({
           <Text
             style={{
               fontSize: 15,
-              color: theme.colors.text,
+              color: theme.colors.whiteText,
             }}
           >
             sent a friend request

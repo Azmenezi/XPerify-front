@@ -3,6 +3,7 @@ import React from "react";
 import { getAllPosts } from "../../apis/posts";
 import { useQuery } from "@tanstack/react-query";
 import PostCard from "./PostCard";
+import SkeletonPost from "../Skeleton/SkeletonPost";
 
 const PostList = () => {
   const { data: posts, isLoading } = useQuery({
@@ -10,8 +11,13 @@ const PostList = () => {
     queryFn: () => getAllPosts(),
   });
 
-  if (isLoading) return <Text>Loading...</Text>;
-
+  if (isLoading)
+    return (
+      <View>
+        {<SkeletonPost />}
+        {<SkeletonPost />}
+      </View>
+    );
   const renderItem = ({ item }) => {
     return <PostCard post={item} />;
   };

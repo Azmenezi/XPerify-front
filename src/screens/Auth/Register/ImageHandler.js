@@ -33,7 +33,7 @@ const RegisterImage = ({ route, navigation }) => {
       storeToken(data.token);
     },
     onError: (err) => {
-      // console.log("========>", err);
+      console.log("========>", err);
     },
   });
 

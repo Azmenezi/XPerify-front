@@ -1,6 +1,11 @@
-
 import React, { useState } from "react";
-import { View, StyleSheet, ScrollView, RefreshControl } from "react-native";
+import {
+  View,
+  StyleSheet,
+  ScrollView,
+  RefreshControl,
+  Text,
+} from "react-native";
 import FriendRequestModal from "./FriendRequestModal/";
 
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
@@ -9,6 +14,7 @@ import {
   declineFriendRequest,
   getMyProfile,
 } from "../../apis/auth";
+import { useTheme } from "@react-navigation/native";
 
 export default function FriendRequest() {
   const queryClient = useQueryClient();
@@ -47,7 +53,7 @@ export default function FriendRequest() {
   const handleDecline = (friendRequestId) => {
     decline.mutate(friendRequestId);
   };
-
+  const theme = useTheme(); // Get the currently active theme
   return (
     <ScrollView
       refreshControl={
@@ -55,19 +61,26 @@ export default function FriendRequest() {
       }
       contentContainerStyle={styles.container}
     >
-      {user?.friendRequests.map((friendRequest, index) => (
-
-        <FriendRequestModal
-          key={friendRequest.id}
-          index={index}
-          onAccept={() => handleAccept(friendRequest._id)}
-          onDecline={() => handleDecline(friendRequest._id)}
-          friendRequest={friendRequest}
-        />
-      ))}
-
+      {user?.friendRequests?.length > 0 ? (
+        user?.friendRequests.map((friendRequest, index) => (
+          <FriendRequestModal
+            key={friendRequest.id}
+            index={index}
+            onAccept={() => handleAccept(friendRequest._id)}
+            onDecline={() => handleDecline(friendRequest._id)}
+            friendRequest={friendRequest}
+          />
+        ))
+      ) : (
+        <View
+          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+        >
+          <Text style={{ color: theme.colors.text }}>
+            Nothing To See Here :P
+          </Text>
+        </View>
+      )}
     </ScrollView>
-
   );
 }
 
