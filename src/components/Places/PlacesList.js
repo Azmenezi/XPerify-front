@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import PlaceCard from "./PlaceCard";
 import MoodContext from "../../context/MoodContext";
 
-const PlacesList = () => {
+const PlacesList = ({ searchTerm = "" }) => {
   const {
     data: places,
     isLoading,
@@ -27,8 +27,15 @@ const PlacesList = () => {
   let displayedPlaces = places;
 
   if (selectedMood) {
-    displayedPlaces = places.filter((place) =>
+    displayedPlaces = displayedPlaces.filter((place) =>
       place.moods.includes(selectedMood._id)
+    );
+  }
+
+  // Filtering places based on search term
+  if (searchTerm) {
+    displayedPlaces = displayedPlaces.filter((place) =>
+      place.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
   }
 

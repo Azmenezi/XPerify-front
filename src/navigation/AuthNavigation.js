@@ -9,7 +9,11 @@ const Stack = createStackNavigator();
 const AuthNavigation = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen
+        name="Login"
+        component={Login}
+        options={{ headerShown: false }}
+      />
       <Stack.Screen
         name="RegisterUsername"
         component={RegisterUsername}

@@ -55,7 +55,7 @@ const Login = ({ navigation }) => {
       storeToken(data.token);
     },
     onError: (err) => {
-      console.log("err", err);
+      // console.log("err", err);
       setBackendError(err.response.data.message); // Assuming error response is in this format
     },
   });

@@ -7,6 +7,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from "react-native";
+
 import React, { useState } from "react";
 import { getAllMood } from "../../apis/mood";
 import { useQuery } from "@tanstack/react-query";
@@ -18,13 +19,14 @@ import { AntDesign } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import Svg, { Path, Rect } from "react-native-svg";
+import { useTheme } from "@react-navigation/native";
 
 const MoodModal = ({ isVisible, onMoodSelected, onClose }) => {
   const { data: moods, isLoading } = useQuery({
     queryKey: ["moods"],
     queryFn: () => getAllMood(),
   });
-
+  const theme = useTheme();
   const { setSelectedMood } = useContext(MoodContext);
 
   if (isLoading) {
@@ -131,7 +133,15 @@ const MoodModal = ({ isVisible, onMoodSelected, onClose }) => {
                   }}
                 >
                   <View style={styles.row}>
-                    <Text style={styles.buttonText}>All</Text>
+                    <Text
+                      style={{
+                        color: theme.colors.invertedText, // Changed text color to white
+                        fontSize: 16,
+                        fontWeight: "bold",
+                      }}
+                    >
+                      All
+                    </Text>
                   </View>
                 </TouchableOpacity>
                 {moods?.map((mood) => (
@@ -145,7 +155,15 @@ const MoodModal = ({ isVisible, onMoodSelected, onClose }) => {
                   >
                     <View style={styles.row}>
                       {moodeicon[mood.name]}
-                      <Text style={styles.buttonText}>{mood.name}</Text>
+                      <Text
+                        style={{
+                          color: theme.colors.invertedText, // Changed text color to white
+                          fontSize: 16,
+                          fontWeight: "bold",
+                        }}
+                      >
+                        {mood.name}
+                      </Text>
                     </View>
                   </TouchableOpacity>
                 ))}
@@ -187,7 +205,6 @@ const styles = StyleSheet.create({
   },
 
   button: {
-    // backgroundColor: "#00A5A5", // Adjusted button color
     borderRadius: 10,
     marginVertical: 10,
     paddingVertical: 10,
@@ -210,14 +227,14 @@ const styles = StyleSheet.create({
   },
 
   buttonText: {
-    color: "black", // Changed text color to white
+    color: "black",
     fontSize: 16,
     fontWeight: "bold",
   },
 
   icon: {
     fontSize: 33,
-    marginRight: 15, // Added margin to separate the icon and text
-    color: "#FFFFFF", // Adjusted icon color to white
+    marginRight: 15,
+    color: "#FFFFFF",
   },
 });

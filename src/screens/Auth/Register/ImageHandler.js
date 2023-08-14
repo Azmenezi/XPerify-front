@@ -7,6 +7,7 @@ import UserContext from "../../../context/UserContext";
 import { storeToken } from "../../../apis/auth/storage";
 import { useTheme } from "@react-navigation/native";
 import { register } from "../../../apis/auth";
+import jwt_decode from "jwt-decode";
 
 const RegisterImage = ({ route, navigation }) => {
   const { username, password } = route.params;
@@ -27,11 +28,12 @@ const RegisterImage = ({ route, navigation }) => {
       return register({ ...userInfo, image });
     },
     onSuccess: (data) => {
+      const decodeUser = jwt_decode(data.token);
+      setUser(decodeUser);
       storeToken(data.token);
-      setUser(true);
     },
     onError: (err) => {
-      console.log("========>", err);
+      // console.log("========>", err);
     },
   });
 

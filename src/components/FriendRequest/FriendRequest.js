@@ -1,8 +1,14 @@
-import React from "react";
-import { View, StyleSheet } from "react-native";
-import FriendRequestModal from "./FriendRequestModal";
+
+import React, { useState } from "react";
+import { View, StyleSheet, ScrollView, RefreshControl } from "react-native";
+import FriendRequestModal from "./FriendRequestModal/";
+
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { acceptFriendRequest, declineFriendRequest, getMyProfile } from "../../apis/auth";
+import {
+  acceptFriendRequest,
+  declineFriendRequest,
+  getMyProfile,
+} from "../../apis/auth";
 
 export default function FriendRequest() {
   const queryClient = useQueryClient();
@@ -21,6 +27,7 @@ export default function FriendRequest() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries("getMyProfile");
+      refetch();
     },
   });
   const decline = useMutation({
@@ -29,6 +36,7 @@ export default function FriendRequest() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries("getMyProfile");
+      refetch();
     },
   });
 
@@ -41,7 +49,12 @@ export default function FriendRequest() {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView
+      refreshControl={
+        <RefreshControl refreshing={isFetching} onRefresh={refetch} />
+      }
+      contentContainerStyle={styles.container}
+    >
       {user?.friendRequests.map((friendRequest, index) => (
 
         <FriendRequestModal
@@ -53,15 +66,13 @@ export default function FriendRequest() {
         />
       ))}
 
+    </ScrollView>
 
-    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+    flexGrow: 1,
   },
 });

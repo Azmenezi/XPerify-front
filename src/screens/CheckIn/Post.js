@@ -18,6 +18,7 @@ import ROUTES from "../../navigation";
 import AmenitiesCardSelecter from "../../components/Mood/MoodCardSelecter";
 import { getAllAmenities } from "../../apis/amenity";
 import { getAllMood } from "../../apis/mood";
+import { useTheme } from "@react-navigation/native";
 
 const Post = ({ navigation, route }) => {
     const { _id } = route.params;
@@ -49,25 +50,104 @@ const Post = ({ navigation, route }) => {
         },
     });
 
-    const handleCheckin = () => {
-        setIsModalVisible(true);
-    };
-    const closeModal = () => {
-        setIsModalVisible(false);
-    };
-    const submitModal = () => {
-        setIsModalVisible(false);
-        createPostFun();
-    };
 
-    return (
-        <SafeAreaView>
-            <ScrollView>
-                <View>
-                    <Text style={styles.label}>
-                        Choose an Image to share your Experiance
-                    </Text>
-                    <View
+  const handleCheckin = () => {
+    setIsModalVisible(true);
+  };
+  const closeModal = () => {
+    setIsModalVisible(false);
+  };
+  const submitModal = () => {
+    setIsModalVisible(false);
+    createPostFun();
+  };
+  const theme = useTheme(); // Get the currently active theme
+  return (
+    <SafeAreaView>
+      <ScrollView>
+        <View>
+          <Text
+            style={{
+              fontSize: 16,
+              fontWeight: "bold",
+              marginBottom: 5,
+              marginTop: 12,
+              alignSelf: "flex-start",
+              marginLeft: 20,
+              color: theme.colors.text,
+            }}
+          >
+            Choose an Image to share your Experiance
+          </Text>
+          <View
+            style={{
+              height: 300,
+              justifyContent: "center",
+              alignContent: "center",
+              padding: 20,
+            }}
+          >
+            <ImagePickerC
+              image={image}
+              setImage={setImage}
+              style={styles.image}
+            >
+              <View style={{}}>
+                <Text style={{ color: "grey" }}>Tap to select an image</Text>
+              </View>
+            </ImagePickerC>
+          </View>
+          <View style={{ marginTop: 50, marginLeft: 30 }}>
+            <Text style={{ color: theme.colors.text }}>
+              What was the vibe of the place?
+            </Text>
+            <View
+              style={{
+                flexDirection: "row",
+                marginTop: 20,
+                flexWrap: "wrap",
+              }}
+            >
+              {moods?.map((amenity, index) => (
+                <AmenitiesCardSelecter
+                  key={index}
+                  icon={amenity.icon}
+                  name={amenity.name}
+                  _id={amenity._id}
+                  data={data}
+                  setData={setData}
+                />
+              ))}
+            </View>
+          </View>
+          <View>
+            <TouchableOpacity
+              style={styles.buttonContainer}
+              onPress={handleCheckin}
+            >
+              <Text
+                style={{
+                  color: theme.colors.text,
+                  fontSize: 18,
+                }}
+              >
+                Checkin
+              </Text>
+            </TouchableOpacity>
+
+            <Modal
+              animationType="slide"
+              transparent={true}
+              visible={isModalVisible}
+              presentationStyle="overFullScreen"
+              onRequestClose={closeModal}
+            >
+              <TouchableWithoutFeedback onPress={closeModal}>
+                <View style={styles.centeredView}>
+                  <TouchableWithoutFeedback onPress={() => {}}>
+                    <View style={styles.modalView}>
+                      <View
+
                         style={{
                             height: 300,
                             justifyContent: "center",
@@ -107,59 +187,29 @@ const Post = ({ navigation, route }) => {
                             style={styles.buttonContainer}
                             onPress={handleCheckin}
                         >
-                            <Text style={styles.buttonText}>Checkin</Text>
-                        </TouchableOpacity>
 
-                        <Modal
-                            animationType="slide"
-                            transparent={true}
-                            visible={isModalVisible}
-                            presentationStyle="overFullScreen"
-                            onRequestClose={closeModal}
-                        >
-                            <TouchableWithoutFeedback onPress={closeModal}>
-                                <View style={styles.centeredView}>
-                                    <TouchableWithoutFeedback onPress={() => { }}>
-                                        <View style={styles.modalView}>
-                                            <View
-                                                style={{
-                                                    justifyContent: "center",
-                                                    alignItems: "center",
-                                                }}
-                                            >
-                                                <Pressable
-                                                    style={{
-                                                        justifyContent: "center",
-                                                        alignItems: "center",
-                                                        width: 200,
-                                                    }}
-                                                    onPress={submitModal}
-                                                >
-                                                    <Text style={{ color: "white", fontSize: 20 }}>
-                                                        Does The Place Have?
-                                                    </Text>
-                                                    <Text style={{ color: "gray", fontSize: 20 }}>
-                                                        Skip
-                                                    </Text>
-                                                </Pressable>
-                                            </View>
-                                            <View style={{ flexDirection: "row", marginTop: 20 }}>
-                                                {amenities?.map((amenity, index) => (
-                                                    <AmenitiesCardSelecter
-                                                        key={index}
-                                                        icon={amenity.icon}
-                                                        name={amenity.name}
-                                                        _id={amenity._id}
-                                                        data={data}
-                                                        setData={setData}
-                                                    />
-                                                ))}
-                                            </View>
-                                        </View>
-                                    </TouchableWithoutFeedback>
-                                </View>
-                            </TouchableWithoutFeedback>
-                        </Modal>
+                          <Text
+                            style={{ color: theme.colors.text, fontSize: 20 }}
+                          >
+                            Does The Place Have?
+                          </Text>
+                          <Text style={{ color: "gray", fontSize: 20 }}>
+                            Done
+                          </Text>
+                        </Pressable>
+                      </View>
+                      <View style={{ flexDirection: "row", marginTop: 20 }}>
+                        {amenities?.map((amenity, index) => (
+                          <AmenitiesCardSelecter
+                            key={index}
+                            icon={amenity.icon}
+                            name={amenity.name}
+                            _id={amenity._id}
+                            data={data}
+                            setData={setData}
+                          />
+                        ))}
+                      </View>
                     </View>
                 </View>
             </ScrollView>
@@ -186,30 +236,19 @@ const styles = StyleSheet.create({
         marginTop: 20,
     },
 
-    buttonText: {
-        color: "white",
-        fontSize: 18,
-    },
-    label: {
-        fontSize: 16,
-        fontWeight: "bold",
-        marginBottom: 5,
-        marginTop: 12,
-        alignSelf: "flex-start",
-        marginLeft: 20,
-        color: "white",
-    },
-    modalContainer: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "rgba(0, 0, 0, 0.7)", // Backdrop color
-    },
-    centeredView: {
-        flex: 1,
-        justifyContent: "flex-end",
-        alignItems: "center",
-    },
+
+  modalContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0, 0, 0, 0.7)", // Backdrop color
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: "flex-end",
+    alignItems: "center",
+  },
+
 
     modalView: {
         width: "100%",

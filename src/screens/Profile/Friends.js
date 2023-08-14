@@ -66,7 +66,7 @@ const Friends = ({ navigation }) => {
               style={{
                 height: 100,
                 borderWidth: 0.2,
-                borderColor: "black",
+                bordercolor: theme.colors.invertedText,
                 justifyContent: "center",
                 alignItems: "center",
               }}

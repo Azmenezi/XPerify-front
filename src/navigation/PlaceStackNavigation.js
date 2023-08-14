@@ -31,8 +31,14 @@ function PlaceStackNavigation() {
     mutationFn: () =>
       updateUserLocation(userLocation.longitude, userLocation.latitude),
     onSuccess: (data) => {
-      console.log(data);
-      // setUser()
+      console.log({ data });
+      console.log(user);
+      setUser({
+        ...user,
+        location: {
+          coordinates: data.coordinates,
+        },
+      });
     },
   });
 

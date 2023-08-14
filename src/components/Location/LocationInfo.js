@@ -5,21 +5,27 @@ import {
   View,
   TouchableOpacity,
   Linking,
-} from "react-native"; // import StyleSheet
+} from "react-native";
 import { useQuery, QueryClient, QueryClientProvider } from "react-query";
 import { getLocationAddress } from "../../apis/location";
 import UserContext from "../../context/UserContext";
 import { CalculateDistance } from "./CalculateDistance";
+
+import { Ionicons } from "@expo/vector-icons";
+
+import { useTheme } from "@react-navigation/native";
 // import { useUserLocation } from "./UserLocation";
+
 
 const LocationInfo = ({ placeLon, placeLat }) => {
   const queryClient = new QueryClient();
   // const userLocation = useUserLocation();
   const { user } = useContext(UserContext);
   const userLocation = {
-    latitude: user?.location.coordinates[1],
-    longitude: user?.location.coordinates[0],
+    latitude: user?.location?.coordinates[1] || 0,
+    longitude: user?.location?.coordinates[0] || 0,
   };
+  const theme = useTheme(); // Get the currently active theme
   return (
     <QueryClientProvider client={queryClient}>
       <LocationInfoContent
@@ -32,11 +38,11 @@ const LocationInfo = ({ placeLon, placeLat }) => {
 };
 
 const LocationInfoContent = ({ placeLon, placeLat, userLocation }) => {
-  // const { data: locationDetails } = useQuery({
-  //   queryKey: ["location", placeLon, placeLat],
-  //   queryFn: () => getLocationAddress(placeLon, placeLat),
-  //   enabled: !!placeLon && !!placeLat,
-  // });
+  const { data: locationDetails } = useQuery({
+    queryKey: ["location", placeLon, placeLat],
+    queryFn: () => getLocationAddress(placeLon, placeLat),
+    enabled: !!placeLon && !!placeLat,
+  });
 
   const openMap = (latitude, longitude) => {
     const url = `http://maps.google.com/maps?q=${latitude},${longitude}`;
@@ -49,7 +55,7 @@ const LocationInfoContent = ({ placeLon, placeLat, userLocation }) => {
     });
   };
   let distance = 0;
-  console.log({ userLocation });
+
   if (userLocation) {
     distance = CalculateDistance(
       userLocation.latitude,
@@ -57,40 +63,40 @@ const LocationInfoContent = ({ placeLon, placeLat, userLocation }) => {
       parseFloat(placeLat),
       parseFloat(placeLon)
     );
-    console.log(`
-    
-    ${distance}
-    
-    `);
+
     distance = distance.toFixed(1);
   }
 
-  // if (!locationDetails) {
-  //   return <Text style={styles.textStyle}>Loading...</Text>;
-  // }
 
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={() => openMap(placeLat, placeLon)}>
-        <Text style={styles.textStyle}>{`Distance: ${
-          distance ? `${distance} km` : "Calculating..."
-        }`}</Text>
+        <View>
+          <Text style={styles.city}>
+            {locationDetails
+              ? `${locationDetails?.city}`
+              : "No location provided"}
+          </Text>
+        </View>
+        <View style={styles.distanceContainer}>
+          <Ionicons name="location-sharp" size={24} color="#f67262" />
+          <Text style={styles.textStyle}>{`${
+            distance ? `${distance} km` : "Calculating..."
+          }`}</Text>
+        </View>
+
+//   // if (!locationDetails) {
+//   //   return <Text style={styles.textStyle}>Loading...</Text>;
+//   // }
+//   const theme = useTheme(); // Get the currently active theme
+//   return (
+//     <View style={styles.container}>
+//       <TouchableOpacity onPress={() => openMap(placeLat, placeLon)}>
+//         <Text style={{ color: theme.colors.text }}>{`Distance: ${
+//           distance ? `${distance} km` : "Calculating..."
+//         }`}</Text>
+
       </TouchableOpacity>
-
-      {/* Displaying user's current latitude and longitude */}
-
-      {/* <View>
-        {userLocation && (
-          <>
-            <Text
-              style={styles.textStyle}
-            >{` Latitude: ${userLocation.latitude}`}</Text>
-            <Text
-              style={styles.textStyle}
-            >{` Longitude: ${userLocation.longitude}`}</Text>
-          </>
-        )}
-      </View> */}
     </View>
   );
 };
@@ -100,9 +106,22 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
   },
-  textStyle: {
-    color: "white",
+
+  distanceContainer: {
+    flexDirection: "row",
+    alignItems: "center",
   },
+  textStyle: {
+    color: "#fff",
+    marginLeft: 5,
+    fontSize: 16,
+  },
+  city: {
+    marginLeft: 5,
+    color: "#fff",
+    fontSize: 16,
+  },
+
 });
 
 export default LocationInfo;
