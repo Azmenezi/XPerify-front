@@ -1,5 +1,4 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React from "react";
 import { BASE_URL } from "../../apis";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import ROUTES from "../../navigation";
@@ -11,7 +10,9 @@ import { useTheme } from "@react-navigation/native";
 const PlaceCard = ({ place }) => {
   const routName = useRoute();
   const navigation = useNavigation();
+
   const theme = useTheme();
+
   return (
     <TouchableOpacity
       onPress={() => {
@@ -135,6 +136,7 @@ const styles = StyleSheet.create({
     flex: 0.5,
     marginLeft: 180,
   },
+
   ratingText: {
     marginLeft: 5,
     fontSize: 18,

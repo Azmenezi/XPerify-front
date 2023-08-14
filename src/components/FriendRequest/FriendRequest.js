@@ -1,6 +1,8 @@
+
 import React, { useState } from "react";
 import { View, StyleSheet, ScrollView, RefreshControl } from "react-native";
 import FriendRequestModal from "./FriendRequestModal/";
+
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   acceptFriendRequest,
@@ -10,6 +12,7 @@ import {
 
 export default function FriendRequest() {
   const queryClient = useQueryClient();
+
   const {
     data: user,
     isFetching,
@@ -53,6 +56,7 @@ export default function FriendRequest() {
       contentContainerStyle={styles.container}
     >
       {user?.friendRequests.map((friendRequest, index) => (
+
         <FriendRequestModal
           key={friendRequest.id}
           index={index}
@@ -61,7 +65,9 @@ export default function FriendRequest() {
           friendRequest={friendRequest}
         />
       ))}
+
     </ScrollView>
+
   );
 }
 
