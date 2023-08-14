@@ -4,6 +4,7 @@ import React, { useCallback } from "react";
 import { useQuery } from "@tanstack/react-query";
 import PlaceCard from "./PlaceCard";
 import { getNearbyPlaces } from "../../apis/places";
+import SkeletonCard from "../SkeletonCard";
 
 const NearbyPlaces = () => {
   const {
@@ -20,7 +21,11 @@ const NearbyPlaces = () => {
   const onRefresh = useCallback(() => {
     refetch();
   }, [refetch]);
-  if (isLoading) return <Text>Loading...</Text>;
+  if (isLoading) return <View>
+    {<SkeletonCard />}
+    {<SkeletonCard />}
+
+  </View>
   let displayedPlaces = places;
   const renderItem = ({ item }) => {
     return <PlaceCard place={item} />;

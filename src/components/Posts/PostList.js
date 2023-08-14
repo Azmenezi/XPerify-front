@@ -10,7 +10,12 @@ const PostList = () => {
     queryFn: () => getAllPosts(),
   });
 
-  if (isLoading) return <Text>Loading...</Text>;
+  if (isLoading) return <View>
+    {<PostCard />}
+    {<PostCard />}
+
+
+  </View>
 
   const renderItem = ({ item }) => {
     return <PostCard post={item} />;

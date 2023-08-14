@@ -23,30 +23,30 @@ export default function MyPost({ posts, refetch, isFetching }) {
     >
       {posts
         ? Array.from({ length: Math.ceil(posts.length / numColumns) }).map(
-            (_, rowIndex) => (
-              <View style={styles.row} key={rowIndex}>
-                {posts
-                  .slice(rowIndex * numColumns, (rowIndex + 1) * numColumns)
-                  .map((post) => (
-                    <View
-                      style={{
-                        width: 180,
-                        height: 180,
-                        borderRadius: 20,
-                        backgroundColor: "gray",
-                        margin: 10,
-                        overflow: "hidden",
-                      }}
-                    >
-                      <Image
-                        source={{ uri: `${BASE_URL}/${post?.image}` }}
-                        style={{ height: "100%", width: "100%" }}
-                      />
-                    </View>
-                  ))}
-              </View>
-            )
+          (_, rowIndex) => (
+            <View style={styles.row} key={rowIndex}>
+              {posts
+                .slice(rowIndex * numColumns, (rowIndex + 1) * numColumns)
+                .map((post) => (
+                  <View
+                    style={{
+                      width: 180,
+                      height: 180,
+                      borderRadius: 20,
+                      backgroundColor: "lightgray",
+                      margin: 10,
+                      overflow: "hidden",
+                    }}
+                  >
+                    <Image
+                      source={{ uri: `${BASE_URL}/${post?.image}` }}
+                      style={{ height: "100%", width: "100%" }}
+                    />
+                  </View>
+                ))}
+            </View>
           )
+        )
         : null}
     </ScrollView>
   );

@@ -81,7 +81,7 @@ const Profile = ({ navigation }) => {
                 style={{
                   width: 100,
                   height: 40,
-                  backgroundColor: "gray",
+                  backgroundColor: "lightgray",
                   borderRadius: 20,
                   justifyContent: "center",
                   alignItems: "center",
@@ -121,7 +121,7 @@ const Profile = ({ navigation }) => {
                 style={{
                   width: 100,
                   height: 40,
-                  backgroundColor: "gray",
+                  backgroundColor: "lightgray",
                   borderRadius: 20,
                   justifyContent: "center",
                   alignItems: "center",

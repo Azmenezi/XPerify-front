@@ -4,6 +4,7 @@ import { getAllPlaces } from "../../apis/places";
 import { useQuery } from "@tanstack/react-query";
 import PlaceCard from "./PlaceCard";
 import MoodContext from "../../context/MoodContext";
+import SkeletonCard from "../SkeletonCard";
 
 const PlacesList = ({ searchTerm = "" }) => {
   const {
@@ -23,7 +24,13 @@ const PlacesList = ({ searchTerm = "" }) => {
     refetch();
   }, [refetch]);
 
-  if (isLoading) return <Text>Loading...</Text>;
+  if (isLoading) return <View>
+    {<SkeletonCard />}
+    {<SkeletonCard />}
+
+  </View>
+
+
   let displayedPlaces = places;
 
   if (selectedMood) {

@@ -22,6 +22,7 @@ import { getChatUser } from "../../apis/chat";
 import UserContext from "../../context/UserContext";
 import { useTheme } from "@react-navigation/native";
 
+
 export default function UserProfile({ route, navigation }) {
   const { userId } = route.params;
   const { user } = useContext(UserContext);
@@ -143,7 +144,7 @@ export default function UserProfile({ route, navigation }) {
                 style={{
                   width: 100,
                   height: 40,
-                  backgroundColor: "gray",
+                  backgroundColor: "lightgray",
                   borderRadius: 20,
                   justifyContent: "center",
                   alignItems: "center",
@@ -184,7 +185,7 @@ export default function UserProfile({ route, navigation }) {
                 style={{
                   width: 100,
                   height: 40,
-                  backgroundColor: "gray",
+                  backgroundColor: "lightgray",
                   borderRadius: 20,
                   justifyContent: "center",
                   alignItems: "center",
@@ -231,7 +232,7 @@ export default function UserProfile({ route, navigation }) {
               }}
               style={{
                 width: "86%",
-                backgroundColor: "gray",
+                backgroundColor: "lightgray",
                 position: "absolute",
                 bottom: 10,
                 padding: 2,
@@ -260,30 +261,33 @@ export default function UserProfile({ route, navigation }) {
       >
         {profile?.posts
           ? Array.from({
-              length: Math.ceil(profile?.posts.length / numColumns),
-            }).map((_, rowIndex) => (
-              <View style={styles.row} key={rowIndex}>
-                {profile?.posts
-                  .slice(rowIndex * numColumns, (rowIndex + 1) * numColumns)
-                  .map((post) => (
-                    <View
-                      style={{
-                        width: 180,
-                        height: 180,
-                        borderRadius: 20,
-                        backgroundColor: "gray",
-                        margin: 10,
-                        overflow: "hidden",
-                      }}
-                    >
-                      <Image
-                        source={{ uri: `${BASE_URL}/${post?.image}` }}
-                        style={{ height: "100%", width: "100%" }}
-                      />
-                    </View>
-                  ))}
-              </View>
-            ))
+            length: Math.ceil(profile?.posts.length / numColumns),
+          }).map((_, rowIndex) => (
+            <View style={styles.row} key={rowIndex}>
+              {profile?.posts
+                .slice(rowIndex * numColumns, (rowIndex + 1) * numColumns)
+                .map((post) => (
+                  <View
+                    style={{
+                      width: 180,
+                      height: 180,
+                      borderRadius: 20,
+                      backgroundColor: "lightgray",
+                      margin: 10,
+                      overflow: "hidden",
+                    }}
+
+                  >
+
+                    <Image
+                      source={{ uri: `${BASE_URL}/${post?.image}` }}
+                      style={{ height: "100%", width: "100%" }}
+                    />
+
+                  </View>
+                ))}
+            </View>
+          ))
           : null}
       </ScrollView>
     </View>
