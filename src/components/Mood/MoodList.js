@@ -21,6 +21,9 @@ const MoodList = ({ onMoodSelected }) => {
       <FlatList
         data={moods}
         horizontal={true}
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.listContainer}
+        ItemSeparatorComponent={() => <View style={{ width: 8 }} />}
         renderItem={({ item }) => (
           <MoodCard
             mood={item}
@@ -38,6 +41,9 @@ const MoodList = ({ onMoodSelected }) => {
 const styles = StyleSheet.create({
   container: {
     padding: 10,
+  },
+  listContainer: {
+    paddingHorizontal: 10, // Adds padding to the start and end of the list
   },
   icon: {
     fontSize: 24,

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { SafeAreaView, StyleSheet, TextInput, View } from "react-native";
+import { SafeAreaView, StyleSheet, Text, TextInput, View } from "react-native";
 import PlacesList from "../../components/Places/PlacesList";
 import MoodList from "../../components/Mood/MoodList";
 import { FontAwesome5 } from "@expo/vector-icons";
@@ -14,11 +14,15 @@ const Home = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <View style={styles.titleContainer}>
+        <Text style={styles.title}>MoodMatch</Text>
+        <Text style={styles.subTitle}>Find places that fit your mood</Text>
+      </View>
       <View style={styles.searchBarContainer}>
         <FontAwesome5
           name="search-location"
           size={24}
-          color="black"
+          color="182039"
           style={styles.searchIcon}
         />
         <TextInput
@@ -28,7 +32,10 @@ const Home = () => {
           placeholder="Search for a place..."
         />
       </View>
-      <View style={{ backgroundColor: "#fef0ea" }}>
+      {/* <Text style={styles.subTitle}>
+        Match your vibe: Filter places by mood!
+      </Text> */}
+      <View style={{ backgroundColor: "" }}>
         <MoodList onMoodSelected={handleMoodSelected} />
       </View>
       <PlacesList searchTerm={searchTerm} />
@@ -46,33 +53,44 @@ const styles = StyleSheet.create({
   searchInput: {
     flex: 1,
     height: 40,
-    borderColor: "#182039",
-    borderWidth: 1,
-    borderRadius: 4,
-    paddingLeft: 8,
-    backgroundColor: "#f3f4f6",
+    paddingLeft: 34,
+    backgroundColor: "#fff",
+    borderWidth: 0.5,
+    borderRadius: 7,
+    borderColor: "gray",
+    height: 50,
   },
 
   searchBarContainer: {
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "#f3f4f6",
     borderRadius: 4,
     paddingLeft: 8,
     paddingRight: 8,
     margin: 10,
-    height: 40,
+    width: "90%",
+    alignSelf: "center",
   },
 
   searchIcon: {
-    marginRight: 8, // Adds spacing between the icon and the TextInput
+    position: "absolute", // Position it absolutely
+    left: 16, // Give it a little left margin
+    zIndex: 1, // Ensure it's on top
   },
 
-  moodButton: {
-    backgroundColor: "rgba(0, 128, 128, 0.6)",
-    padding: 12,
-    borderRadius: 8,
-    width: "94%",
-    marginLeft: 16,
+  titleContainer: {
+    justifyContent: "center",
+    marginVertical: 10,
+    margin: 30,
+  },
+  title: {
+    fontSize: 28,
+    color: "#252c79",
+    fontWeight: "bold",
+  },
+  subTitle: {
+    fontSize: 16,
+    color: "gray",
+    marginTop: 5,
   },
 });

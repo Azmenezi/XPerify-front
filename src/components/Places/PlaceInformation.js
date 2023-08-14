@@ -106,7 +106,7 @@ export default function PlaceInformation({ _id, isPlace }) {
                 marginTop: 5,
               }}
             >
-              <FontAwesome name="star" size={24} color="yellow" />
+              <FontAwesome name="star" size={24} color="#252c79" />
               <Text style={{ marginLeft: 5, color: theme.colors.primary }}>
                 {place?.ratings}
               </Text>
