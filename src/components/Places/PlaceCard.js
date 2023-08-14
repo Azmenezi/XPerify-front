@@ -3,12 +3,9 @@ import { BASE_URL } from "../../apis";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import ROUTES from "../../navigation";
 
-
 import LocationInfo from "../Location/LocationInfo";
 import { FontAwesome } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
-
-
 
 const PlaceCard = ({ place }) => {
   const routName = useRoute();
@@ -21,16 +18,16 @@ const PlaceCard = ({ place }) => {
       onPress={() => {
         routName.name === ROUTES.HEDERROUTES.PLACE_STACK.HOME
           ? navigation.push(
-            ROUTES.HEDERROUTES.PLACE_STACK.PLACEDETAILS,
-            {
-              _id: place._id,
-              posts: place.posts,
-            },
-            (key = { _id: place._id })
-          )
+              ROUTES.HEDERROUTES.PLACE_STACK.PLACEDETAILS,
+              {
+                _id: place._id,
+                posts: place.posts,
+              },
+              (key = { _id: place._id })
+            )
           : navigation.navigate(ROUTES.HEDERROUTES.CHECKIN_STACK.POST, {
-            _id: place._id,
-          });
+              _id: place._id,
+            });
       }}
     >
       <View style={styles.card}>
@@ -56,18 +53,6 @@ const PlaceCard = ({ place }) => {
               <Text style={styles.ratingText}>{` ${place.ratings}`}</Text>
             </View>
           </View>
-
-//           <Text
-//             style={{
-//               fontWeight: "bold",
-//               fontSize: 28,
-//               color: theme.colors.invertedText,
-//             }}
-//           >
-//             {place.name}
-//           </Text>
-//           {/* Additional information here */}
-
         </View>
       </View>
     </TouchableOpacity>
@@ -149,6 +134,4 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: "#fff",
   },
-
-
 });
