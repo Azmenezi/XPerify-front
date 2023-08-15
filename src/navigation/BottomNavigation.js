@@ -1,10 +1,7 @@
 import React, { useRef, useContext } from "react";
 import { Animated, Image, View, TouchableOpacity } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { FontAwesome5, Ionicons } from "@expo/vector-icons";
-
-import CheckIn from "../screens/CheckIn/CheckIn";
-import MeetUp from "../screens/MeetUp/MeetUp";
+import { Ionicons } from "@expo/vector-icons";
 import Notification from "../screens/Notification/Notification";
 import ROUTES from ".";
 import ProfileStackNavigstion from "./ProfileStackNavigstion";
@@ -48,7 +45,7 @@ function BottomNavigation() {
         tabBarShowLabel: false,
         tabBarStyle: {
           height: 60,
-          backgroundColor: "#dadde1",
+          backgroundColor: "#f3f4f6",
           borderTopColor: "#252c79",
           borderTopWidth: 0.2,
         },
@@ -96,6 +93,7 @@ function BottomNavigation() {
         name={ROUTES.HEDERROUTES.PLACE_STACK.STACK}
         component={PlaceStackNavigation}
         options={{
+          headerShown: false,
           title: ROUTES.HEDERROUTES.PLACE_STACK.HOME,
           tabBarIcon: ({ size, color, focused }) => (
             <Ionicons name="md-home" size={focused ? 40 : 30} color={color} />

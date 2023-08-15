@@ -1,4 +1,3 @@
-// AmenitiesCard.js
 import React, { useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, Animated } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
@@ -19,7 +18,6 @@ const AmenitiesCard = ({ icon, name }) => {
   }, [fadeInAnim]);
 
   const styles = useStyles(colors);
-  const IconComponent = ICON_SETS[iconSet];
 
   const toggleOpen = () => {
     setIsOpen(!isOpen);

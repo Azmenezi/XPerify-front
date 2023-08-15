@@ -51,7 +51,6 @@ export default function PlaceInformation({ _id, isPlace }) {
             <View>
               <Text style={[styles.description, { color: theme.colors.text }]}>
                 {place?.description}
-                hello absolute absolutely accept
               </Text>
             </View>
             <View style={{}}>
@@ -92,7 +91,7 @@ const styles = StyleSheet.create({
   title: {
     marginHorizontal: 10,
     fontWeight: "bold",
-    fontSize: 26,
+    fontSize: 43,
   },
   description: {
     fontSize: 20,

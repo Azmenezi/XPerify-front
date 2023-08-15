@@ -20,7 +20,7 @@ export default function MessageBubble({ msg }) {
       }}
     >
       <View style={{ padding: 12 }}>
-        <Text style={{ color: theme.colors.text }} key={msg._id}>
+        <Text style={{ color: theme.colors.whiteText }} key={msg._id}>
           {msg.text}
         </Text>
         <Text style={{ color: "#ffffff60", marginTop: 5 }}>

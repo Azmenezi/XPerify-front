@@ -1,18 +1,16 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, Platform } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { useTheme } from "@react-navigation/native";
 
-const MoodCardSelecter = ({ icon, name, _id, data, setData }) => {
+const MoodCardSelector = ({ icon, name, _id, data, setData }) => {
   const [isPressed, setIsPressed] = useState(false);
   const { colors } = useTheme();
 
   const styles = useStyles(colors);
+
   const toggleAmenity = () => {
-    let moods = [];
-    if (data.moods) {
-      moods = [...data.moods];
-    }
+    let moods = data.moods ? [...data.moods] : [];
 
     if (isPressed) {
       const index = moods.indexOf(_id);
@@ -33,14 +31,27 @@ const MoodCardSelecter = ({ icon, name, _id, data, setData }) => {
       style={[
         styles.amenityContainer,
         {
-          backgroundColor: isPressed ? "#f8bc9f" : "#182039", // orange when pressed, darkBlue when not
+          backgroundColor: isPressed ? "#5f67ec" : "#182039",
+          opacity: isPressed ? 1 : 0.7,
+          ...Platform.select({
+            android: {
+              elevation: isPressed ? 10 : 0,
+            },
+            ios: {
+              shadowOpacity: isPressed ? 0.3 : 0,
+              shadowRadius: 4,
+              shadowOffset: { height: 4, width: 4 },
+            },
+          }),
         },
       ]}
+      activeOpacity={0.8}
+      accessibilityRole="button"
+      accessibilityLabel={`Toggle ${name}`}
+      accessibilityHint={`Toggles the selection for ${name}`}
     >
       <Icon name={icon} size={20} color="#fff" style={styles.icon} />
-      {/* White icon color for contrast */}
       <Text style={[styles.text, { color: "#fff" }]}>{name}</Text>
-      {/* White text color for contrast */}
     </TouchableOpacity>
   );
 };
@@ -59,8 +70,8 @@ const useStyles = (colors) =>
       marginRight: 10,
     },
     text: {
-      fontWeight: "bold", // Bold font weight
+      fontWeight: "bold",
     },
   });
 
-export default MoodCardSelecter;
+export default MoodCardSelector;

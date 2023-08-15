@@ -140,7 +140,7 @@ const Post = ({ navigation, route }) => {
                   fontSize: 18,
                 }}
               >
-                Checkin
+                Check In
               </Text>
             </TouchableOpacity>
 
@@ -192,10 +192,10 @@ const Post = ({ navigation, route }) => {
                           justifyContent: "center",
                           alignItems: "center",
                           width: 200,
-                          backgroundColor: "#202124",
+                          backgroundColor: "#252c79",
                           borderRadius: 5,
                           alignSelf: "center",
-                          height: 35,
+                          height: 36,
                           width: 120,
                           marginTop: 20,
                         }}
