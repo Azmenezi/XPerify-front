@@ -34,20 +34,24 @@ export default function PlaceInformation({ _id, isPlace }) {
     <Animated.View style={{ height: heightAnim }}>
       {isPlace && (
         <View>
-          <View style={{ borderBottomLeftRadius: 140, overflow: "hidden" }}>
+          <View
+            style={{
+              borderBottomLeftRadius: 140,
+              overflow: "hidden",
+            }}
+          >
             <ImageBackground
               source={image}
               resizeMode="cover"
               style={styles.image}
             >
-              <View style={styles.overlay}>
-                <Text style={[styles.title, { color: `lightgray` }]}>
-                  {place?.name}
-                </Text>
-              </View>
+              <View style={styles.overlay}></View>
             </ImageBackground>
           </View>
           <View style={styles.infoContainer}>
+            <Text style={[styles.title, { color: theme.colors.darkBlue }]}>
+              {place?.name}
+            </Text>
             <View>
               <Text style={[styles.description, { color: theme.colors.text }]}>
                 {place?.description}
@@ -86,10 +90,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   infoContainer: {
-    padding: 20,
+    paddingHorizontal: 20,
   },
   title: {
-    marginHorizontal: 10,
+    marginBottom: 10,
     fontWeight: "bold",
     fontSize: 43,
   },
@@ -112,6 +116,28 @@ const styles = StyleSheet.create({
     marginLeft: 5,
   },
 });
+
+{
+  /* <View
+style={{ flexDirection: "row", gap: 7, marginHorizontal: 10 }}
+> */
+}
+{
+  /* <AntDesign name="star" size={24} color="#e69640" /> */
+}
+{
+  /* <Text style={{ fontSize: 20, color: theme.colors.text }}>
+  4.5
+</Text> */
+}
+
+{
+  /* </View> */
+}
+
+{
+  /* <Text style={[styles.description, { color: theme.colors.text }]}></Text> */
+}
 
 {
   /* <View

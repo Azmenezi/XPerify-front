@@ -1,22 +1,14 @@
 import React, { useContext } from "react";
-import {
-  Text,
-  StyleSheet,
-  View,
-  TouchableOpacity,
-  Linking,
-} from "react-native";
+import { Text, StyleSheet, View, Linking } from "react-native";
 import { useQuery, QueryClient, QueryClientProvider } from "react-query";
 import { getLocationAddress } from "../../apis/location";
 import UserContext from "../../context/UserContext";
 import { CalculateDistance } from "./CalculateDistance";
 
-import { Ionicons } from "@expo/vector-icons";
-
 import { useTheme } from "@react-navigation/native";
 // import { useUserLocation } from "./UserLocation";
 
-const LocationInfo = ({ placeLon, placeLat }) => {
+const DistanceCard = ({ placeLon, placeLat }) => {
   const queryClient = new QueryClient();
   // const userLocation = useUserLocation();
   const { user } = useContext(UserContext);
@@ -68,32 +60,17 @@ const LocationInfoContent = ({ placeLon, placeLat, userLocation }) => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity
-        onPress={() => openMap(placeLat, placeLon)}
-        style={styles.touchableContainer}
-      >
-        <Ionicons name="location-sharp" size={24} color="#252c79" />
-        <Text style={styles.city}>
-          {locationDetails
-            ? `${locationDetails?.city ? locationDetails?.city : ""}${
-                locationDetails?.city && locationDetails?.locality ? ", " : ""
-              }${locationDetails?.locality ? locationDetails?.locality : ""}`
-            : "No location provided"}
+      <View style={styles.distanceContainer}>
+        <Text style={styles.textStyle}>
+          {distance ? `${distance} km` : "Calculating..."}
         </Text>
-
-        {/* <View style={styles.distanceContainer}>
-          <Text style={styles.textStyle}>
-            {distance ? `${distance} km` : "Calculating..."}
-          </Text>
-        </View> */}
-      </TouchableOpacity>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    //flex: 1,
     flexDirection: "row",
     alignItems: "flex-start",
   },
@@ -105,35 +82,17 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     marginTop: 5,
+    marginRight: 5,
+    backgroundColor: "white",
+    padding: 5,
+    borderRadius: 5,
   },
   textStyle: {
     color: "black",
     marginLeft: 5,
     fontSize: 18,
-    // fontWeight: "bold",
-  },
-  city: {
-    marginLeft: 5,
-    color: "black",
-    fontSize: 16,
+    fontWeight: "bold",
   },
 });
 
-export default LocationInfo;
-
-{
-  /* if (!locationDetails) {
-    return <Text style={styles.textStyle}>Loading...</Text>;
-  }
-  const theme = useTheme(); // Get the currently active theme
-  return (
-    <View style={styles.container}>
-      <TouchableOpacity onPress={() => openMap(placeLat, placeLon)}>
-        <Text style={{ color: theme.colors.text }}>{`Distance: ${
-          distance ? `${distance} km` : "Calculating..."
-        }`}</Text>
-
-      </TouchableOpacity>
-    </View>
-  );} */
-}
+export default DistanceCard;

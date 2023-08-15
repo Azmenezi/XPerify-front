@@ -30,8 +30,15 @@ const Home = () => {
     queryKey: ["places"],
     queryFn: getAllPlaces,
   });
+
   return (
     <SafeAreaView style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.headerText}>Explore Places</Text>
+        <Text style={styles.subHeaderText}>
+          Discover amazing spots around you
+        </Text>
+      </View>
       <ScrollView
         refreshControl={
           <RefreshControl refreshing={isFetching} onRefresh={refetch} />
@@ -97,9 +104,8 @@ const styles = StyleSheet.create({
     width: "90%",
     height: 60,
     alignSelf: "center",
-    backgroundColor: "#dadde1",
+    backgroundColor: "#fbfbfb",
     borderRadius: 7,
-    borderColor: "gray",
     borderWidth: 0.2,
   },
 
@@ -122,6 +128,23 @@ const styles = StyleSheet.create({
   subTitle: {
     fontSize: 22,
     color: "gray",
+    marginTop: 5,
+  },
+
+  header: {
+    padding: 15,
+    backgroundColor: "#f5f5f5",
+    borderBottomWidth: 1,
+    borderColor: "#e0e0e0",
+    alignItems: "center",
+  },
+  headerText: {
+    fontSize: 24,
+    fontWeight: "bold",
+  },
+  subHeaderText: {
+    fontSize: 14,
+    color: "#888",
     marginTop: 5,
   },
 });

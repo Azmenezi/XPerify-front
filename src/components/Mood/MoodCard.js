@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     // paddingHorizontal: 20,
     margin: 5,
-    borderRadius: 10,
+    borderRadius: 13,
     alignItems: "center",
     justifyContent: "center",
     borderColor: "transparent",
