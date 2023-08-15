@@ -12,7 +12,7 @@ const PostCard = ({ post, navigation, checkedUser }) => {
         width: 180,
         height: 180,
         borderRadius: 20,
-        backgroundColor: "gray",
+        backgroundColor: "lightgray",
         margin: 10,
         overflow: "hidden",
       }}
@@ -26,9 +26,9 @@ const PostCard = ({ post, navigation, checkedUser }) => {
           post?.user?._id === checkedUser._id
             ? navigation.navigate(ROUTES.HEDERROUTES.PROFILE_STACK.STACK)
             : navigation.navigate(ROUTES.HEDERROUTES.PLACE_STACK.PROFILE, {
-                userId: post.user._id,
-                checkedUser,
-              });
+              userId: post.user._id,
+              checkedUser,
+            });
         }}
         style={{
           height: 40,
