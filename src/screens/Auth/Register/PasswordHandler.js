@@ -78,7 +78,7 @@ const RegisterPassword = ({ route, navigation }) => {
           </View>
           <TextInput
             style={{
-              backgroundColor: theme.colors.inputBackground,
+              backgroundColor: theme.colors.whiteText,
               color: theme.colors.text,
               width: "80%",
               height: 48,
@@ -94,7 +94,7 @@ const RegisterPassword = ({ route, navigation }) => {
             onBlur={handleBlur("password")}
             onChangeText={handleChange("password")}
             value={values.password}
-            placeholderTextColor={theme.colors.inputPlaceholder}
+            placeholderTextColor={theme.colors.primary}
           />
 
           <Pressable style={styles.pressable} onPress={toggleShowPassword}>

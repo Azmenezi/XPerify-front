@@ -120,14 +120,14 @@ const Login = ({ navigation }) => {
                   borderWidth: 1,
                   borderColor: "gray",
                   borderRadius: 15,
-                  backgroundColor: theme.colors.inputBackground,
+                  backgroundColor: theme.colors.whiteText,
                   color: theme.colors.text,
                 }}
                 placeholder="Username"
                 onBlur={handleBlur("username")}
                 onChangeText={handleChangeAndResetError("username")}
                 value={values.username}
-                placeholderTextColor={theme.colors.inputPlaceholder}
+                placeholderTextColor={theme.colors.primary}
               />
               {errors.username && touched.username && (
                 <Text style={{ color: "red" }}>{errors.username}</Text>
@@ -144,7 +144,7 @@ const Login = ({ navigation }) => {
                     borderWidth: 1,
                     borderColor: "gray",
                     borderRadius: 15,
-                    backgroundColor: theme.colors.inputBackground,
+                    backgroundColor: theme.colors.whiteText,
                     color: theme.colors.text,
                   }}
                   placeholder="Password"
@@ -152,7 +152,7 @@ const Login = ({ navigation }) => {
                   onChangeText={handleChangeAndResetError("password")}
                   value={values.password}
                   secureTextEntry={!showPassword}
-                  placeholderTextColor={theme.colors.inputPlaceholder}
+                  placeholderTextColor={theme.colors.primary}
                 />
                 <Pressable
                   style={{

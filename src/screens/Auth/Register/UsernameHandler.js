@@ -92,14 +92,14 @@ const RegisterUsername = ({ navigation }) => {
               borderWidth: 1,
               borderColor: "gray",
               borderRadius: 15,
-              backgroundColor: "#1c1c1c",
-              color: theme.colors.text,
+              backgroundColor: theme.colors.whiteText,
+              color: theme.colors.primary,
             }}
             placeholder="Username"
             onBlur={handleBlur("username")}
             onChangeText={handleChange("username")}
             value={values.username}
-            placeholderTextColor={theme.colors.inputPlaceholder}
+            placeholderTextColor={theme.colors.primary}
           />
           {errors.username && touched.username && (
             <Text style={{ color: "red" }}>{errors.username}</Text>
