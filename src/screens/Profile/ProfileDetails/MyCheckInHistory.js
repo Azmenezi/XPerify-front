@@ -35,7 +35,7 @@ const MyCheckInHistory = ({ history, refetch, isFetching }) => {
           >
             <Image
               source={{ uri: `${BASE_URL}/${item?.place?.image}` }}
-              style={{ height: "100%", width: "100%", backgroundColor: "gray" }}
+              style={{ height: "100%", width: "100%", backgroundColor: "lightgray" }}
             />
           </View>
           <View
@@ -45,10 +45,10 @@ const MyCheckInHistory = ({ history, refetch, isFetching }) => {
               marginLeft: 20,
             }}
           >
-            <Text style={{ color: "white", fontSize: 20, textAlign: "left" }}>
+            <Text style={{ color: "#252c79", fontSize: 20, textAlign: "left" }}>
               {item?.place?.name},
             </Text>
-            <Text style={{ color: "white", fontSize: 20, textAlign: "left" }}>
+            <Text style={{ color: "#252c79", fontSize: 20, textAlign: "left" }}>
               {item.createdAt.slice(0, 10)}
             </Text>
           </View>

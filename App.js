@@ -38,7 +38,7 @@ const DarkTheme = {
     card: "transparent",
     text: "#252c79", // changed to dark blue to provide contrast with the white background
     inputText: "#ff9056", // using the primary orange color for input text
-    inputBackground: "#1c1c1c",
+    inputBackground: "#dadde1",
     inputPlaceholder: "#f67262", // using the secondary orange for input placeholders
     whiteText: "#ffffff",
     popMenu: "#1c1c1c",

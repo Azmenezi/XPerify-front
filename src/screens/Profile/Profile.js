@@ -34,7 +34,8 @@ const Profile = ({ navigation }) => {
               width: 82,
               height: 82,
               borderRadius: 50,
-              backgroundColor: theme.colors.text,
+              // backgroundColor: theme.colors.text,
+              backgroundColor: "lightgray",
               justifyContent: "center",
               alignItems: "center",
             }}

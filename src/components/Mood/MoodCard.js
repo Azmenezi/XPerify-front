@@ -5,19 +5,19 @@ import { FontAwesome } from "@expo/vector-icons";
 const moodIcon = {
   Study: {
     icon: <FontAwesome name="book" size={30} color="#fff" />,
-    color: "#ff9056",
+    color: "#b6225d",
   },
   Meeting: {
     icon: <FontAwesome name="handshake-o" size={30} color="#fff" />,
-    color: "#f67262",
+    color: "#a7e0f6",
   },
   Socialize: {
     icon: <FontAwesome name="comments" size={30} color="#fff" />,
-    color: "#5f67ec",
+    color: "#f1a686",
   },
   Relax: {
     icon: <FontAwesome name="coffee" size={30} color="#fff" />,
-    color: "#4ccdff",
+    color: "#f8d7e6",
   },
 };
 
