@@ -51,7 +51,7 @@ const MoodCard = ({ mood, onPress, isActive }) => {
 const styles = StyleSheet.create({
   card: {
     paddingVertical: 10,
-    paddingHorizontal: 20,
+    // paddingHorizontal: 20,
     margin: 5,
     borderRadius: 10,
     alignItems: "center",
@@ -75,12 +75,12 @@ const styles = StyleSheet.create({
   iconContainer: {
     backgroundColor: "#E0E0E0", // Background color for the icon
     borderRadius: 10,
-    padding: 12,
+    // padding: 12,
     marginBottom: 10,
     alignItems: "center",
     justifyContent: "center",
-    width: 70,
-    height: 70,
+    width: 90,
+    height: 50,
   },
 });
 
