@@ -37,10 +37,10 @@ const Home = () => {
           <RefreshControl refreshing={isFetching} onRefresh={refetch} />
         }
       >
-        <View style={styles.titleContainer}>
+        {/* <View style={styles.titleContainer}>
           <Text style={styles.title}>MoodMap</Text>
           <Text style={styles.subTitle}>Find places that fit your mood</Text>
-        </View>
+        </View> */}
         <View style={styles.searchBarContainer}>
           <FontAwesome5
             name="search-location"
@@ -82,13 +82,9 @@ const styles = StyleSheet.create({
 
   searchInput: {
     flex: 1,
-    // height: 40,
     paddingLeft: 34,
-    backgroundColor: "#f7f7f7",
-    borderWidth: 0.5,
-    borderRadius: 10,
-    borderColor: "gray",
-    height: 50,
+    fontSize: 20,
+    margin: 5,
   },
 
   searchBarContainer: {
@@ -99,7 +95,12 @@ const styles = StyleSheet.create({
     paddingRight: 8,
     margin: 10,
     width: "90%",
+    height: 60,
     alignSelf: "center",
+    backgroundColor: "#dadde1",
+    borderRadius: 7,
+    borderColor: "gray",
+    borderWidth: 0.2,
   },
 
   searchIcon: {
@@ -114,12 +115,12 @@ const styles = StyleSheet.create({
     margin: 30,
   },
   title: {
-    fontSize: 28,
+    fontSize: 33,
     color: "#252c79",
     fontWeight: "bold",
   },
   subTitle: {
-    fontSize: 16,
+    fontSize: 22,
     color: "gray",
     marginTop: 5,
   },

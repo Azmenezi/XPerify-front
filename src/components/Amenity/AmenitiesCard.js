@@ -1,7 +1,7 @@
-// AmenitiesCard.js
 import React, { useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, Animated } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
+
 import { useTheme } from "@react-navigation/native";
 
 const AmenitiesCard = ({ icon, name }) => {

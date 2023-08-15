@@ -33,8 +33,8 @@ LogBox.ignoreAllLogs(); //Ignore all log notifications
 const DarkTheme = {
   dark: true,
   colors: {
-    primary: "#5BA199", // keeping your original primary color
-    background: "#f8f8f8", // setting background to white as requested
+    primary: "#5f67ec", // keeping your original primary color
+    background: "#f3f4f6", // setting background to white as requested
     card: "transparent",
     text: "#252c79", // changed to dark blue to provide contrast with the white background
     inputText: "#ff9056", // using the primary orange color for input text
@@ -44,6 +44,13 @@ const DarkTheme = {
     popMenu: "#1c1c1c",
     notification: "#4ccdff", // using the primary blue for notifications
     GradientColors: ["#5f67ec", "#4ccdff"], // using the secondary blue and primary blue for gradients
+    // yes i am mariam
+    primaryOrange: "#ff9056",
+    secondaryOrange: "#f67262",
+    primaryBlue: "#4ccdff",
+    secondaryBlue: "#5f67ec",
+    darkBlue: "#252c79",
+    text2: "#fff",
   },
 };
 

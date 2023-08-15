@@ -63,6 +63,9 @@ function PlaceStackNavigation() {
       <Stack.Screen
         name={ROUTES.HEDERROUTES.PLACE_STACK.HOME}
         component={Home}
+        options={{
+          headerShown: false,
+        }}
       />
       <Stack.Screen
         name={ROUTES.HEDERROUTES.PLACE_STACK.PLACEDETAILS}

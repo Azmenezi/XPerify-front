@@ -67,24 +67,24 @@ const LocationInfoContent = ({ placeLon, placeLat, userLocation }) => {
   }
 
   return (
-    <TouchableOpacity
-      onPress={() => openMap(placeLat, placeLon)}
-      style={styles.container}
-    >
-      <Ionicons name="location-sharp" size={24} color="#252c79" />
-      <View>
+    <View style={styles.container}>
+      <TouchableOpacity
+        onPress={() => openMap(placeLat, placeLon)}
+        style={styles.touchableContainer}
+      >
+        <Ionicons name="location-sharp" size={24} color="#252c79" />
         <Text style={styles.city}>
           {locationDetails
             ? `${locationDetails?.city}`
             : "No location provided"}
         </Text>
-      </View>
-      <View style={styles.distanceContainer}>
-        <Text style={styles.textStyle}>{`${
-          distance ? `${distance} km` : "Calculating..."
-        }`}</Text>
-      </View>
-    </TouchableOpacity>
+        <View style={styles.distanceContainer}>
+          <Text style={styles.textStyle}>
+            {distance ? `${distance} km` : "Calculating..."}
+          </Text>
+        </View>
+      </TouchableOpacity>
+    </View>
   );
 };
 
@@ -107,18 +107,24 @@ const LocationInfoContent = ({ placeLon, placeLat, userLocation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    //flex: 1,
     flexDirection: "row",
+    alignItems: "flex-start",
   },
-
+  touchableContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
   distanceContainer: {
     flexDirection: "row",
     alignItems: "center",
+    marginTop: 5,
   },
   textStyle: {
     color: "black",
     marginLeft: 5,
-    fontSize: 16,
+    fontSize: 18,
+    fontWeight: "bold",
   },
   city: {
     marginLeft: 5,
