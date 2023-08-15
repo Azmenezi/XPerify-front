@@ -36,7 +36,7 @@ export default function MyPost({ posts, refetch, isFetching, isLoading }) {
                       width: 180,
                       height: 180,
                       borderRadius: 20,
-                      backgroundColor: "gray",
+                      backgroundColor: "lightgray",
                       margin: 10,
                       overflow: "hidden",
                     }}

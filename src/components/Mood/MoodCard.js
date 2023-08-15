@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
   },
   activeText: {
     color: "#252c79",
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: "bold",
   },
   iconContainer: {
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     width: 90,
-    height: 50,
+    height: 38,
   },
 });
 
