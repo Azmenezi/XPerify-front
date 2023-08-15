@@ -40,8 +40,8 @@ function BottomNavigation() {
     <Tab.Navigator
       screenOptions={({ route }) => ({
         headerShown: false,
-        tabBarActiveTintColor: "#172c6f",
-        tabBarInactiveTintColor: "#b6225d",
+        tabBarActiveTintColor: "#b6225d",
+        tabBarInactiveTintColor: "gray",
         tabBarShowLabel: false,
         tabBarStyle: {
           height: 60,
@@ -96,7 +96,7 @@ function BottomNavigation() {
           headerShown: false,
           title: ROUTES.HEDERROUTES.PLACE_STACK.HOME,
           tabBarIcon: ({ size, color, focused }) => (
-            <Ionicons name="md-home" size={focused ? 40 : 30} color={color} />
+            <Ionicons name="md-home" size={focused ? 36 : 30} color={color} />
           ),
         }}
       />
@@ -106,7 +106,7 @@ function BottomNavigation() {
         options={{
           headerShown: false,
           tabBarIcon: ({ size, color, focused }) => (
-            <Ionicons name="location" size={focused ? 40 : 30} color={color} />
+            <Ionicons name="location" size={focused ? 36 : 30} color={color} />
           ),
         }}
       />
@@ -118,7 +118,7 @@ function BottomNavigation() {
           tabBarIcon: ({ size, color, focused }) => (
             <Ionicons
               name="notifications"
-              size={focused ? 40 : 30}
+              size={focused ? 36 : 30}
               color={color}
             />
           ),
@@ -140,10 +140,10 @@ function BottomNavigation() {
               <Image
                 source={{ uri: `${BASE_URL}/${user?.image}` }}
                 style={{
-                  height: focused ? 40 : 30,
-                  width: focused ? 40 : 30,
+                  height: focused ? 36 : 30,
+                  width: focused ? 36 : 30,
                   borderRadius: 50,
-                  backgroundColor: "lightgray"
+                  backgroundColor: "lightgray",
                 }}
               />
             </View>
