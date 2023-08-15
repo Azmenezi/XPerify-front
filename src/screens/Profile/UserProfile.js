@@ -96,7 +96,7 @@ export default function UserProfile({ route, navigation }) {
         >
           <View
             style={{
-              width: "30%",
+              width: "50%",
               justifyContent: "center",
               alignItems: "center",
               top: -10,
@@ -122,7 +122,7 @@ export default function UserProfile({ route, navigation }) {
           </View>
           <View
             style={{
-              width: "70%",
+              width: "40%",
               flexDirection: "row",
               justifyContent: "center",
             }}
@@ -150,7 +150,7 @@ export default function UserProfile({ route, navigation }) {
                   style={{
                     width: 100,
                     height: 40,
-                    backgroundColor: "lightgray",
+
                     borderRadius: 20,
                     justifyContent: "center",
                     alignItems: "center",
@@ -168,57 +168,16 @@ export default function UserProfile({ route, navigation }) {
                 </View>
               </View>
             </View>
-            <View
-              style={{
-                width: "50%",
-                height: "100%",
-                justifyContent: "center",
-                alignItems: "center",
-                top: -20,
-              }}
-            >
-              <View style={{ width: 100, height: 70 }}>
-                <Text
-                  style={{
-                    color: theme.colors.text,
-                    textAlign: "center",
-                    fontSize: 20,
-                  }}
-                >
-                  Mood
-                </Text>
-                <View
-                  style={{
-                    width: 100,
-                    height: 40,
-                    backgroundColor: "lightgray",
-                    borderRadius: 20,
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  <Text
-                    style={{
-                      color: theme.colors.text,
-                      textAlign: "center",
-                      fontSize: 20,
-                    }}
-                  >
-                    Happy
-                  </Text>
-                </View>
-              </View>
-            </View>
+
             {checkIfRequestedFriend ? (
               <View
                 style={{
-                  width: "86%",
-                  backgroundColor: "lightgray",
+                  width: "100%",
+                  backgroundColor: "white",
                   position: "absolute",
-                  bottom: 10,
+                  bottom: 20,
                   padding: 2,
                   borderRadius: 10,
-                  right: 17,
                 }}
               >
                 <Text
@@ -237,13 +196,12 @@ export default function UserProfile({ route, navigation }) {
                   checkIfFriend ? removeFriendFn() : addFriendFn();
                 }}
                 style={{
-                  width: "86%",
-                  backgroundColor: "lightgray",
+                  width: "100%",
+                  backgroundColor: "white",
                   position: "absolute",
-                  bottom: 10,
+                  bottom: 20,
                   padding: 2,
                   borderRadius: 10,
-                  right: 17,
                 }}
               >
                 <Text
