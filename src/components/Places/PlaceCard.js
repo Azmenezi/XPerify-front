@@ -7,6 +7,7 @@ import LocationInfo from "../Location/LocationInfo";
 import { FontAwesome } from "@expo/vector-icons";
 import { useTheme } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/FontAwesome";
+import DistanceCard from "../Location/DistanceCard";
 
 const PlaceCard = ({ place }) => {
   const routName = useRoute();
@@ -34,7 +35,7 @@ const PlaceCard = ({ place }) => {
         style={{
           flexDirection: "column",
           margin: 20,
-          borderRadius: 20,
+          borderRadius: 13,
           overflow: "hidden",
           width: "90%",
           backgroundColor: "#fff",
@@ -55,10 +56,23 @@ const PlaceCard = ({ place }) => {
               resizeMode: "contain",
               height: "100%",
               resizeMode: "cover",
-              // borderRadius: 20,
             }}
             resizeMode="cover"
           />
+
+          {/* Inserted DistanceCard component here */}
+          <View
+            style={{
+              position: "absolute",
+              top: 5,
+              right: 5,
+            }}
+          >
+            <DistanceCard
+              placeLon={place?.location?.coordinates[0]}
+              placeLat={place?.location?.coordinates[1]}
+            />
+          </View>
           <View
             style={{
               flexWrap: "wrap",
