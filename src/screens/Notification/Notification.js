@@ -4,7 +4,7 @@ import FriendRequest from "../../components/FriendRequest/FriendRequest";
 
 const Notification = () => {
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 0.9 }}>
       <FriendRequest />
     </View>
   );

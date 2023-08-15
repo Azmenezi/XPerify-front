@@ -42,7 +42,7 @@ export default function RecievedMsgBubble({ msg }) {
               uri: `${BASE_URL}/${msg.from.image}`,
             }}
           />
-          <Text style={{ color: theme.colors.text, top: 10 }}>
+          <Text style={{ color: theme.colors.whiteText, top: 10 }}>
             {msg.from.username}
           </Text>
         </Pressable>

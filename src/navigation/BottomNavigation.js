@@ -1,10 +1,7 @@
 import React, { useRef, useContext } from "react";
 import { Animated, Image, View, TouchableOpacity } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { FontAwesome5, Ionicons } from "@expo/vector-icons";
-
-import CheckIn from "../screens/CheckIn/CheckIn";
-import MeetUp from "../screens/MeetUp/MeetUp";
+import { Ionicons } from "@expo/vector-icons";
 import Notification from "../screens/Notification/Notification";
 import ROUTES from ".";
 import ProfileStackNavigstion from "./ProfileStackNavigstion";
@@ -43,13 +40,13 @@ function BottomNavigation() {
     <Tab.Navigator
       screenOptions={({ route }) => ({
         headerShown: false,
-        tabBarActiveTintColor: "#5BA199",
-        tabBarInactiveTintColor: "#E5E3E4",
+        tabBarActiveTintColor: "#252c79",
+        tabBarInactiveTintColor: "#5f67ec",
         tabBarShowLabel: false,
         tabBarStyle: {
           height: 60,
-          backgroundColor: "#182039",
-          borderTopColor: "#E5E3E420",
+          backgroundColor: "#f3f4f6",
+          borderTopColor: "#252c79",
           borderTopWidth: 0.2,
         },
 
@@ -96,29 +93,20 @@ function BottomNavigation() {
         name={ROUTES.HEDERROUTES.PLACE_STACK.STACK}
         component={PlaceStackNavigation}
         options={{
+          headerShown: false,
           title: ROUTES.HEDERROUTES.PLACE_STACK.HOME,
-          tabBarIcon: ({ size, color }) => (
-            <Ionicons name="md-home" size={24} color={color} />
+          tabBarIcon: ({ size, color, focused }) => (
+            <Ionicons name="md-home" size={focused ? 40 : 30} color={color} />
           ),
         }}
       />
-      {/* <Tab.Screen
-        name={ROUTES.HEDERROUTES.MEETUP}
-        component={MeetUp}
-        options={{
-          headerShown: true,
-          tabBarIcon: ({ size, color }) => (
-            <FontAwesome5 name="user-friends" size={24} color={color} />
-          ),
-        }}
-      /> */}
       <Tab.Screen
         name={ROUTES.HEDERROUTES.CHECKIN_STACK.STACK}
         component={CheckinStack}
         options={{
           headerShown: false,
-          tabBarIcon: ({ size, color }) => (
-            <Ionicons name="location" size={24} color={color} />
+          tabBarIcon: ({ size, color, focused }) => (
+            <Ionicons name="location" size={focused ? 40 : 30} color={color} />
           ),
         }}
       />
@@ -127,8 +115,12 @@ function BottomNavigation() {
         component={Notification}
         options={{
           headerShown: true,
-          tabBarIcon: ({ size, color }) => (
-            <Ionicons name="notifications" size={24} color={color} />
+          tabBarIcon: ({ size, color, focused }) => (
+            <Ionicons
+              name="notifications"
+              size={focused ? 40 : 30}
+              color={color}
+            />
           ),
         }}
       />
@@ -136,7 +128,7 @@ function BottomNavigation() {
         name={ROUTES.HEDERROUTES.PROFILE_STACK.STACK}
         component={ProfileStackNavigstion}
         options={{
-          tabBarIcon: ({ size, color }) => (
+          tabBarIcon: ({ size, color, focused }) => (
             <View
               style={{
                 borderRadius: 50,
@@ -147,7 +139,11 @@ function BottomNavigation() {
             >
               <Image
                 source={{ uri: `${BASE_URL}/${user?.image}` }}
-                style={{ height: 22, width: 22, borderRadius: 50 }}
+                style={{
+                  height: focused ? 40 : 30,
+                  width: focused ? 40 : 30,
+                  borderRadius: 50,
+                }}
               />
             </View>
           ),

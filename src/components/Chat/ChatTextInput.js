@@ -1,7 +1,15 @@
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import React, { useState } from "react";
 import { Button } from "react-native-paper";
 import { useTheme } from "@react-navigation/native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export default function ChatTextInput({ msgInfo, setMsgInfo, sendMsgFn }) {
   const [textAlign, setTextAlign] = useState((prev) => prev);
@@ -35,7 +43,7 @@ export default function ChatTextInput({ msgInfo, setMsgInfo, sendMsgFn }) {
           width: "78%",
           marginBottom: 20,
           marginTop: 10,
-          backgroundColor: "#1c1c1c",
+          backgroundColor: "#fff",
           bordercolor: theme.colors.invertedText,
           borderWidth: 1,
           borderRadius: 10,
@@ -44,27 +52,24 @@ export default function ChatTextInput({ msgInfo, setMsgInfo, sendMsgFn }) {
           justifyContent: "center",
           textAlign: textAlign, // Apply the text alignment
           marginHorizontal: 2,
-          color: theme.colors.text,
+          color: "black",
         }}
         onChangeText={handleChangeText}
       />
-      <Button
+      <TouchableOpacity
         style={{
-          marginBottom: 5,
-          backgroundColor: "#ffffff",
-          borderRadius: 10,
-          marginHorizontal: 2,
+          justifyContent: "center",
+          alignItems: "center",
         }}
         onPress={handleSendMessage}
       >
-        <Text
-          style={{
-            color: theme.colors.invertedText,
-          }}
-        >
-          Send
-        </Text>
-      </Button>
+        <MaterialCommunityIcons
+          name="send-circle-outline"
+          size={36}
+          color={theme.colors.primary}
+          style={{ margin: 10, top: -5 }}
+        />
+      </TouchableOpacity>
     </>
   );
 }

@@ -67,8 +67,8 @@ export default function PublicChatComponent({ navigation, _id }) {
       navigation.getParent()?.setOptions({
         tabBarStyle: {
           height: 60,
-          backgroundColor: "#182039",
-          borderTopColor: "#E5E3E420",
+          backgroundColor: "#f3f4f6",
+          borderTopColor: "#252c79",
           borderTopWidth: 0.2,
         },
       });
@@ -112,7 +112,8 @@ export default function PublicChatComponent({ navigation, _id }) {
           flexDirection: "row",
           justifyContent: "center",
           alignItems: "center",
-          backgroundColor: "#00000050",
+          backgroundColor: "#f3f4f6",
+          borderTopWidth: 0.2,
         }}
       >
         <ChatTextInput

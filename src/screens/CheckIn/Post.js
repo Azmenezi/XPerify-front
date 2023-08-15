@@ -67,16 +67,16 @@ const Post = ({ navigation, route }) => {
         <View>
           <Text
             style={{
-              fontSize: 16,
+              fontSize: 30,
               fontWeight: "bold",
-              marginBottom: 5,
-              marginTop: 12,
-              alignSelf: "flex-start",
+              marginBottom: 8,
+              marginTop: 15,
+              alignSelf: "center",
               marginLeft: 20,
               color: theme.colors.text,
             }}
           >
-            Choose an Image to share your Experiance
+            Share A Photo
           </Text>
           <View
             style={{
@@ -84,6 +84,8 @@ const Post = ({ navigation, route }) => {
               justifyContent: "center",
               alignContent: "center",
               padding: 20,
+              backgroundColor: "#E5E5E5", // Lighter gray for image picker background
+              borderRadius: 5,
             }}
           >
             <ImagePickerC
@@ -92,13 +94,21 @@ const Post = ({ navigation, route }) => {
               style={styles.image}
             >
               <View style={{}}>
-                <Text style={{ color: "grey" }}>Tap to select an image</Text>
+                <Text style={{ color: "darkgray" }}>
+                  Tap here to select a photo.
+                </Text>
               </View>
             </ImagePickerC>
           </View>
           <View style={{ marginTop: 50, marginLeft: 30 }}>
-            <Text style={{ color: theme.colors.text }}>
-              What was the vibe of the place?
+            <Text
+              style={{
+                color: theme.colors.text,
+                fontSize: 22,
+                fontWeight: "bold",
+              }}
+            >
+              How would you describe the vibe?
             </Text>
             <View
               style={{
@@ -126,11 +136,11 @@ const Post = ({ navigation, route }) => {
             >
               <Text
                 style={{
-                  color: theme.colors.text,
+                  color: theme.colors.text2,
                   fontSize: 18,
                 }}
               >
-                Checkin
+                Check In
               </Text>
             </TouchableOpacity>
 
@@ -149,29 +159,20 @@ const Post = ({ navigation, route }) => {
                         style={{
                           justifyContent: "center",
                           alignItems: "center",
+                          marginBottom: 20,
                         }}
                       >
-                        <Pressable
-                          style={{
-                            justifyContent: "center",
-                            alignItems: "center",
-                            width: 200,
-                          }}
-                          onPress={submitModal}
-                        >
-                          <Text style={{ color: "white", fontSize: 20 }}>
-                            Does The Place Have?
-                          </Text>
-                          <Text style={{ color: "gray", fontSize: 20 }}>
-                            Done
-                          </Text>
-                        </Pressable>
+                        <Text style={{ color: "black", fontSize: 20 }}>
+                          Available Amenities
+                        </Text>
                       </View>
+
                       <View
                         style={{
                           flexDirection: "row",
                           marginTop: 20,
                           flexWrap: "wrap",
+                          marginBottom: 20,
                         }}
                       >
                         {amenities?.map((amenity, index) => (
@@ -185,6 +186,25 @@ const Post = ({ navigation, route }) => {
                           />
                         ))}
                       </View>
+
+                      <Pressable
+                        style={{
+                          justifyContent: "center",
+                          alignItems: "center",
+                          width: 200,
+                          backgroundColor: "#252c79",
+                          borderRadius: 5,
+                          alignSelf: "center",
+                          height: 36,
+                          width: 120,
+                          marginTop: 20,
+                        }}
+                        onPress={submitModal}
+                      >
+                        <Text style={{ color: "white", fontSize: 20 }}>
+                          Done
+                        </Text>
+                      </Pressable>
                     </View>
                   </TouchableWithoutFeedback>
                 </View>
@@ -203,11 +223,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: "#F5F5F5",
+    backgroundColor: "#252c79", // darkBlue as the primary background color
     alignItems: "center",
   },
   buttonContainer: {
-    backgroundColor: "lightgreen",
+    backgroundColor: "#252c79", // secondaryBlue for primary actions
     padding: 10,
     alignSelf: "center",
     borderRadius: 5,
@@ -215,27 +235,24 @@ const styles = StyleSheet.create({
     width: 200,
     marginTop: 20,
   },
-
   modalContainer: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "rgba(0, 0, 0, 0.7)", // Backdrop color
+    backgroundColor: "rgba(0, 0, 0, 0.7)", // Consider revisiting this color to align with the new theme.
   },
   centeredView: {
     flex: 1,
     justifyContent: "flex-end",
     alignItems: "center",
   },
-
   modalView: {
     width: "100%",
     height: "65%",
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
     padding: 20,
-    shadowColor: "#000",
-    backgroundColor: "rgba(0, 0, 0, 0.7)", // Matches the first modal
+    backgroundColor: "#fff",
     shadowOffset: {
       width: 0,
       height: 2,
