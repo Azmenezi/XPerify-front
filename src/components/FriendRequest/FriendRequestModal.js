@@ -72,7 +72,7 @@ export default function FriendRequestModal({
             style={{
               fontWeight: "bold",
               fontSize: 18,
-              color: theme.colors.whiteText,
+              color: theme.colors.text,
             }}
           >
             {friendRequest.from.username}
@@ -80,7 +80,7 @@ export default function FriendRequestModal({
           <Text
             style={{
               fontSize: 15,
-              color: theme.colors.whiteText,
+              color: theme.colors.text,
             }}
           >
             sent a friend request
@@ -91,7 +91,7 @@ export default function FriendRequestModal({
             style={{
               marginRight: 10,
               width: 80,
-              backgroundColor: "#5BA199",
+              backgroundColor: "ghostwhite",
               borderRadius: 10,
             }}
           >
@@ -105,7 +105,7 @@ export default function FriendRequestModal({
             style={{
               marginRight: 40,
               width: 50,
-              backgroundColor: "gray",
+              backgroundColor: "ghostwhite",
               borderRadius: 10,
             }}
           >
@@ -123,18 +123,21 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 3,
     width: "100%",
-    backgroundColor: "#141519",
+    backgroundColor: "#fff",
     marginBottom: 1,
   },
   modalView: {
     flexDirection: "row",
     alignItems: "center",
     width: "100%",
-    backgroundColor: "#5BA19920",
-
+    backgroundColor: "#fff",
+    borderWidth: 0.8,
+    borderColor: "gray",
+    marginVertical: 60,
+    borderRadius: 25,
     padding: 10,
     marginBottom: 0,
-    shadowColor: "#000",
+    shadowColor: "gray",
     shadowOffset: {
       width: 0,
       height: 2,

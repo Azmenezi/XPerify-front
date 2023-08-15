@@ -58,7 +58,7 @@ const Home = () => {
         {/* <Text style={styles.subTitle}>
         Match your vibe: Filter places by mood!
       </Text> */}
-        <View style={{ backgroundColor: "" }}>
+        <View style={{ backgroundColor: "white" }}>
           <MoodList onMoodSelected={handleMoodSelected} />
         </View>
         <PlacesList

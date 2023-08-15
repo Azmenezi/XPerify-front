@@ -6,7 +6,7 @@ import {
   RefreshControl,
   Text,
 } from "react-native";
-import FriendRequestModal from "./FriendRequestModal/";
+import FriendRequestModal from "./FriendRequestModal";
 
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
@@ -15,6 +15,7 @@ import {
   getMyProfile,
 } from "../../apis/auth";
 import { useTheme } from "@react-navigation/native";
+
 
 export default function FriendRequest() {
   const queryClient = useQueryClient();
