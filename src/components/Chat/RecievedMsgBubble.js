@@ -42,9 +42,7 @@ export default function RecievedMsgBubble({ msg }) {
               uri: `${BASE_URL}/${msg.from.image}`,
             }}
           />
-          <Text style={{ color: theme.colors.whiteText, top: 10 }}>
-            {msg.from.username}
-          </Text>
+          <Text style={{ color: "#3F4043", top: 10 }}>{msg.from.username}</Text>
         </Pressable>
       </View>
       <View
@@ -62,7 +60,7 @@ export default function RecievedMsgBubble({ msg }) {
         }}
       >
         <View style={{ padding: 12 }}>
-          <Text style={{ color: theme.colors.text }} key={msg._id}>
+          <Text style={{ color: theme.colors.whiteText }} key={msg._id}>
             {msg.text}
           </Text>
           <Text style={{ color: "#ffffff60", marginTop: 5 }}>
