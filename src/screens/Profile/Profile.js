@@ -22,7 +22,7 @@ const Profile = ({ navigation }) => {
       <View style={{ height: 140, flexDirection: "row" }}>
         <View
           style={{
-            width: "30%",
+            width: "50%",
             justifyContent: "center",
             alignItems: "center",
             top: -10,
@@ -49,13 +49,13 @@ const Profile = ({ navigation }) => {
         </View>
         <View
           style={{
-            width: "70%",
+            width: "40%",
             flexDirection: "row",
           }}
         >
           <View
             style={{
-              width: "50%",
+              width: "100%",
               height: "100%",
               justifyContent: "center",
               alignItems: "center",
@@ -96,46 +96,6 @@ const Profile = ({ navigation }) => {
                   {profile?.friends.length}
                 </Text>
               </Pressable>
-            </View>
-          </View>
-          <View
-            style={{
-              width: "50%",
-              height: "100%",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <View style={{ width: 100, height: 70 }}>
-              <Text
-                style={{
-                  color: theme.colors.text,
-                  textAlign: "center",
-                  fontSize: 20,
-                }}
-              >
-                Mood
-              </Text>
-              <View
-                style={{
-                  width: 100,
-                  height: 40,
-                  backgroundColor: "ghostwhite",
-                  borderRadius: 20,
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <Text
-                  style={{
-                    color: theme.colors.text,
-                    textAlign: "center",
-                    fontSize: 20,
-                  }}
-                >
-                  {selectedMood ? selectedMood : "None"}
-                </Text>
-              </View>
             </View>
           </View>
         </View>
