@@ -70,7 +70,7 @@ const Profile = ({ navigation }) => {
                   fontSize: 20,
                 }}
               >
-                Freinds
+                Friends
               </Text>
               <Pressable
                 onPress={() => {

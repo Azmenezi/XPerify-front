@@ -99,7 +99,7 @@ export default function FriendRequest() {
               position: "absolute",
             }}
           >
-            You no notifications
+            You have no notifications
           </Text>
         </View>
       )}

@@ -71,6 +71,7 @@ const styles = StyleSheet.create({
     color: "#252c79",
     fontSize: 18,
     fontWeight: "bold",
+    textDecorationLine: "underline",
   },
   iconContainer: {
     backgroundColor: "#E0E0E0", // Background color for the icon
