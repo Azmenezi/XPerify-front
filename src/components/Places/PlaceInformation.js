@@ -12,7 +12,6 @@ import { useQuery } from "@tanstack/react-query";
 import { BASE_URL } from "../../apis";
 import { useTheme } from "@react-navigation/native";
 import LocationInfo from "../Location/LocationInfo";
-import { FontAwesome } from "@expo/vector-icons";
 import AmenitiesList from "../Amenity/AmenitiesList";
 
 export default function PlaceInformation({ _id, isPlace }) {
@@ -51,7 +50,7 @@ export default function PlaceInformation({ _id, isPlace }) {
           <View style={styles.infoContainer}>
             <View>
               <Text style={[styles.description, { color: theme.colors.text }]}>
-                {/* {place?.description} */}
+                {place?.description}
                 hello absolute absolutely accept
               </Text>
             </View>

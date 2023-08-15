@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, Animated } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
+
 import { useTheme } from "@react-navigation/native";
 
 const AmenitiesCard = ({ icon, name }) => {
@@ -18,6 +19,7 @@ const AmenitiesCard = ({ icon, name }) => {
   }, [fadeInAnim]);
 
   const styles = useStyles(colors);
+  const IconComponent = ICON_SETS[iconSet];
 
   const toggleOpen = () => {
     setIsOpen(!isOpen);

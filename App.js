@@ -44,6 +44,13 @@ const DarkTheme = {
     popMenu: "#1c1c1c",
     notification: "#4ccdff", // using the primary blue for notifications
     GradientColors: ["#5f67ec", "#4ccdff"], // using the secondary blue and primary blue for gradients
+    // yes i am mariam
+    primaryOrange: "#ff9056",
+    secondaryOrange: "#f67262",
+    primaryBlue: "#4ccdff",
+    secondaryBlue: "#5f67ec",
+    darkBlue: "#252c79",
+    text2: "#fff",
   },
 };
 

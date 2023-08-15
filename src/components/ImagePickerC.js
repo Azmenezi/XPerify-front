@@ -1,9 +1,5 @@
-import { View, TouchableOpacity } from "react-native";
+import { View, TouchableOpacity, Image } from "react-native";
 import React, { useEffect } from "react";
-
-import { Image } from "react-native";
-
-import { StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
 
@@ -38,39 +34,45 @@ export default function ImagePickerC({ image, setImage }) {
   };
 
   return (
-    <View
-      style={{
-        borderRadius: 10,
-        alignItems: "center",
-      }}
-    >
-      <TouchableOpacity
-        style={{
-          backgroundColor: "gray",
-          borderRadius: 10,
-          alignItems: "center",
-          width: 300,
-        }}
-        onPress={takePhoto}
-      >
+    <View style={styles.container}>
+      <TouchableOpacity style={styles.imagePicker} onPress={takePhoto}>
         {image ? (
-          <Image
-            source={{ uri: image }}
-            style={{ width: 300, height: 300, borderRadius: 10 }}
-          />
+          <Image source={{ uri: image }} style={styles.selectedImage} />
         ) : (
-          <View
-            style={{
-              width: 300,
-              height: 300,
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <Ionicons name="add" size={52} color="5BA199" />
+          <View style={styles.iconContainer}>
+            <Ionicons name="add" size={60} color="#202124" />
           </View>
         )}
       </TouchableOpacity>
     </View>
   );
 }
+
+const styles = {
+  container: {
+    borderRadius: 10,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 5,
+    elevation: 5,
+  },
+  imagePicker: {
+    backgroundColor: "#E5E5E5",
+    borderRadius: 10,
+    alignItems: "center",
+    justifyContent: "center",
+    // width: 300,
+    // height: 300,
+  },
+  selectedImage: {
+    width: 300,
+    height: 300,
+    borderRadius: 10,
+  },
+  // iconContainer: {
+  //   alignItems: "center",
+  //   justifyContent: "center",
+  // },
+};

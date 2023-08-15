@@ -55,6 +55,7 @@ const PlaceCard = ({ place }) => {
               resizeMode: "contain",
               height: "100%",
               resizeMode: "cover",
+              // borderRadius: 20,
             }}
             resizeMode="cover"
           />
@@ -188,7 +189,7 @@ const PlaceCard = ({ place }) => {
             >
               <View
                 style={{
-                  flexDirection: "row",
+                  flexDirection: "",
                 }}
               >
                 <LocationInfo

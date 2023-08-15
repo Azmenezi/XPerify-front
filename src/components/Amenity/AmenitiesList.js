@@ -10,7 +10,7 @@ const AmenitiesList = ({ amenities }) => {
   const { colors } = useTheme();
 
   // const {
-  //   data: amenities,
+  //   data: amenitiess,
   //   isLoading,
   //   isFetching,
   //   refetch,
