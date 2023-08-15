@@ -58,7 +58,7 @@ const Home = () => {
         {/* <Text style={styles.subTitle}>
         Match your vibe: Filter places by mood!
       </Text> */}
-        <View style={{ backgroundColor: "" }}>
+        <View style={{ backgroundColor: "white" }}>
           <MoodList onMoodSelected={handleMoodSelected} />
         </View>
         <PlacesList
@@ -82,11 +82,11 @@ const styles = StyleSheet.create({
 
   searchInput: {
     flex: 1,
-    height: 40,
+    // height: 40,
     paddingLeft: 34,
-    backgroundColor: "#fff",
+    backgroundColor: "#f7f7f7",
     borderWidth: 0.5,
-    borderRadius: 7,
+    borderRadius: 10,
     borderColor: "gray",
     height: 50,
   },

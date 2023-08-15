@@ -46,7 +46,7 @@ const MyCheckInHistory = ({ history, refetch, isFetching }) => {
             }}
           >
             <Text style={{ color: "white", fontSize: 20, textAlign: "left" }}>
-              {item.place.name},
+              {item?.place?.name},
             </Text>
             <Text style={{ color: "white", fontSize: 20, textAlign: "left" }}>
               {item.createdAt.slice(0, 10)}

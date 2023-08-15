@@ -43,14 +43,15 @@ function BottomNavigation() {
     <Tab.Navigator
       screenOptions={({ route }) => ({
         headerShown: false,
-        tabBarActiveTintColor: "#5BA199",
+        tabBarActiveTintColor: "#252c79",
         tabBarInactiveTintColor: "#E5E3E4",
         tabBarShowLabel: false,
         tabBarStyle: {
           height: 60,
-          backgroundColor: "#182039",
-          borderTopColor: "#E5E3E420",
-          borderTopWidth: 0.2,
+          backgroundColor: "ghostwhite",
+          // borderTopColor: "#E5E3E420",
+          borderTopWidth: 0.1,
+          borderWidth: 0.1
         },
 
         tabBarButton: (props) => {
