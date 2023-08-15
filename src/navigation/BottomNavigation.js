@@ -40,8 +40,8 @@ function BottomNavigation() {
     <Tab.Navigator
       screenOptions={({ route }) => ({
         headerShown: false,
-        tabBarActiveTintColor: "#252c79",
-        tabBarInactiveTintColor: "#5f67ec",
+        tabBarActiveTintColor: "#172c6f",
+        tabBarInactiveTintColor: "#b6225d",
         tabBarShowLabel: false,
         tabBarStyle: {
           height: 60,
@@ -143,6 +143,7 @@ function BottomNavigation() {
                   height: focused ? 40 : 30,
                   width: focused ? 40 : 30,
                   borderRadius: 50,
+                  backgroundColor: "lightgray"
                 }}
               />
             </View>
