@@ -23,7 +23,7 @@ export default function PlaceInformation({ _id, isPlace }) {
 
   useEffect(() => {
     Animated.timing(heightAnim, {
-      toValue: isPlace ? 350 : 0,
+      toValue: isPlace ? 380 : 0,
       duration: 200,
       easing: Easing.linear,
       useNativeDriver: false,

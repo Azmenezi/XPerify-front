@@ -6,8 +6,8 @@ const CheckIn = () => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerText}>Nearby Places</Text>
-        <Text style={styles.subHeaderText}>Check out places around you!</Text>
+        <Text style={styles.headerText}>Check In</Text>
+        <Text style={styles.subHeaderText}>Check in to places around you!</Text>
       </View>
       <NearbyPlaces />
     </View>

@@ -5,6 +5,7 @@ import {
   ScrollView,
   RefreshControl,
   Text,
+  Image,
 } from "react-native";
 import FriendRequestModal from "./FriendRequestModal";
 
@@ -15,7 +16,6 @@ import {
   getMyProfile,
 } from "../../apis/auth";
 import { useTheme } from "@react-navigation/native";
-
 
 export default function FriendRequest() {
   const queryClient = useQueryClient();
@@ -76,8 +76,30 @@ export default function FriendRequest() {
         <View
           style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
         >
-          <Text style={{ color: theme.colors.text }}>
-            Nothing To See Here :P
+          <Image
+            source={{
+              uri: `https://cdn.discordapp.com/attachments/1135993254131802332/1141038577136959648/Push_notifications-amico.png`,
+            }}
+            style={{ height: "100%", width: "100%" }}
+          />
+          <View
+            style={{
+              height: 100,
+              width: "100%",
+              backgroundColor: "rgba(0, 0, 0, 0.4)",
+              position: "absolute",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          ></View>
+          <Text
+            style={{
+              color: theme.colors.whiteText,
+              fontSize: 30,
+              position: "absolute",
+            }}
+          >
+            You no notifications
           </Text>
         </View>
       )}
