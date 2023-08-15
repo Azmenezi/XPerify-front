@@ -5,6 +5,7 @@ import {
   View,
   RefreshControl,
   ScrollView,
+  Image,
 } from "react-native";
 import React, { useCallback } from "react";
 
@@ -55,8 +56,30 @@ const NearbyPlaces = () => {
           <RefreshControl refreshing={isFetching} onRefresh={onRefresh} />
         }
       >
-        <Text style={{ color: theme.colors.text }}>
-          No nearby location to check in to
+        <Image
+          source={{
+            uri: `https://cdn.discordapp.com/attachments/1135993254131802332/1141035488111763586/Closed_Stores-amico.png`,
+          }}
+          style={{ height: "100%", width: "100%" }}
+        />
+        <View
+          style={{
+            height: 100,
+            width: "100%",
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            position: "absolute",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        ></View>
+        <Text
+          style={{
+            color: theme.colors.whiteText,
+            fontSize: 30,
+            position: "absolute",
+          }}
+        >
+          No nearby locations
         </Text>
       </ScrollView>
     );

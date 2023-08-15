@@ -120,7 +120,7 @@ const RegisterUsername = ({ navigation }) => {
                   <TouchableHighlight
                     style={{
                       margin: 2,
-                      backgroundColor: "#1c1c1c",
+                      backgroundColor: "#fff",
                       height: 32,
                       borderRadius: 5,
                       justifyContent: "center",
@@ -133,7 +133,7 @@ const RegisterUsername = ({ navigation }) => {
                     }}
                     key={index}
                   >
-                    <Text style={{ color: theme.colors.text }}>
+                    <Text style={{ color: theme.colors.primary }}>
                       {suggestion}
                     </Text>
                   </TouchableHighlight>
