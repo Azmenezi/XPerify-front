@@ -31,7 +31,7 @@ const MoodCardSelector = ({ icon, name, _id, data, setData }) => {
       style={[
         styles.amenityContainer,
         {
-          backgroundColor: isPressed ? "#5f67ec" : "#182039",
+          backgroundColor: isPressed ? "#b6225d" : "#182039",
           opacity: isPressed ? 1 : 0.7,
           ...Platform.select({
             android: {

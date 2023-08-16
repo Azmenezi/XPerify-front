@@ -43,7 +43,7 @@ const AmenitiesCardSelecter = ({ icon, name, _id, data, setData }) => {
       style={[
         styles.amenityContainer,
         {
-          backgroundColor: isPressed ? colors.primary : colors.background,
+          backgroundColor: isPressed ? colors.amititycard : colors.background,
           opacity: fadeInAnim,
         },
       ]}
