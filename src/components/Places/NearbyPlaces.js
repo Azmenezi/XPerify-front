@@ -44,7 +44,7 @@ const NearbyPlaces = () => {
         {<SkeletonCard />}
       </View>
     );
-  if (!displayedPlaces)
+  if (!displayedPlaces || displayedPlaces?.length == 0)
     return (
       <ScrollView
         contentContainerStyle={{
@@ -62,21 +62,13 @@ const NearbyPlaces = () => {
           }}
           style={{ height: "100%", width: "100%" }}
         />
-        <View
-          style={{
-            height: 100,
-            width: "100%",
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
-            position: "absolute",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        ></View>
+
         <Text
           style={{
-            color: theme.colors.whiteText,
+            color: "black",
             fontSize: 30,
             position: "absolute",
+            bottom: 10,
           }}
         >
           No nearby locations

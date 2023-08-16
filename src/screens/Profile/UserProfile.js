@@ -114,7 +114,7 @@ export default function UserProfile({ route, navigation }) {
               }}
             >
               <Image
-                style={{ width: 80, height: 80, borderRadius: 50 }}
+                style={{ width: 100, height: 100, borderRadius: 50 }}
                 source={{
                   uri: `${BASE_URL}/${profile?.image}`,
                 }}
