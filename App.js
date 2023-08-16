@@ -51,6 +51,7 @@ const DarkTheme = {
     secondaryBlue: "#5f67ec",
     darkBlue: "#252c79",
     text2: "#fff",
+    amititycard: "#b6225d",
   },
 };
 
@@ -69,6 +70,7 @@ const LightTheme = {
     inputPlaceholder: "#00000080", // Color for input placeholders
     popMenu: "#F8F8F8",
     GradientColors: ["rgba(255, 255, 255, 0.00)", "#1C535A"],
+    amititycard: "#b6225d",
   },
 };
 
