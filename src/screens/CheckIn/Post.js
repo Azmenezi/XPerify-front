@@ -19,6 +19,7 @@ import { getAllMood } from "../../apis/mood";
 import { useTheme } from "@react-navigation/native";
 import MoodCardSelecter from "../../components/Mood/MoodCardSelecter";
 import AmenitiesCardSelecter from "../../components/Amenity/AmenitiesCardSelecter copy";
+import ImageHandler from "../../components/ImagePickerHandler";
 
 const Post = ({ navigation, route }) => {
   const { _id } = route.params;
@@ -99,6 +100,17 @@ const Post = ({ navigation, route }) => {
                 </Text>
               </View>
             </ImagePickerC>
+            {/* <ImageHandler
+              image={image}
+              setImage={setImage}
+              style={styles.image}
+            >
+              <View style={{}}>
+                <Text style={{ color: "darkgray" }}>
+                  Tap here to select a photo.
+                </Text>
+              </View>
+            </ImageHandler> */}
           </View>
           <View style={{ marginTop: 50, marginLeft: 30 }}>
             <Text

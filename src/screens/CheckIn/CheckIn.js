@@ -1,6 +1,9 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import NearbyPlaces from "../../components/Places/NearbyPlaces";
+import PlacesList from "../../components/Places/PlacesList";
+import { useQuery } from "react-query";
+import { getAllPlaces } from "../../apis/places";
 
 const CheckIn = () => {
   return (
