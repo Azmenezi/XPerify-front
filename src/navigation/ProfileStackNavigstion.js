@@ -14,6 +14,7 @@ import UserProfile from "../screens/Profile/UserProfile";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { Ionicons } from "react-native-vector-icons/";
 import DmButton from "../components/Profile/DmButton";
+import ProfileImage from "../screens/Profile/ProfileDetails/ProfileImage";
 
 const Stack = createStackNavigator();
 
@@ -78,6 +79,11 @@ export default function ProfileStackNavigstion() {
             );
           },
         }}
+      />
+      <Stack.Screen
+        name={ROUTES.HEDERROUTES.PROFILE_STACK.IMAGE}
+        component={ProfileImage}
+        options={{ presentation: "transparentModal", headerShown: false }}
       />
       <Stack.Screen
         name={ROUTES.HEDERROUTES.PROFILE_STACK.FRIENDS}

@@ -20,6 +20,7 @@ const ROUTES = {
       MYPOST: "my post",
       MYCHECKINHISTORY: "my checkin",
       USER_PROFILE: "User Profile",
+      IMAGE: "Profile Image",
     },
 
     PLACE_STACK: {
