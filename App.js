@@ -8,7 +8,7 @@ import AuthNavigation from "./src/navigation/AuthNavigation";
 import { getToken, removeToken } from "./src/apis/auth/storage";
 import jwt_decode from "jwt-decode";
 import MoodContext from "./src/context/MoodContext";
-
+import SplashScreenC from "./src/components/SplashScreenC";
 LogBox.ignoreLogs(["Warning: ..."]); // Ignore log notification by message
 LogBox.ignoreAllLogs(); //Ignore all log notifications
 
@@ -77,6 +77,7 @@ const LightTheme = {
 export default function App() {
   const [user, setUser] = useState(null);
   const [selectedMood, setSelectedMood] = useState(null);
+  const [showSplash, setShowSplash] = useState(true);
 
   const checkToken = async () => {
     const token = await getToken();
@@ -94,6 +95,16 @@ export default function App() {
   useEffect(() => {
     checkToken();
   }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setShowSplash(false);
+    }, 2000);
+  }, []);
+
+  if (showSplash) {
+    return <SplashScreenC />;
+  }
 
   return (
     <QueryClientProvider client={new QueryClient()}>
