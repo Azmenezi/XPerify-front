@@ -6,6 +6,7 @@ import {
   TextInput,
   TouchableHighlight,
   View,
+  SafeAreaView,
 } from "react-native";
 import { Formik } from "formik";
 import * as Yup from "yup";
@@ -65,7 +66,7 @@ const Login = ({ navigation }) => {
   };
 
   return (
-    <View style={{ flex: 1, alignItems: "center" }}>
+    <SafeAreaView style={{ flex: 1, alignItems: "center" }}>
       <Formik
         initialValues={{ username: "", password: "" }}
         onSubmit={(values) => {
@@ -210,7 +211,7 @@ const Login = ({ navigation }) => {
           );
         }}
       </Formik>
-    </View>
+    </SafeAreaView>
   );
 };
 

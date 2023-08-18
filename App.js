@@ -112,9 +112,9 @@ export default function App() {
         <MoodContext.Provider value={{ selectedMood, setSelectedMood }}>
           {/* <NavigationContainer theme={isDarkMode ? DarkTheme : LightTheme}> */}
           <NavigationContainer theme={DarkTheme}>
-            <SafeAreaView style={styles.container}>
-              {user ? <BottomNavigation /> : <AuthNavigation />}
-            </SafeAreaView>
+            {/* <SafeAreaView style={styles.container}> */}
+            {user ? <BottomNavigation /> : <AuthNavigation />}
+            {/* </SafeAreaView> */}
           </NavigationContainer>
         </MoodContext.Provider>
       </UserContext.Provider>

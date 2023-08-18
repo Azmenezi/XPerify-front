@@ -44,7 +44,7 @@ function BottomNavigation() {
         tabBarInactiveTintColor: "gray",
         tabBarShowLabel: false,
         tabBarStyle: {
-          height: 60,
+          height: 80,
           backgroundColor: "#f3f4f6",
           borderTopColor: "#252c79",
           borderTopWidth: 0.2,

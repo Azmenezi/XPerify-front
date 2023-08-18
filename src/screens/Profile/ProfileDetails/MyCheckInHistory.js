@@ -10,6 +10,7 @@ import React from "react";
 import { BASE_URL } from "../../../apis";
 
 const MyCheckInHistory = ({ history, refetch, isFetching }) => {
+  history?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
   return (
     <ScrollView
       refreshControl={
@@ -35,7 +36,11 @@ const MyCheckInHistory = ({ history, refetch, isFetching }) => {
           >
             <Image
               source={{ uri: `${BASE_URL}/${item?.place?.image}` }}
-              style={{ height: "100%", width: "100%", backgroundColor: "lightgray" }}
+              style={{
+                height: "100%",
+                width: "100%",
+                backgroundColor: "lightgray",
+              }}
             />
           </View>
           <View

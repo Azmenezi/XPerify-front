@@ -1,19 +1,16 @@
-import { StyleSheet, Text, View } from "react-native";
+import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import NearbyPlaces from "../../components/Places/NearbyPlaces";
-import PlacesList from "../../components/Places/PlacesList";
-import { useQuery } from "react-query";
-import { getAllPlaces } from "../../apis/places";
 
 const CheckIn = () => {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerText}>Check In</Text>
         <Text style={styles.subHeaderText}>Check in to places around you!</Text>
       </View>
       <NearbyPlaces />
-    </View>
+    </SafeAreaView>
   );
 };
 

@@ -1,13 +1,13 @@
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
-import React, { useContext } from "react";
-import DmButton from "../../components/Profile/DmButton";
+import React from "react";
 import ProfileTopNavigation from "../../navigation/ProfileTopNavigation";
 import { getMyProfile } from "../../apis/auth";
 import { useQuery } from "@tanstack/react-query";
 import { BASE_URL } from "../../apis";
-import MoodContext from "../../context/MoodContext";
 import ROUTES from "../../navigation";
 import { useTheme } from "@react-navigation/native";
+import * as Haptics from "expo-haptics";
+
 const Profile = ({ navigation }) => {
   const {
     data: profile,
@@ -15,7 +15,6 @@ const Profile = ({ navigation }) => {
     refetch,
     isLoading,
   } = useQuery(["profile"], () => getMyProfile());
-  const { selectedMood } = useContext(MoodContext);
   const theme = useTheme(); // Get the currently active theme
   return (
     <View style={{ flex: 1 }}>
@@ -28,8 +27,14 @@ const Profile = ({ navigation }) => {
             top: -10,
           }}
         >
-          <View style={{ left: 40 }}></View>
-          <View
+          <Pressable
+            onLongPress={() => {
+              navigation.navigate(ROUTES.HEDERROUTES.PROFILE_STACK.IMAGE, {
+                profileImage: profile?.image,
+              });
+              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+            }}
+            delayLongPress={100}
             style={{
               width: 82,
               height: 82,
@@ -46,7 +51,7 @@ const Profile = ({ navigation }) => {
                 uri: `${BASE_URL}/${profile?.image}`,
               }}
             />
-          </View>
+          </Pressable>
         </View>
         <View
           style={{
