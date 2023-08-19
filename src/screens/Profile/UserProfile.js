@@ -231,11 +231,11 @@ export default function UserProfile({ route, navigation }) {
                   .map((post) => (
                     <View
                       style={{
-                        width: 180,
-                        height: 180,
+                        width: "48%",
+                        aspectRatio: 1,
                         borderRadius: 20,
                         backgroundColor: "lightgray",
-                        margin: 10,
+                        margin: "1%",
                         overflow: "hidden",
                       }}
                     >
